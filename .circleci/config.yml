@@ -9,6 +9,7 @@ jobs:
           name: Install Docker client
           command: apk add docker-cli
           
+      -run:
           name: Find docker
           command:  which docker
            
