@@ -15,7 +15,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-         name: Find le petit Docker Client master protected
+         name: Find le petit Docker Client master really protected
          command: which docker
 
       - checkout
