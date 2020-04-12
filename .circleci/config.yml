@@ -15,7 +15,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-         name: Find le petit Docker Client PR from new branch to master again
+         name: Find le petit Docker Client PR from new branch to default then master
          command: which docker
 
       - checkout
