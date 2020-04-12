@@ -15,7 +15,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-         name: Find le petit Docker Client master unprotected
+         name: Find le petit Docker Client master unprotected PR to default
          command: which docker
 
       - checkout
