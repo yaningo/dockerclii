@@ -15,7 +15,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-         name: Find le petit Docker Client default or not
+         name: Find le petit Docker Client after webhook update
          command: which docker
 
       - checkout
