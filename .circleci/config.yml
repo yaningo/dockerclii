@@ -15,7 +15,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-         name: Find le petit Docker Client PR after modifying webhook
+         name: Find le petit Docker Client PR after modifying webhook  and disable only pr builds
          command: which docker
 
       - checkout
