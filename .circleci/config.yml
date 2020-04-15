@@ -15,7 +15,7 @@ jobs:
             mv /tmp/docker/* /usr/bin
 
       - run:
-         name: Find le petit Docker Client PR after modifying webhook  and disable only pr builds
+         name: Find le petit Docker Client wih schedule
          command: which docker
 
       - checkout
@@ -23,5 +23,12 @@ jobs:
 workflows:
   version: 2.1
   build:
+    triggers:
+      - schedule:
+          cron: "27 7 * * *"
+          filters:
+              branches:
+                only:
+                  - master
     jobs:
       - build
