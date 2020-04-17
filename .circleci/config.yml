@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: openjdk:8
+      - image: circleci/ruby:2.6.6-stretch-node-browsers
 
     steps:
       - run:
@@ -17,6 +17,10 @@ jobs:
       - run:
          name: Find le petit Docker Client wih schedule
          command: which docker
+         
+      - run:
+         name: Bundle version
+         command: bundle version
 
       - checkout
 
