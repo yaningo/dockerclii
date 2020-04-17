@@ -27,12 +27,5 @@ jobs:
 workflows:
   version: 2.1
   build:
-    triggers:
-      - schedule:
-          cron: "00 8 * * 1-5"
-          filters:
-              branches:
-                only:
-                  - master
     jobs:
       - build
