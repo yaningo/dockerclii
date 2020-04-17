@@ -8,11 +8,3 @@ jobs:
       - run:
          name: Bundle version
          command: bundle version
-
-      - checkout
-
-workflows:
-  version: 2.1
-  build:
-    jobs:
-      - build
