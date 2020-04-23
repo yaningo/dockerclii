@@ -19,7 +19,7 @@ workflows:
   stop-microservices:
     triggers:
       - schedule:
-          cron: "47 21 * * *"
+          cron: "00 22 * * *"
           filters:
               branches:
                 only:
