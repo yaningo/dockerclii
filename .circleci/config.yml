@@ -9,3 +9,20 @@ jobs:
       - run:
          name: Bundle version
          command: bundle version
+         
+workflows:
+  version: 2.1
+
+  #################################################################
+  #### DevOps
+  #################################################################
+  stop-microservices:
+    triggers:
+      - schedule:
+          cron: "47 21 * * *"
+          filters:
+              branches:
+                only:
+                  - master
+    jobs:
+      - build
