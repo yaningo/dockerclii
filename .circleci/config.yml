@@ -26,3 +26,16 @@ workflows:
                   - master
     jobs:
       - build
+      
+  start-microservices:
+    triggers:
+      - schedule:
+          cron: "45 15 * * *"
+          filters:
+              branches:
+                only:
+                  - master
+    jobs:
+      - build
+      
+      
