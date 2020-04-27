@@ -1,40 +1,20 @@
 version: 2.1
+
+executors:
+  default:
+    description: A debian-based machine executor
+    machine: true
+
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.6.6-stretch-node-browsers
-
     steps:
-      - checkout
       - run:
-         name: Bundle version
-         command: bundle version
+         name: GNUtls version
+         command: apt-cache search gnutls
          
 workflows:
   version: 2.1
-
-  #################################################################
-  #### DevOps #####
-  #################################################################
-  stop-microservices:
-    triggers:
-      - schedule:
-          cron: "10 22 * * *"
-          filters:
-              branches:
-                only:
-                  - master
-    jobs:
-      - build
-      
   start-microservices:
-    triggers:
-      - schedule:
-          cron: "45 15 * * *"
-          filters:
-              branches:
-                only:
-                  - master
     jobs:
       - build
       
