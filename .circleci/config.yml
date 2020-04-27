@@ -6,4 +6,4 @@ jobs:
     steps:
       - run:
          name: GNUtls version
-         command: apt-cache search gnutls
+         command: apt-get install gnutls-bin
