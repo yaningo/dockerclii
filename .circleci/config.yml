@@ -5,7 +5,9 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - run:
-         name: GNUtls version
-         command: |
-           sudo apt-get update && sudo apt-get install gnutls-bin
-           sudo gnutls-cli --version
+          name: Install GNUtls binaries
+          command: |
+            sudo apt-get update && sudo apt-get install gnutls-bin
+      - run:
+          name: Check GNUtls-cli version
+          command: sudo gnutls-cli --version
