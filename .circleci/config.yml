@@ -6,4 +6,6 @@ jobs:
     steps:
       - run:
          name: GNUtls version
-         command: sudo gnutls-cli --version
+         command: |
+           sudo apt-get update && sudo apt-get install gnutls-bin
+           sudo gnutls-cli --version
