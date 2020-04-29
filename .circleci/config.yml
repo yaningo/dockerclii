@@ -30,14 +30,12 @@ workflows:
   daily:
     jobs:
       - premier:
-          context: chef-org
 
   sync:
     jobs:
       - deuxieme:
-          context: chef-org
           
   thirdly:
     jobs:
       - troisieme:
-          context: chef-org      
+          context: myorg      
