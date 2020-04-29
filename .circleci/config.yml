@@ -27,16 +27,16 @@ jobs:
                                      
 workflows:
   version: 2
-  daily:
+  lundi:
     jobs:
       - premier
       
-  sync:
+  mardi:
     jobs:
       - deuxieme:
           context: Lecontext
           
-  thirdly:
+  mercredi:
     jobs:
       - troisieme:
           context: Lecontext
