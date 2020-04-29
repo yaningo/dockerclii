@@ -29,12 +29,15 @@ workflows:
   version: 2
   daily:
     jobs:
-      - premier
+      - premier:
+          context: Lecontext
 
   sync:
     jobs:
-      - deuxieme
+      - deuxieme:
+          context: Lecontext
           
   thirdly:
     jobs:
-      - troisieme
+      - troisieme:
+          context: Lecontext
