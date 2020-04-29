@@ -7,7 +7,7 @@ jobs:
     steps:
       - run:
           command: |
-                   echo jobnum1
+                   echo job1
                    
   deuxieme:
     docker:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - run:
           command: |
-                   echo jobnum2
+                   echo job2
  
   troisieme:
     docker:
@@ -23,18 +23,18 @@ jobs:
     steps:
       - run:
           command: |
-                   echo jobnum3
+                   echo job3
                                      
 workflows:
   version: 2
-  lundi:
+  papa:
     jobs:
       - premier
-      
-  mardi:
+
+  tata:
     jobs:
       - deuxieme
       
-  mercredi:
+  lala:
     jobs:
       - troisieme
