@@ -29,11 +29,11 @@ workflows:
   version: 2
   daily:
     jobs:
-      - premier:
+      - premier
 
   sync:
     jobs:
-      - deuxieme:
+      - deuxieme
           
   thirdly:
     jobs:
