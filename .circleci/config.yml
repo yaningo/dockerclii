@@ -29,9 +29,8 @@ workflows:
   version: 2
   daily:
     jobs:
-      - premier:
-          context: Lecontext
-
+      - premier
+      
   sync:
     jobs:
       - deuxieme:
