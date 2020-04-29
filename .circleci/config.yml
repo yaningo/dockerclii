@@ -29,16 +29,12 @@ workflows:
   version: 2
   daily:
     jobs:
-      - premier:
-          context: myorg      
+      - premier
 
   sync:
     jobs:
-      - deuxieme:
-          context: myorg      
-
+      - deuxieme
           
   thirdly:
     jobs:
-      - troisieme:
-          context: myorg      
+      - troisieme
