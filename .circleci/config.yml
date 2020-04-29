@@ -1,13 +1,39 @@
-version: 2.1
+version: 2
+
 jobs:
-  build:
-    machine:
-      image: ubuntu-1604:201903-01
+  premier:
+    docker:
+      - image: circleci/node
     steps:
       - run:
-          name: Install GNUtls binaries
           command: |
-            sudo apt-get update && sudo apt-get install gnutls-bin
+                   echo job1
+                   
+  deuxieme:
+    docker:
+      - image: circleci/node
+    steps:
       - run:
-          name: Check GNUtls-cli version
-          command: sudo gnutls-cli --version
+          command: |
+                   echo job2
+ 
+  troisieme:
+    docker:
+      - image: circleci/node
+    steps:
+      - run:
+          command: |
+                   echo jobnum3
+                                     
+workflows:
+  version: 2
+  daily:
+    jobs:
+      - premier
+  sync:
+    jobs:
+      - deuxieme
+      
+  thirdly:
+    jobs:
+      - troisieme
