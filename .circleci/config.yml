@@ -29,11 +29,14 @@ workflows:
   version: 2
   daily:
     jobs:
-      - premier
+      - premier:
+          context: myorg      
 
   sync:
     jobs:
-      - deuxieme
+      - deuxieme:
+          context: myorg      
+
           
   thirdly:
     jobs:
