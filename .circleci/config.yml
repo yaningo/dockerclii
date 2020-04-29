@@ -33,7 +33,9 @@ workflows:
       
   mardi:
     jobs:
-      - deuxieme
+      - deuxieme:
+          context: Lecontext
+
       
   mercredi:
     jobs:
