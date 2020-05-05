@@ -30,11 +30,13 @@ workflows:
   papa:
     jobs:
       - premier
+          context: Lecontext
 
   tata:
     jobs:
       - deuxieme
-      
+          context: Lecontext
   lala:
     jobs:
       - troisieme
+          context: Lecontext
