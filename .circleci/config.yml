@@ -29,14 +29,14 @@ workflows:
   version: 2
   papa:
     jobs:
-      - premier
+      - premier:
           context: Lecontext
 
   tata:
     jobs:
-      - deuxieme
+      - deuxieme:
           context: Lecontext
   lala:
     jobs:
-      - troisieme
+      - troisieme:
           context: Lecontext
