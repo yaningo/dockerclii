@@ -1,5 +1,14 @@
 version: 2.1
 jobs:
+  stuff:
+   docker:
+      - image: circleci/node
+   steps:
+      - run:
+          name: Install redis tools
+          command: |
+            sudo apt-get install redis-tools ; while ! redis-cli ping 2>/dev/null ; do sleep 1 ; done
+  
   build:
     docker:
       - image: redis:4
@@ -8,7 +17,6 @@ jobs:
       - run:
           name: Check buffer
           command: |
-            sudo apt-get install redis-tools ; while ! redis-cli ping 2>/dev/null ; do sleep 1 ; done
             redis-cli config get client-output-buffer-limit
         
 workflows:
