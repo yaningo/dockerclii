@@ -4,13 +4,13 @@ jobs:
     docker:
       - image: redis:4
 
-  steps:
-    - run:
-        name: Check buffer
-        command: config get client-output-buffer-limit
+    steps:
+      - run:
+          name: Check buffer
+          command: config get client-output-buffer-limit
         
 workflows:
   version: 2
   workflow:
     jobs:
-    - build
+      - build
