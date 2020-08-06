@@ -7,7 +7,7 @@ jobs:
     steps:
       - run:
           name: Check buffer
-          command: config get client-output-buffer-limit
+          command: CONFIG GET client-output-buffer-limit
         
 workflows:
   version: 2
