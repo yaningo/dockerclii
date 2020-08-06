@@ -7,7 +7,9 @@ jobs:
     steps:
       - run:
           name: Check buffer
-          command: redis-cli config get client-output-buffer-limit
+          command: |
+            sudo apt-get install redis-tools ; while ! redis-cli ping 2>/dev/null ; do sleep 1 ; do
+            redis-cli config get client-output-buffer-limit
         
 workflows:
   version: 2
