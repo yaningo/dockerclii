@@ -15,7 +15,7 @@ jobs:
           command: |
             sudo apt-get install redis-tools ; while ! redis-cli ping 2>/dev/null ; do sleep 1 ; done
             redis-cli config get client-output-buffer-limit
-            redis-cli config set client-output-buffer-limit "slave 512m 128m 60 pubsub 64m 16m 60"
+            redis-cli config set client-output-buffer-limit "slave 536870912 134217728 60 pubsub 67108864 16777216 60"
             redis-cli config get client-output-buffer-limit
             
         
