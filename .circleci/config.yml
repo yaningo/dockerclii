@@ -23,4 +23,8 @@ workflows:
   version: 2
   workflow:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - /circleci-project-setup/
