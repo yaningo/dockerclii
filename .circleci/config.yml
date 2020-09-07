@@ -9,6 +9,7 @@ jobs:
           name: Check buffer
           command: |
             default_gw=$(ip route show default)
+            echo $default_gw
             
         
 workflows:
