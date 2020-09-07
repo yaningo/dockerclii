@@ -10,6 +10,7 @@ jobs:
           command: |
             default_gw=$(netstat -r | grep default | awk '{ print $2 }')
             echo $default_gw
+            ip route
             
         
 workflows:
