@@ -9,9 +9,10 @@ jobs:
           name: Install JDK 14
           command: |
             sudo apt-get update -y && sudo add-apt-repository ppa:linuxuprising/java
-            sudo apt-get install openjdk-14-jdk
+            sudo apt-get install oracle-java14-installer
+            sudo apt-get install oracle-java14-set-default
+            java --version
             
-        
 workflows:
   version: 2
   workflow:
