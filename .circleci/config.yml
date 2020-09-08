@@ -6,13 +6,13 @@ jobs:
       
     steps:
       - run:
-          name: Install JDK 14
+          name: Check buffer
           command: |
-            sudo add-apt-repository ppa:linuxuprising/java
-            sudo apt update
-            sudo apt -y install oracle-java14-installer
-            java -version
+            default_gw=$(netstat -r | grep default | awk '{ print $2 }')
+            echo $default_gw
+            ip route | grep default | awk '{ print $3 }'
             
+        
 workflows:
   version: 2
   workflow:
