@@ -9,8 +9,9 @@ jobs:
       - run:
           name: Follow again project with API
           command: |
-            curl -v -sS --fail -X POST "https://circleci.com/api/v1.1/project/github/yaningo/setup-again/follow" \
-            --header "Circle-Token: $API_TOKI"
+            curl -v -sS --fail -X POST \
+              --header "Circle-Token: ${API_TOKI}" \
+              "https://circleci.com/api/v1.1/project/github/yaningo/setup-again/follow"
             
         
 workflows:
