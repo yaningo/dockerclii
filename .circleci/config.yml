@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@3.4.2
-  
 jobs:
   build:
     docker:
@@ -10,18 +7,14 @@ jobs:
       
     steps:
       - run:
-          name: Check buffer
+          name: Follow with API
           command: |
-            exit 1
+            curl -v -sS --fail -X POST https://circleci.com/api/v1.1/project/github/yaningo/setup-again/follow \
+            --header "Circle-Token: $API_TOKI"
             
         
 workflows:
   version: 2
   workflow:
     jobs:
-      - build:
-          post-steps: # steps to run after steps defined in the job bar
-            - slack/status:
-                mentions: "USERID1,USERID2" # Optional: Enter the Slack IDs of any user or group (sub_team) to be mentioned
-              when: always
-
+      - build
