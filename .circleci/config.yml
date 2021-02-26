@@ -8,17 +8,14 @@ jobs:
       - image: circleci/node
     
     steps:
+      - run: |
+         if [ "$CIRCLE_USERNAME" != "yaning0" ]; then
+           circleci-agent step halt
+         fi
+         
+    steps:
       - run: echo $CIRCLE_USERNAME
       
-      - when:
-          condition:
-            equal: [ yaningo, $CIRCLE_USERNAME ]
-          steps:
-             - run:
-                 command: |
-                       echo job1
-                       
-                   
   deuxieme:
     docker:
       - image: circleci/node
