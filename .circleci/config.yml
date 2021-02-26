@@ -3,22 +3,21 @@ version: 2.1
 #### This is the fork
 
 jobs:
-  premier:
-    docker:
+#  premier:
+#    docker:
       - image: circleci/node
-
     
-
-    steps:
-      - run: echo "Necessary steps key"
+     steps:
+      - run: echo $CIRCLE_USERNAME
       
       - when:
           condition:
-            equal: [ "yaningo", $CIRCLE_USERNAME ]
+            equal: [ yaningo, $CIRCLE_USERNAME ]
           steps:
              - run:
                  command: |
                        echo job1
+                       
                    
   deuxieme:
     docker:
@@ -42,9 +41,9 @@ workflows:
     jobs:
       - premier
           
-  papu:
-    jobs:
-      - premier
+  # papu:
+  #  jobs:
+  #    - premier
       
   tata:
     jobs:
