@@ -31,7 +31,7 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ yaningo, $CIRCLE_USERNAME ]
+      equal: [ tech5irl, $CIRCLE_USERNAME ]
     jobs:
       - premier
           
