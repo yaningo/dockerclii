@@ -9,7 +9,7 @@ jobs:
     
     steps:
       - run: |
-         if [ "$CIRCLE_USERNAME" != "yaning0" ]; then
+         if [ "$CIRCLE_USERNAME" = "tech5irl" ]; then
            circleci-agent step halt
          fi
          
