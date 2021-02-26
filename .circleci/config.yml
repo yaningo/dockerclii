@@ -12,6 +12,8 @@ jobs:
          if [ "$CIRCLE_USERNAME" != "yaning0" ]; then
            circleci-agent step halt
          fi
+         
+         echo "Did I execute?"
       
   deuxieme:
     docker:
