@@ -6,15 +6,10 @@ jobs:
   premier:
     docker:
       - image: circleci/node
-    
     steps:
-      - run: |
-          echo $CIRCLE_USERNAME
-          if [ "$CIRCLE_USERNAME" = "tech5irl" ]; then
-            circleci-agent step halt
-          fi
-         
-          echo "Did I execute?"
+      - run:
+          command: |
+                   echo job1
       
   deuxieme:
     docker:
@@ -34,7 +29,9 @@ jobs:
                                      
 workflows:
   version: 2
-  papa: 
+  papa:
+    when:
+      equal: [ yaningo, $CIRCLE_USERNAME ]
     jobs:
       - premier
           
