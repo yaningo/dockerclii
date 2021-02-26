@@ -12,9 +12,6 @@ jobs:
          if [ "$CIRCLE_USERNAME" != "yaning0" ]; then
            circleci-agent step halt
          fi
-         
-    steps:
-      - run: echo $CIRCLE_USERNAME
       
   deuxieme:
     docker:
