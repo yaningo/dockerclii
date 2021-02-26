@@ -6,10 +6,15 @@ jobs:
   premier:
     docker:
       - image: circleci/node
+
+    
+
+    steps:
+      - run: echo "Necessary steps key"
       
       - when:
           condition:
-            - equal: [ yaningo, $CIRCLE_USERNAME ]
+            equal: [ "yaningo", $CIRCLE_USERNAME ]
           steps:
              - run:
                  command: |
