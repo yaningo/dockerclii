@@ -3,11 +3,11 @@ version: 2.1
 #### This is the fork
 
 jobs:
-#  premier:
-#    docker:
+  premier:
+    docker:
       - image: circleci/node
     
-     steps:
+    steps:
       - run: echo $CIRCLE_USERNAME
       
       - when:
