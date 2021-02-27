@@ -19,6 +19,7 @@ jobs:
           command: |
                    echo job2
                    echo << pipeline.project.git_url >>
+                   echoo ${CIRCLE_USERNAME}
                                       
  
   troisieme:
@@ -33,7 +34,8 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
+     # equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
+      equal: [ "tech5irl", ${CIRCLE_USERNAME} ]
     jobs:
       - premier
           
