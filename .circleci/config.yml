@@ -3,6 +3,7 @@ version: 2.1
 parameters:
   who-org:
     type: string
+    default: ""
 
 #### This is the forkeeeee
 
