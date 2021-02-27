@@ -1,6 +1,6 @@
 version: 2.1
 
-#### This is the fork
+#### This is the forkeeeee
 
 jobs:
   premier:
@@ -31,7 +31,7 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ "tech5irl", $CIRCLE_USERNAME ]
+      equal: [ tech5irl, $CIRCLE_USERNAME ]
     jobs:
       - premier
           
