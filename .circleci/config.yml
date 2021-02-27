@@ -35,7 +35,7 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ "https://github.com/tech5irl/dockercli", << pipeline.project.git_url >> ]
+      equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
      # equal: [ "tech5irl", ${CIRCLE_USERNAME} ]
     jobs:
       - premier
