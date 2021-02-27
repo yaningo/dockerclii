@@ -15,7 +15,7 @@ jobs:
       - run:
           command: |
                    echo job1
-                   echo 'export pipeline.parameter.who-org=$CIRCLE_USERNAME' >> $BASH_ENV
+                   echo 'export pipeline.parameters.who-org=$CIRCLE_USERNAME' >> $BASH_ENV
       
   deuxieme:
     docker:
@@ -37,7 +37,7 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ tech5irl, << pipeline.parameter.who-org >> ]
+      equal: [ tech5irl, << pipeline.parameters.who-org >> ]
     jobs:
       - premier
           
