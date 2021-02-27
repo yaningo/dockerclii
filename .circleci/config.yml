@@ -1,10 +1,5 @@
 version: 2.1
 
-parameters:
-  who-org:
-    type: string
-    default: ""
-
 #### This is the forkeeeee
 
 jobs:
@@ -38,7 +33,7 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ tech5irl, << pipeline.parameters.who-org >> ]
+      equal: [ "https://github.com/tech5irl/dockercli", << pipeline.project.git_url >> ]
     jobs:
       - premier
           
