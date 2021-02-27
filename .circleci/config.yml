@@ -33,18 +33,22 @@ workflows:
   version: 2
   papa:
     when:
-      equal: [ "https://github.com/tech5irl/dockercli", << pipeline.project.git_url >> ]
+      equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
     jobs:
       - premier
           
   # papu:
   #  jobs:
   #    - premier
-      
+  
   tata:
     jobs:
-      - deuxieme:
-          context: Lecontext
+      - deuxieme
+      
+#  tata:
+#    jobs:
+#      - deuxieme:
+#          context: Lecontext
   lala:
     jobs:
       - troisieme:
