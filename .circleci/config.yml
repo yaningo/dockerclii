@@ -10,8 +10,6 @@ jobs:
       - run:
           command: |
                    echo job1
-                   echo 'export << pipeline.parameters.who-org >>=$CIRCLE_USERNAME' >> $BASH_ENV
-                   echo << pipeline.parameters.who-org >>
       
   deuxieme:
     docker:
@@ -20,6 +18,8 @@ jobs:
       - run:
           command: |
                    echo job2
+                   echo << pipeline.project.git_url >>
+                                      
  
   troisieme:
     docker:
