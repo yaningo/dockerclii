@@ -1,6 +1,6 @@
-version: 2
+version: 2.1
 
-#### This is the fork
+#### This is the forkeeeee
 
 jobs:
   premier:
@@ -10,7 +10,7 @@ jobs:
       - run:
           command: |
                    echo job1
-                   
+      
   deuxieme:
     docker:
       - image: circleci/node
@@ -18,6 +18,10 @@ jobs:
       - run:
           command: |
                    echo job2
+                   echo << pipeline.project.git_url >>
+                   echo ${CIRCLE_USERNAME}
+                   echo << pipeline.project.git_url >>
+                                      
  
   troisieme:
     docker:
@@ -30,18 +34,24 @@ jobs:
 workflows:
   version: 2
   papa:
-    jobs:
-      - premier:
-          context: Lecontext
-          
-  papu:
+    when:
+      equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
+     # equal: [ "tech5irl", ${CIRCLE_USERNAME} ]
     jobs:
       - premier
-      
+          
+  # papu:
+  #  jobs:
+  #    - premier
+  
   tata:
     jobs:
-      - deuxieme:
-          context: Lecontext
+      - deuxieme
+      
+#  tata:
+#    jobs:
+#      - deuxieme:
+#          context: Lecontext
   lala:
     jobs:
       - troisieme:
