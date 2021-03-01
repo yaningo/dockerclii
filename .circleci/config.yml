@@ -10,6 +10,7 @@ jobs:
       - run:
           command: |
                    echo job1
+                   sleep 45
       
   deuxieme:
     docker:
