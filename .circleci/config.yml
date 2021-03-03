@@ -10,7 +10,7 @@ jobs:
       - run:
           command: |
                    echo job1
-                   sleep 45
+                   sleep 2
       
   deuxieme:
     docker:
@@ -48,7 +48,8 @@ workflows:
           pre-steps: # steps to run before steps defined in the job bar
               - run:
                   command: |
-                    WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken}" | jq -r '.items[].approved_by')
+                    WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken}" | jq -r '.items[]|select(.type == "approval")|.approved_by')
+                    echo ${WHO_APPROVED_ID}
                     WHO_APPROVED_USERNAME=$(curl -X GET https://circleci.com/api/v2/user/${WHO_APPROVED_ID} -H "Circle-Token: ${MyToken}" | jq -r .login)
                     ACCESS_GRANTED=false
                     echo ${WHO_APPROVED_USERNAME}
