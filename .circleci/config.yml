@@ -40,6 +40,10 @@ workflows:
      # equal: [ "tech5irl", ${CIRCLE_USERNAME} ]
     jobs:
       - premier
+      - wait-for-approval:
+          type: approval
+          requires:
+            - premier
           
   # papu:
   #  jobs:
