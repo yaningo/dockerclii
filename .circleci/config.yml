@@ -48,8 +48,8 @@ workflows:
           pre-steps: # steps to run before steps defined in the job bar
               - run:
                   command: |
-                    WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken} | jq -r '.items[].approved_by')
-                    WHO_APPROVED_USERNAME=$(curl -X GET https://circleci.com/api/v2/user/${WHO_APPROVED_ID} | jq -r .login)
+                    WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken}" | jq -r '.items[].approved_by')
+                    WHO_APPROVED_USERNAME=$(curl -X GET https://circleci.com/api/v2/user/${WHO_APPROVED_ID} -H "Circle-Token: ${MyToken}" | jq -r .login)
                     ACCESS_GRANTED=false
                     echo ${WHO_APPROVED_USERNAME}
                     for OUTPUT in $(curl -u"${BB_admin_username}:${BB_admin_App_Password}" --request GET https://api.bitbucket.org/1.0/groups/yndmgo/${Approvers_Group}/members|jq '.[].nickname'|sed 's/"//g')
@@ -60,7 +60,7 @@ workflows:
                     done
 
                     if [[ ACCESS_GRANTED=false ]]; then
-                      curl -X POST https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel -H "Circle-Token: ${MyToken}
+                      curl -X POST https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel -H "Circle-Token: ${MyToken}"
                     fi
           requires:
             - wait-for-approval
