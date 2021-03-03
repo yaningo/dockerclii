@@ -63,6 +63,9 @@ workflows:
                     if [[ $ACCESS_GRANTED=false ]]; then
                       curl -X POST https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel -H "Circle-Token: ${MyToken}"
                     fi
+                    echo ${WHO_APPROVED_ID}
+                    echo ${WHO_APPROVED_USERNAME}
+                    echo $ACCESS_GRANTED
           requires:
             - wait-for-approval
   # papu:
