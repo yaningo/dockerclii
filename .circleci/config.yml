@@ -19,9 +19,10 @@ jobs:
       - run:
           command: |
                    echo job2
-                   echo << pipeline.project.git_url >>
-                   echo ${CIRCLE_USERNAME}
-                   echo << pipeline.project.git_url >>
+                   echo ${WHO_APPROVED_ID}
+                   echo ${WHO_APPROVED_USERNAME}
+                   echo $ACCESS_GRANTED
+                   
                                       
  
   troisieme:
@@ -49,18 +50,17 @@ workflows:
               - run:
                   command: |
                     WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken}" | jq -r '.items[]|select(.type == "approval")|.approved_by')
-                    echo ${WHO_APPROVED_ID}
                     WHO_APPROVED_USERNAME=$(curl -X GET https://circleci.com/api/v2/user/${WHO_APPROVED_ID} -H "Circle-Token: ${MyToken}" | jq -r .login)
                     ACCESS_GRANTED=false
-                    echo ${WHO_APPROVED_USERNAME}
                     for OUTPUT in $(curl -u"${BB_admin_username}:${BB_admin_App_Password}" --request GET https://api.bitbucket.org/1.0/groups/yndmgo/${Approvers_Group}/members|jq '.[].nickname'|sed 's/"//g')
                     do
+                      echo $OUTPUT
                       if [[ $OUTPUT = ${WHO_APPROVED_USERNAME} ]]; then
                         ACCESS_GRANTED=true
                       fi
                     done
 
-                    if [[ ACCESS_GRANTED=false ]]; then
+                    if [[ $ACCESS_GRANTED=false ]]; then
                       curl -X POST https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel -H "Circle-Token: ${MyToken}"
                     fi
           requires:
