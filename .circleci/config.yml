@@ -45,9 +45,7 @@ workflows:
           requires:
             - premier
       - deuxieme:
-          requires:
-            - wait-for-approval
-          - pre-steps: # steps to run before steps defined in the job bar
+          pre-steps: # steps to run before steps defined in the job bar
               - run:
                   command: |
                     WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken} | jq -r '.items[].approved_by'
@@ -64,7 +62,8 @@ workflows:
                     if [[ ACCESS_GRANTED=false ]]; then
                       curl -X POST https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel -H "Circle-Token: ${MyToken}
                     fi
-          
+          requires:
+            - wait-for-approval
   # papu:
   #  jobs:
   #    - premier
