@@ -1,21 +1,61 @@
 version: 2.1
 
+parameters:
+  run_bob:
+    type: boolean
+    default: false
+  run_the:
+    type: boolean
+    default: false
+  run_builder:
+    type: boolean
+    default: false
+
+
 jobs:
+  bob:
+    docker:
+      - image: circleci/python
+      
+    steps:
+      - run:
+          name: Can we
+          command: |
+            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
+            
+  the:
+    docker:
+      - image: circleci/python
+      
+    steps:
+      - run:
+          name: It?
+          command: |
+            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"     
+            
   builder:
     docker:
       - image: circleci/python
       
     steps:
       - run:
-          name: Follow again project with API
+          name: It?
           command: |
-            curl -v -sS --fail -X POST \
-              --header "Circle-Token: $API_TOKI" \
-              "https://circleci.com/api/v1.1/project/github/yaningo/setup-again/follow"
-            
+            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"            
         
 workflows:
   version: 2
-  workflow:
+  workflow-bob:
+    when: << pipeline.parameters.run_bob >>
+    jobs:
+      - bob
+      
+  workflow-the:
+    when: << pipeline.parameters.run_the >>
+    jobs:
+      - the
+      
+  workflow-builder:
+    unless: << pipeline.parameters.run_bob >> || << pipeline.parameters.run_the >>
     jobs:
       - builder
