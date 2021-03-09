@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   run_bob:
     type: boolean
-    default: true
+    default: false
   run_the:
     type: boolean
     default: false
@@ -61,5 +61,6 @@ workflows:
       or:
           - << pipeline.parameters.run_bob >>
           - << pipeline.parameters.run_the >>
+          - << pipeline.parameters.run_builder >>
     jobs:
       - builder
