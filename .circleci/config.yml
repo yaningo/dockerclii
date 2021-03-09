@@ -57,6 +57,9 @@ workflows:
       
   workflow-builder:
  #   unless: << pipeline.parameters.run_bob >> || << pipeline.parameters.run_the >>
-    unless: << pipeline.parameters.run_bob >>
+    unless:
+      or:
+          - << pipeline.parameters.run_bob >>
+          - << pipeline.parameters.run_the >>
     jobs:
       - builder
