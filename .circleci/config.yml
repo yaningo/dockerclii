@@ -22,6 +22,7 @@ jobs:
           name: Can we
           command: |
             echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
+            printf "%s" << pipeline.number >>
             
   the:
     docker:
@@ -31,7 +32,8 @@ jobs:
       - run:
           name: It?
           command: |
-            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"     
+            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
+            printf "%s" << pipeline.number >>
             
   builder:
     docker:
@@ -41,7 +43,8 @@ jobs:
       - run:
           name: It?
           command: |
-            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"            
+            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
+            printf "%s" << pipeline.number >>
         
 workflows:
   version: 2
