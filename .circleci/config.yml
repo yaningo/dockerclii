@@ -22,7 +22,8 @@ jobs:
           name: Can we
           command: |
             echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
-            printf "%s" << pipeline.number >>
+            printf -v TOTO "%s" << pipeline.number >>
+            ECHO $TOTO
             
   the:
     docker:
@@ -30,10 +31,11 @@ jobs:
       
     steps:
       - run:
-          name: It?
+          name: Fix?
           command: |
             echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
-            printf "%s" << pipeline.number >>
+            printf -v TOTO "%s" << pipeline.number >>
+            ECHO $TOTO
             
   builder:
     docker:
@@ -44,7 +46,8 @@ jobs:
           name: It?
           command: |
             echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
-            printf "%s" << pipeline.number >>
+            printf -v TOTO "%s" << pipeline.number >>
+            ECHO $TOTO
         
 workflows:
   version: 2
