@@ -62,10 +62,10 @@ workflows:
                     done
                   fi
                   
-                  cat WF_to_cancel.txt
-
                   ## Cancel any curently running workflow with the same name
                   if [ -s WF_to_cancel.txt ]; then
+                    echo "Cancelling the following workflows:"
+                    cat WF_to_cancel.txt 
                     while read WF_ID;
                     do
                       curl --header "Circle-Token: $MyToken" --request POST https://circleci.com/api/v2/workflow/$WF_ID/cancel
