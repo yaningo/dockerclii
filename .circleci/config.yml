@@ -44,6 +44,7 @@ workflows:
       - premier:
           pre-steps:
             - run:
+                name: Cancel redundant workflow(s)
                 command: |
                   WF_NAME=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}"|jq -r .name)
 
