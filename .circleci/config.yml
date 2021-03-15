@@ -3,6 +3,7 @@ version: 2.1
 #### This is the forkeeeee
 
 jobs:
+
   premier:
     docker:
       - image: circleci/node
@@ -40,7 +41,36 @@ workflows:
       equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
      # equal: [ "tech5irl", ${CIRCLE_USERNAME} ]
     jobs:
-      - premier
+      - premier:
+        pre-steps:
+          - run:
+              commands: |
+                WF_NAME=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/workflow/$CIRCLE_WORKFLOW_ID"|jq -r .name)
+
+                ## Get the IDs of pipelines created by the current user on the same branch
+                PIPE_IDS=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/project/gh/yaningo/$CIRCLE_PROJECT_REPONAME/pipeline?branch=$CIRCLE_BRANCH"|jq -r --arg CIRCLE_USERNAME "$CIRCLE_USERNAME" '.items[]|select(.state == "created")|select(.trigger.actor.login == $CIRCLE_USERNAME).id')
+
+                echo $PIPE_IDS
+
+                IFS=$'\n'
+
+                ## Get the IDs of curently running workflows with the same name
+                if [ ! -z "$PIPE_IDS" ]; then
+                  for PIPE_ID in $PIPE_IDS
+                  do
+                    curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/pipeline/$PIPE_ID/workflow"|jq -r --arg CIRCLE_WORKFLOW_ID "$CIRCLE_WORKFLOW_ID" WF_NAME "$WF_NAME" '.items[]|select(.status == "running")|select(.name == $WF_NAME)|select(.id != $CIRCLE_WORKFLOW_ID)|.id' > WF_to_cancel.txt
+                  done
+                fi
+
+                ## Cancel any curently running workflow with the same name
+                if [ -s WF_to_cancel.txt ]; then
+                  while read WF_ID;
+                  do
+                    curl --header "Circle-Token: $MyToken" --request POST "https://circleci.com/api/v2/workflow/$WF_ID/cancel"
+                  done < WF_to_cancel.txt
+                  else
+                    echo "Nothing to cancel"
+                fi
       - wait-for-approval:
           type: approval
           requires:
