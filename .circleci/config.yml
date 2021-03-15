@@ -73,7 +73,7 @@ workflows:
                   if [ -s WF_to_cancel.txt ]; then
                     while read WF_ID;
                     do
-                      curl --header 'Circle-Token: $MyToken' --request POST https://circleci.com/api/v2/workflow/${WF_ID}/cancel
+                      curl --header 'Circle-Token: $MyToken' --request POST https://circleci.com/api/v2/workflow/$WF_ID/cancel
                     done < WF_to_cancel.txt
                   else
                     echo "Nothing to cancel"
