@@ -48,6 +48,9 @@ workflows:
                   WF_NAME=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}"|jq -r .name)
                   
                   echo $WF_NAME
+                  
+                  CURRENT_PIPE= << pipeline.id >>
+                  echo $CURRENT_PIPE
 
                   ## Get the IDs of pipelines created by the current user on the same branch
                   PIPE_IDS=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/project/gh/yaningo/$CIRCLE_PROJECT_REPONAME/pipeline?branch=$CIRCLE_BRANCH"|jq -r --arg CIRCLE_USERNAME "$CIRCLE_USERNAME" '.items[]|select(.state == "created")|select(.trigger.actor.login == $CIRCLE_USERNAME).id')
