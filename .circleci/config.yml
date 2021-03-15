@@ -57,7 +57,7 @@ workflows:
 
                   echo $PIPE_IDS
 
-                  IFS=$'\n'
+                  #IFS=$'\n'
 
                   ## Get the IDs of curently running workflows with the same name
                   if [ ! -z "$PIPE_IDS" ]; then
