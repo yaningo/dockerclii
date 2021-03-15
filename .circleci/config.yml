@@ -61,6 +61,8 @@ workflows:
                       curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/pipeline/$PIPE_ID/workflow"|jq -r --arg CIRCLE_WORKFLOW_ID "$CIRCLE_WORKFLOW_ID" --arg WF_NAME "$WF_NAME" '.items[]|select(.status == "running")|select(.name == $WF_NAME)|select(.id != $CIRCLE_WORKFLOW_ID)|.id' > WF_to_cancel.txt
                     done
                   fi
+                  
+                  cat WF_to_cancel.txt
 
                   ## Cancel any curently running workflow with the same name
                   if [ -s WF_to_cancel.txt ]; then
