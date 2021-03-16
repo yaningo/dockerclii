@@ -71,6 +71,8 @@ workflows:
                     do
                       curl --header "Circle-Token: $MyToken" --request POST https://circleci.com/api/v2/workflow/$WF_ID/cancel
                     done < WF_to_cancel.txt
+                  ## Allowing some time to complete the cancellation
+                  sleep 3
                   else
                     echo "Nothing to cancel"
                   fi
