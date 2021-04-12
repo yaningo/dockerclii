@@ -12,6 +12,14 @@ jobs:
           command: |
                    echo job1
                    sleep 2
+                   
+  premier_bis:
+    docker:
+      - image: circleci/node
+    steps:
+      - run:
+          command: |
+                   exit 123      
       
   deuxieme:
     docker:
@@ -76,6 +84,11 @@ workflows:
                   else
                     echo "Nothing to cancel"
                   fi
+                  
+      - premier_bis:
+          requires:
+            - premier
+            
       - wait-for-approval:
           type: approval
           requires:
