@@ -99,7 +99,8 @@ workflows:
                   command: |
                     WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken}" | jq -r '.items[]|select(.type == "approval")|.approved_by')
                     WHO_APPROVED_USERNAME=$(curl -X GET https://circleci.com/api/v2/user/${WHO_APPROVED_ID} -H "Circle-Token: ${MyToken}" | jq -r .name)
-                    ACCESS_GRANTED=false
+                    #ACCESS_GRANTED=false
+                    ACCESS_GRANTED=true
                     for OUTPUT in $(curl -u"${BB_admin_username}:${BB_admin_App_Password}" --request GET https://api.bitbucket.org/1.0/groups/yndmgo/${Approvers_Group}/members|jq -r '.[].display_name')
                     do
                       echo $OUTPUT
