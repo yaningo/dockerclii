@@ -103,9 +103,9 @@ workflows:
                     for OUTPUT in $(curl -u"${BB_admin_username}:${BB_admin_App_Password}" --request GET https://api.bitbucket.org/1.0/groups/yndmgo/${Approvers_Group}/members|jq -r '.[].display_name')
                     do
                       echo $OUTPUT
-                      if [[ $OUTPUT = ${WHO_APPROVED_USERNAME} ]]; then
-                        ACCESS_GRANTED=true
-                      fi
+                      #if [[ $OUTPUT = ${WHO_APPROVED_USERNAME} ]]; then
+                      #  ACCESS_GRANTED=true
+                    #  fi
                     done
 
                     if [[ $ACCESS_GRANTED=false ]]; then
