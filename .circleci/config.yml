@@ -16,7 +16,7 @@ jobs:
           command: echo "Second step"
       - run :
           name: Third step
-            command: |
+          command: |
               echo "Second "
               echo "step"
 
