@@ -18,9 +18,10 @@ jobs:
       - image: circleci/node
     steps:
       - run :
-          name: extra : above
+          name: extra colon above
           command: |
-                   echo "Does it break?"      
+                   echo "Does it break?"
+                   echo Toto
       
   deuxieme:
     docker:
