@@ -1,138 +1,21 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
-#### This is the forkeeeeeeeee
-
-jobs:
-
-  premier:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo job1
-                   sleep 2
-                   
-  premier_bis:
-    docker:
-      - image: circleci/node
-    steps:
-      - checkout
-      - run :
-          name: extra colon above
-          command: |
-                   echo "Does it break?"
-                   echo Toto
-      
-  deuxieme:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo job2
-                   echo ${WHO_APPROVED_ID}
-                   echo ${WHO_APPROVED_USERNAME}
-                   echo $ACCESS_GRANTED
-                   
-                                      
- 
-  troisieme:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo jobnum3
-                                     
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
 workflows:
-  version: 2
-  papa:
-    when:
-      equal: [ "https://github.com/yaningo/dockercli", << pipeline.project.git_url >> ]
-     # equal: [ "tech5irl", ${CIRCLE_USERNAME} ]
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
     jobs:
-      - premier:
-          pre-steps:
-            - run:
-                name: Cancel redundant workflow(s)
-                command: |
-                  WF_NAME=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}"|jq -r .name)
-
-                  ## Get the IDs of pipelines created by the current user on the same branch
-                  PIPE_IDS=$(curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/pipeline?branch=$CIRCLE_BRANCH"|jq -r --arg CIRCLE_USERNAME "$CIRCLE_USERNAME" '.items[]|select(.state == "created")|select(.trigger.actor.login == $CIRCLE_USERNAME).id')
-
-                  echo $PIPE_IDS
-
-                  #IFS=$'\n'
-
-                  ## Get the IDs of currently running workflows with the same name
-                  if [ ! -z "$PIPE_IDS" ]; then
-                    for PIPE_ID in $PIPE_IDS
-                    do
-                      curl --header "Circle-Token: $MyToken" --request GET "https://circleci.com/api/v2/pipeline/${PIPE_ID}/workflow"|jq -r --arg CIRCLE_WORKFLOW_ID "$CIRCLE_WORKFLOW_ID" --arg WF_NAME "${WF_NAME}" '.items[]|select(.status == "on_hold" or .status == "running")|select(.name == $WF_NAME)|select(.id != $CIRCLE_WORKFLOW_ID)|.id' >> WF_to_cancel.txt
-                    done
-                  fi
-                  
-                  ## Cancel any currently running workflow with the same name
-                  if [ -s WF_to_cancel.txt ]; then
-                    echo "Cancelling the following workflows:"
-                    cat WF_to_cancel.txt 
-                    while read WF_ID;
-                    do
-                      curl --header "Circle-Token: $MyToken" --request POST https://circleci.com/api/v2/workflow/$WF_ID/cancel
-                    done < WF_to_cancel.txt
-                  ## Allowing some time to complete the cancellation
-                  sleep 3
-                  else
-                    echo "Nothing to cancel"
-                  fi
-                  
-      - premier_bis:
-          requires:
-            - premier
-            
-      - wait-for-approval:
-          type: approval
-          requires:
-            - premier
-      - deuxieme:
-          pre-steps: # steps to run before steps defined in the job bar
-              - run:
-                  command: |
-                    WHO_APPROVED_ID=$(curl -X GET https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/job -H "Circle-Token: ${MyToken}" | jq -r '.items[]|select(.type == "approval")|.approved_by')
-                    WHO_APPROVED_USERNAME=$(curl -X GET https://circleci.com/api/v2/user/${WHO_APPROVED_ID} -H "Circle-Token: ${MyToken}" | jq -r .name)
-                    #ACCESS_GRANTED=false
-                    ACCESS_GRANTED=true
-                    for OUTPUT in $(curl -u"${BB_admin_username}:${BB_admin_App_Password}" --request GET https://api.bitbucket.org/1.0/groups/yndmgo/${Approvers_Group}/members|jq -r '.[].display_name')
-                    do
-                      echo $OUTPUT
-                      #if [[ $OUTPUT = ${WHO_APPROVED_USERNAME} ]]; then
-                      #  ACCESS_GRANTED=true
-                    #  fi
-                    done
-
-                    if [[ $ACCESS_GRANTED=false ]]; then
-                      curl -X POST https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel -H "Circle-Token: ${MyToken}"
-                    fi
-                    echo ${WHO_APPROVED_ID}
-                    echo ${WHO_APPROVED_USERNAME}
-                    echo $ACCESS_GRANTED
-          requires:
-            - wait-for-approval
-#   papu:
-#    jobs:
-#      - premier
-  
-#  tata:
-#    jobs:
-#      - deuxieme
-      
-#  tata:
-#    jobs:
-#      - deuxieme:
-#          context: Lecontext
-#  lala:
-#    jobs:
-#      - troisieme:
-#          context: Lecontext
+      - welcome/run
+      - run :
+          name: Second step
+          command: echo "Second step"
+      - run :
+          name: Third step
+          command: |
+            echo "Second "
+            echo "step"
