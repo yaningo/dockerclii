@@ -10,7 +10,8 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - detect/init
+      - detect/init:
+          extended: false
       - run :
           name: Second step
           command: echo "Second step"
