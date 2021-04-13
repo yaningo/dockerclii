@@ -22,8 +22,8 @@ jobs:
               echo "step"
 
 # Orchestrate or schedule a set of jobs
-#workflows:
+workflows:
   # Name the workflow "welcome"
-#  welcome:
-#    jobs:
- #     - messer
+  welcome:
+    jobs:
+      - messer
