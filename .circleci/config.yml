@@ -3,14 +3,28 @@ version: 2.1
 jobs:
   build:
     machine: true
-      
     steps:
       - run:
-          name: Check buffer
+          name: Create file 1
           command: |
-            default_gw=$(netstat -r | grep default | awk '{ print $2 }')
-            echo $default_gw
-            ip route | grep default | awk '{ print $3 }'
+            echo "toto" | tee -a file1.txt
+            
+      - run:
+          name: Create file 2
+          command: |
+            echo "titi" | tee -a file2.txt
+            
+      - store_artifacts:
+          path: /home/circleci/project/file1.txt
+          destination: file1.txt
+          
+      - run:
+          name: Nighty night
+          command: sleep 3
+          
+      - store_artifacts:
+          path: /home/circleci/project/file2.txt
+          destination: file2.txt
             
         
 workflows:
