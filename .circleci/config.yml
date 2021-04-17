@@ -6,12 +6,9 @@ jobs:
     steps:
       - run:
           name: Create file 1
+          background: true
           command: |
             echo "toto" | tee -a file1.txt
-            
-      - run:
-          name: Create file 2
-          command: |
             echo "titi" | tee -a file2.txt
             
       - store_artifacts:
@@ -21,10 +18,10 @@ jobs:
       - run:
           name: Nighty night
           command: sleep 3
-          
-      - run:
-          name: Do something.... anything!
-          command: echo "Bah alors?!"
+     #     
+     # - run:
+     #     name: Do something.... anything!
+     #     command: echo "Bah alors?!"
           
       - store_artifacts:
           path: /home/circleci/project/file2.txt
