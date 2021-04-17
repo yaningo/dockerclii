@@ -22,6 +22,10 @@ jobs:
           name: Nighty night
           command: sleep 3
           
+      - run:
+          name: Do something.... anything!
+          command: echo "Bah alors?!"
+          
       - store_artifacts:
           path: /home/circleci/project/file2.txt
           destination: file2.txt
