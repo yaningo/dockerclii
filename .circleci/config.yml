@@ -7,7 +7,7 @@ orbs:
   
 jobs:
   messer:
-    docker
+    docker:
       - image: circleci/node
     steps:
       - detect/init:
