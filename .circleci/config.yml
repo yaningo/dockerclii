@@ -3,7 +3,16 @@ version: 2.1
 
 orbs:
   detect: circleci/os-detect@0.3.0
-  
+
+commands: # a reusable command with parameters
+  greeting:
+    parameters:
+      to:
+        default: "world"
+        type: string
+    steps:
+      - run: echo "Hello <<parameters.to>>"
+      
 jobs:
   messer:
     parameters:
@@ -20,6 +29,10 @@ jobs:
       - run :
           name: Second step
           command: echo "Second step"
+      
+      - greeting:
+          to: "<< parameters.expand >>"
+          
       - run :
           name: Third step
           command: |
