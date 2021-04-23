@@ -43,8 +43,7 @@ jobs:
               echo << parameters.laboule >>
           
       - when:
-          condition:
-            equal: [ "true", << parameters.laconditionouioui >> ]
+          condition: << parameters.laconditionouioui >>
           steps:
             - run:
                 name: Testing env_var_name interpolation
