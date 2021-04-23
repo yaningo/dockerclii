@@ -33,12 +33,13 @@ jobs:
           name: Second step
           command: |
               echo "Second step"
-              echo 'export condition_needed_2=true' >> $BASH_ENV
+              echo 'export condition_needed_2=false' >> $BASH_ENV
           
       - when:
           condition: << parameters.laconditionouioui >>
           steps:
             - run:
+                name: Testing env_var_name interpolation
                 command: |
                   echo "Second "
                   echo "step"
