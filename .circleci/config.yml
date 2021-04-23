@@ -9,7 +9,7 @@ jobs:
     parameters:
       expand:
         description: "To whom shall we say hello?"
-        default: << pipeline.git.branch >>
+        default: "<< pipeline.git.branch >>"
         type: string
         
     docker:
