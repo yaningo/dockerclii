@@ -21,7 +21,7 @@ jobs:
         default: "<< pipeline.git.branch >>"
         type: string
       laconditionouioui:
-        default: condition_needed_2
+        default: condition_needed
         type: env_var_name
         
     docker:
