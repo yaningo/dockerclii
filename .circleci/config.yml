@@ -20,6 +20,8 @@ jobs:
         description: "To whom shall we say hello??"
         default: "<< pipeline.git.branch >>"
         type: string
+      laconditionouioui: condition_needed
+        default: 
         
     docker:
       - image: circleci/node
@@ -29,6 +31,11 @@ jobs:
       - run :
           name: Second step
           command: echo "Second step"
+          
+      - when:
+          condition: << parameters.laconditionouioui >>
+            steps:
+            - run: echo << parameters.laconditionouioui >>
       
       - greeting:
           to: "<< parameters.expand >>"
