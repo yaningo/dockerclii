@@ -25,7 +25,7 @@ jobs:
           command: |
               echo "Second "
               echo "step"
-              echo ${!<< parameters.expand >>}
+              echo << parameters.expand >>
               echo << pipeline.git.branch >>
 
 # Orchestrate or schedule a set of jobs
