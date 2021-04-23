@@ -20,9 +20,14 @@ jobs:
         description: "To whom shall we say hello??"
         default: "<< pipeline.git.branch >>"
         type: string
+      
       laconditionouioui:
         default: condition_needed_2
         type: env_var_name
+      
+      laboule:
+        default: true
+        type: boolean
         
     docker:
       - image: circleci/node
@@ -34,6 +39,8 @@ jobs:
           command: |
               echo "Second step"
               condition_needed_2=false
+              echo $condition_needed_2
+              echo << parameters.laboule >>
           
       - when:
           condition:
@@ -42,6 +49,8 @@ jobs:
             - run:
                 name: Testing env_var_name interpolation
                 command: |
+                  echo $condition_needed_2
+                  echo << parameters.laboule >>
                   echo "Second "
                   echo "step"
                   echo 'export COND_EXP="<< parameters.laconditionouioui >>"' >> $BASH_ENV
