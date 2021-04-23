@@ -33,7 +33,7 @@ jobs:
           name: Second step
           command: |
               echo "Second step"
-              echo 'export condition_needed_2=false' >> $BASH_ENV
+              condition_needed_2=false
           
       - when:
           condition: << parameters.laconditionouioui >>
