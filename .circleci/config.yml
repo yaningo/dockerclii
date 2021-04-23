@@ -9,7 +9,7 @@ jobs:
       expand:
         description: "To whom shall we say hello?"
         default: << pipeline.git.branch >>
-        type: env_var_name
+        type: string
         
     docker:
       - image: circleci/node
@@ -24,7 +24,7 @@ jobs:
           command: |
               echo "Second "
               echo "step"
-              echo "<< parameters.expand >>
+              echo ${!expand}
 
 # Orchestrate or schedule a set of jobs
 workflows:
