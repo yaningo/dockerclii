@@ -41,7 +41,7 @@ jobs:
                   echo "Second "
                   echo "step"
                   echo 'export COND_EXP=<< parameters.laconditionouioui >>' >> $BASH_ENV
-                  echo ${!COND_EXP} 
+                  echo ${COND_EXP} 
       
       - greeting:
           to: "<< parameters.expand >>"
