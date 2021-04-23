@@ -40,7 +40,7 @@ jobs:
                 command: |
                   echo "Second "
                   echo "step"
-                  echo 'export COND_EXP=<< parameters.laconditionouioui >>' >> $BASH_ENV
+                  echo 'export COND_EXP="<< parameters.laconditionouioui >>"' >> $BASH_ENV
                   echo $COND_EXP 
       
       - greeting:
