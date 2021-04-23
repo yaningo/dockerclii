@@ -34,7 +34,7 @@ jobs:
           
       - when:
           condition: << parameters.laconditionouioui >>
-            steps:
+          steps:
             - run: echo << parameters.laconditionouioui >>
       
       - greeting:
