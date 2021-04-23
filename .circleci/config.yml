@@ -22,6 +22,7 @@ jobs:
         type: string
       laconditionouioui:
         default: condition_needed
+        type: env_var_name
         
     docker:
       - image: circleci/node
