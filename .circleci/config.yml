@@ -36,7 +36,8 @@ jobs:
               condition_needed_2=false
           
       - when:
-          condition: << parameters.laconditionouioui >>
+          condition:
+            equal: [ "true", << parameters.laconditionouioui >> ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
