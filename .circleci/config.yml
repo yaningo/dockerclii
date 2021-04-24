@@ -64,7 +64,7 @@ jobs:
       - run:
           name: Tag or Branch
           command:
-              if [[ << pipeline.git.branch >> == "" ]]; then
+              if [[ $(expr length << pipeline.git.branch >>) -eq 0 ]]; then
                 TAGANCH = << pipeline.git.tag >>
                 else TAGANCH = << pipeline.git.branch >>
               fi
