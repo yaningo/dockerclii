@@ -63,17 +63,7 @@ jobs:
                   echo "export COND_EXP=<< parameters.laconditionouioui >>" >> $BASH_ENV
                   echo $COND_EXP
                   
-      - run:
-          name: Tag or Branch
-          command: |
-              if [[ -z "<< pipeline.git.branch >>" ]]; then
-                echo "export TAGANCH=<< pipeline.git.tag >>" >> $BASH_ENV
-                #TAGANCH=<< pipeline.git.tag >>
-                #else TAGANCH=<< pipeline.git.branch >>
-                else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-              fi
-              source $BASH_ENV
-              echo $TAGANCH
+
       
       - greeting:
           to: << parameters.tag-or-branch >>
