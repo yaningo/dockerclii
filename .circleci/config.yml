@@ -4,6 +4,11 @@ version: 2.1
 orbs:
   detect: circleci/os-detect@0.3.0
 
+parameters:
+  laconditionouioui_PP:
+    default: condition_needed_2
+    type: env_var_name
+        
 commands: # a reusable command with parametersssssss
   greeting:
     parameters:
@@ -41,6 +46,7 @@ jobs:
               condition_needed_2=false
               echo $condition_needed_2
               echo << parameters.laboule >>
+              echo << pipeline.parameters.laconditionouioui_PP >>
           
       - when:
           condition:
