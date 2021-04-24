@@ -24,11 +24,11 @@ jobs:
       
       laconditionouioui:
         type: env_var_name
-        default: condition_needed_2
+        default: "condition_needed_2"
         
       tag-or-branch:
         type: env_var_name
-        default: TAGANCH
+        default: "TAGANCH"
       
       laboule:
         default: true
