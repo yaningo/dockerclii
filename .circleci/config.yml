@@ -18,8 +18,8 @@ jobs:
   messer:
     parameters:
       expand:
-        description: "To whom shall we say hello??"
-        default: "<< pipeline.git.branch >>"
+        description: To whom shall we say hello??
+        default: << pipeline.git.branch >>
         type: string
       
       laconditionouioui:
@@ -29,7 +29,7 @@ jobs:
         
       tag-or-branch:
         type: env_var_name
-        default: "$TAGANCH"
+        default: TAGANCH
       
       laboule:
         default: true
@@ -44,17 +44,17 @@ jobs:
           name: Second step
           command: |
               echo "Second step"
-              #condition_needed_2=true
+              condition_needed_2=true
               #echo "export condition_needed_2=true" >> $BASH_ENV
               #source $BASH_ENV
               echo $condition_needed_2
               echo << parameters.laboule >>
-              echo << parameters.laconditionouioui >>
-              echo  << parameters.tag-or-branch >>
+              echo ${<< parameters.laconditionouioui >>}
+              echo ${<< parameters.tag-or-branch >>}
           
       - when:
           condition:
-            equal: [ "true", << parameters.laconditionouioui >> ]
+            equal: [ "true", ${<< parameters.laconditionouioui >>} ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
@@ -63,13 +63,13 @@ jobs:
                   echo << parameters.laboule >>
                   echo "Second "
                   echo "step"
-                  echo "export COND_EXP=<< parameters.laconditionouioui >>" >> $BASH_ENV
+                  echo "export COND_EXP=${<< parameters.laconditionouioui >>}" >> $BASH_ENV
                   echo $COND_EXP
                   
 
       
       - greeting:
-          to: << parameters.expand >>
+          to: ${<< parameters.tag-or-branch >>}
           
       - run :
           name: Third step
