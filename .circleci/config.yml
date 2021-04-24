@@ -63,8 +63,8 @@ jobs:
                   
       - run:
           name: Tag or Branch
-          command:
-              if [[ -z "<< pipeline.git.branch >>" ]]; then
+          command: |
+              if [[ -z << pipeline.git.branch >> ]]; then
                 TAGANCH=<< pipeline.git.tag >>
                 else TAGANCH=<< pipeline.git.branch >>
               fi
