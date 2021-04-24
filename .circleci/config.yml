@@ -98,4 +98,8 @@ workflows:
   # Name the workflow "welcome"
   welcome:
     jobs:
-      - messer
+      - messer:
+          filters:
+            tags:
+              only: /.*/
+
