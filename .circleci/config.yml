@@ -28,6 +28,7 @@ jobs:
         default: condition_needed_2
         
       tag-or-branch:
+        description: Tag or Branch?
         type: env_var_name
         default: TAGANCH
       
@@ -50,6 +51,18 @@ jobs:
               echo $condition_needed_2
               echo << parameters.laboule >>
               echo ${<< parameters.laconditionouioui >>}
+              echo ${<< parameters.tag-or-branch >>}
+              
+              
+      - run:
+          name: Tag or Branch
+          command: |
+              if [[ -z "<< pipeline.git.branch >>" ]]; then
+                #echo "export TAGANCH=<< pipeline.git.tag >>" >> $BASH_ENV
+                TAGANCH=<< pipeline.git.tag >>
+                #else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
+                else TAGANCH=<< pipeline.git.branch >>
+              fi
               echo ${<< parameters.tag-or-branch >>}
           
       - when:
