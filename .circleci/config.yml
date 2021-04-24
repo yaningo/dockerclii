@@ -65,6 +65,7 @@ jobs:
               fi
               source $BASH_ENV
               echo ${<< parameters.tag-or-branch >>}
+              echo ${<< parameters.laconditionouioui >>}
           
       - when:
           condition:
@@ -77,7 +78,6 @@ jobs:
                   echo << parameters.laboule >>
                   echo "Second "
                   echo "step"
-                  echo "export COND_EXP=${<< parameters.laconditionouioui >>}" >> $BASH_ENV
                   echo $COND_EXP
                   
 
