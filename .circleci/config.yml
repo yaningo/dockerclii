@@ -24,7 +24,7 @@ jobs:
       
       laconditionouioui:
         type: env_var_name
-        default: "condition_needed_2"
+        default: $condition_needed_2
         
       tag-or-branch:
         type: env_var_name
@@ -68,7 +68,7 @@ jobs:
 
       
       - greeting:
-          to: << parameters.tag-or-branch >>
+          to: << parameters.expand >>
           
       - run :
           name: Third step
