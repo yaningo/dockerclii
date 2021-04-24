@@ -29,7 +29,7 @@ jobs:
         
       tag-or-branch:
         type: env_var_name
-        default: "TAGANCH"
+        default: "$TAGANCH"
       
       laboule:
         default: true
