@@ -44,10 +44,12 @@ jobs:
           command: |
               echo "Second step"
               #condition_needed_2=true
-              echo "export condition_needed_2=true" >> $BASH_ENV
-              source $BASH_ENV
+              #echo "export condition_needed_2=true" >> $BASH_ENV
+              #source $BASH_ENV
               echo $condition_needed_2
               echo << parameters.laboule >>
+              echo << parameters.laconditionouioui >>
+              echo  << parameters.tag-or-branch >>
           
       - when:
           condition:
