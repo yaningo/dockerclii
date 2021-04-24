@@ -23,8 +23,9 @@ jobs:
         type: string
       
       laconditionouioui:
+        description: La condition
         type: env_var_name
-        default: $condition_needed_2
+        default: condition_needed_2
         
       tag-or-branch:
         type: env_var_name
