@@ -43,8 +43,9 @@ jobs:
           name: Second step
           command: |
               echo "Second step"
-              # condition_needed_2=true
+         #    condition_needed_2=true
               echo "export condition_needed_2=true" >> $BASH_ENV
+              source $BASH_ENV
               echo $condition_needed_2
               echo << parameters.laboule >>
           
@@ -67,10 +68,11 @@ jobs:
           command: |
               if [[ -z "<< pipeline.git.branch >>" ]]; then
                 echo "export TAGANCH=<< pipeline.git.tag >>" >> $BASH_ENV
-                # TAGANCH=<< pipeline.git.tag >>
-                # else TAGANCH=<< pipeline.git.branch >>
+          #     TAGANCH=<< pipeline.git.tag >>
+          #     else TAGANCH=<< pipeline.git.branch >>
                 else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
               fi
+              source $BASH_ENV
               echo $TAGANCH
       
       - greeting:
