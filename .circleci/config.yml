@@ -6,8 +6,8 @@ orbs:
 
 parameters:
   laconditionouioui_PP:
-    default: condition_needed_2
-    type: env_var_name
+    default: << pipeline.git.branch >>
+    type: string
         
 commands: # a reusable command with parametersssssss
   greeting:
