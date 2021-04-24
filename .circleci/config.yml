@@ -70,7 +70,7 @@ jobs:
               fi
       
       - greeting:
-          to: << parameters.laconditionouioui_PP >>
+          to: << pipeline.parameters.laconditionouioui_PP >>
           
       - run :
           name: Third step
