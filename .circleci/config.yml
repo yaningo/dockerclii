@@ -67,7 +67,7 @@ jobs:
           
       - when:
           condition:
-            equal: [ "true", ${<< parameters.laconditionouioui >>} ]
+            equal: [ "true", "${<< parameters.laconditionouioui >>}" ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
