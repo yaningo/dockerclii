@@ -6,7 +6,7 @@ orbs:
 
 parameters:
   laconditionouioui_PP:
-    default: << pipeline.git.branch >>
+    default: << pipeline.git.tag >>
     type: string
         
 commands: # a reusable command with parametersssssss
@@ -23,7 +23,7 @@ jobs:
     parameters:
       expand:
         description: "To whom shall we say hello??"
-        default: "<< pipeline.git.branch >>"
+        default: << pipeline.git.branch >>
         type: string
       
       laconditionouioui:
@@ -60,10 +60,17 @@ jobs:
                   echo "Second "
                   echo "step"
                   echo 'export COND_EXP="<< parameters.laconditionouioui >>"' >> $BASH_ENV
-                  echo $COND_EXP 
+                  echo $COND_EXP
+                  
+      - run:
+          name: Set proper tag or branch
+          command: |
+              if [[ << pipeline.git.tag >> == "" ]]; then
+                << pipeline.parameters.laconditionouioui_PP >> = << pipeline.git.branch >>
+              fi
       
       - greeting:
-          to: "<< parameters.expand >>"
+          to: << parameters.laconditionouioui_PP >>
           
       - run :
           name: Third step
