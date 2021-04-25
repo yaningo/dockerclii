@@ -9,12 +9,10 @@ commands: # a reusable command with parametersssssss
       to:
         default: "world"
         type: string
-    environment:
-      RECIPIENT=parameters.to
     steps:
       - run:
           name: Greetings
-          command: echo "Hello $RECIPIENT"
+          command: echo "Hello << parameters.to >>"
       
 jobs:
   messer:
@@ -37,6 +35,8 @@ jobs:
       laboule:
         default: true
         type: boolean
+    environment:
+      RECIPIENT= << parameters.expand >>
         
         
     docker:
@@ -87,7 +87,7 @@ jobs:
 
       
       - greeting:
-          to: toto
+          to: $RECIPIENT
           
       - run :
           name: Third step
