@@ -56,7 +56,7 @@ jobs:
               #echo $condition_needed_2
               echo << parameters.laboule >>
               echo ${<< parameters.laconditionouioui >>}
-              echo ${<< parameters.tag-or-branch >>}
+              source $BASH_ENV
               echo << parameters.switch >>
               
               
