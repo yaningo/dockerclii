@@ -36,10 +36,6 @@ jobs:
         default: true
         type: boolean
         
-      switch:
-        description: Allows to use the value of the env_var_name param in a logic statement
-        type: env_var_name
-        default: SWITCH_VAR
         
     docker:
       - image: circleci/node
@@ -56,8 +52,7 @@ jobs:
               #echo $condition_needed_2
               echo << parameters.laboule >>
               echo ${<< parameters.laconditionouioui >>}
-              SWITCH_VAR=${<< parameters.laconditionouioui >>}
-              echo <<parameters.switch >>
+
               
               
       - run:
@@ -75,7 +70,7 @@ jobs:
           
       - when:
           condition:
-            equal: [ true, << parameters.switch >> ]
+            equal: [ true, "${<< parameters.laconditionouioui >>}" ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
