@@ -9,10 +9,12 @@ commands: # a reusable command with parametersssssss
       to:
         default: "world"
         type: string
+    environment:
+      RECIPIENT=parameters.to
     steps:
       - run:
           name: Greetings
-          command: echo "Hello <<parameters.to>>"
+          command: echo "Hello $RECIPIENT"
       
 jobs:
   messer:
@@ -85,7 +87,7 @@ jobs:
 
       
       - greeting:
-          to: ${<< parameters.tag-or-branch >>}
+          to: toto
           
       - run :
           name: Third step
