@@ -39,6 +39,7 @@ jobs:
       switch:
         description: Allows to use the value of the env_var_name param in a logic statement
         type: string
+        default: ""
         
     docker:
       - image: circleci/node
