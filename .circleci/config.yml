@@ -38,8 +38,8 @@ jobs:
         
       switch:
         description: Allows to use the value of the env_var_name param in a logic statement
-        type: string
-        default: ""
+        type: env_var_name
+        default: << parameters.laconditionouioui >>
         
     docker:
       - image: circleci/node
@@ -57,7 +57,6 @@ jobs:
               echo << parameters.laboule >>
               echo ${<< parameters.laconditionouioui >>}
               echo ${<< parameters.tag-or-branch >>}
-              << parameters.switch >>=${<< parameters.tag-or-branch >>}
               echo << parameters.switch >>
               
               
