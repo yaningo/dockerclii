@@ -69,7 +69,7 @@ jobs:
           
       - when:
           condition:
-            equal: [ true, << parameters.laboule >> ]
+            equal: [ true, "${<< parameters.laconditionouioui >>}" ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
@@ -78,7 +78,8 @@ jobs:
                   echo << parameters.laboule >>
                   echo "Second "
                   echo "step"
-                  echo $COND_EXP
+                  echo ${<< parameters.tag-or-branch >>}
+                  echo ${<< parameters.laconditionouioui >>}
                   
 
       
@@ -88,7 +89,7 @@ jobs:
       - run :
           name: Third step
           command: |
-              echo "Second "
+              echo "Third "
               echo "step"
               echo << parameters.expand >>
               echo << pipeline.git.branch >>
