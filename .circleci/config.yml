@@ -38,7 +38,7 @@ jobs:
         
       switch:
         description: Allows to use the value of the env_var_name param in a logic statement
-        type: env_var_name
+        type: string
         default: << parameters.laconditionouioui >>
         
     docker:
