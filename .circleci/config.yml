@@ -77,7 +77,7 @@ jobs:
           
       - when:
           condition:
-            equal: [ "true", << parameters.leswitch >> ]
+            equal: [ "true", << pipeline.parameters.leswitch >> ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
