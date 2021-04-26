@@ -35,16 +35,7 @@ jobs:
       - greeting:
           to: ${<< parameters.tag-or-branch >>}
           
-      - run :
-          name: Third step
-          command: |
-              echo "Third "
-              echo "step"
-              echo << parameters.expand >>
-              echo << pipeline.git.branch >>
-# Orchestrate or schedule a set of jobs
 workflows:
-  # Name the workflow "welcome"
   welcome:
     jobs:
       - messer:
