@@ -1,9 +1,6 @@
 version: 2.1
 
-orbs:
-  detect: circleci/os-detect@0.3.0
-
-commands: # a reusable command with parametersssssss
+commands: # a reusable command with parameters
   greeting:
     parameters:
       to:
@@ -17,96 +14,62 @@ commands: # a reusable command with parametersssssss
 jobs:
   messer:
     parameters:
-      expand:
-        description: To whom shall we say hello??
-        default: << pipeline.git.branch >>
-        type: string
-      
       laconditionouioui:
-        description: La condition
+        description: Set in Project Seetings
         type: env_var_name
         default: condition_needed
         
-      tag-or-branch:
-        description: Tag or Branch?
+      anothercondition:
+        description: Set durinng the build
         type: env_var_name
-        default: TAGANCH
-      
-      laboule:
-        default: true
-        type: boolean
-    environment:
-      RECIPIENT= << parameters.tag-or-branch >>
-        
+        default: other_condition
         
     docker:
       - image: circleci/node
     steps:
-      - detect/init:
-          extended: false
       - run :
-          name: Second step
+          name: Checking parameters values
           command: |
-              echo "Second step"
-              #condition_needed_2=true
-              #echo 'export condition_needed_2="true"' >> $BASH_ENV
+              echo "This is the env var set in Project Settings"
+              echo ${<< parameters.laconditionouioui >>}
+              
+              echo "Setting the other env var now"
+              echo 'export other_condition="true"' >> $BASH_ENV
               source $BASH_ENV
-              #echo $condition_needed_2
-              echo << parameters.laboule >>
               echo ${<< parameters.laconditionouioui >>}
 
-              
-              
-      - run:
-          name: Tag or Branch
-          command: |
-              if [[ -z "<< pipeline.git.branch >>" ]]; then
-                echo "export TAGANCH=<< pipeline.git.tag >>" >> $BASH_ENV
-                #TAGANCH=<< pipeline.git.tag >>
-                else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-                #else TAGANCH=<< pipeline.git.branch >>
-              fi
-
-          
       - when:
           condition:
             equal: [ true, << parameters.laconditionouioui >> ]
           steps:
             - run:
-                name: Testing env_var_name interpolation
+                name: Testing logic statemet with env_var_name
                 command: |
-                  echo $condition_needed_2
-                  echo << parameters.laboule >>
-                  echo "Second "
-                  echo "step"
-                  echo ${<< parameters.tag-or-branch >>}
+                  echo "It should be working... Is it?"
                   echo ${<< parameters.laconditionouioui >>}
+                  
+      - when:
+          condition:
+            equal: [ true, << parameters.anothercondition >> ]
+          steps:
+            - run:
+                name: Testing logic statemet with the other env_var_name
+                command: |
+                  echo "What about this?"
+                  echo ${<< parameters.anothercondition >>}
                   
 
       
       - greeting:
-          to: ${<< parameters.tag-or-branch >>}
+          to: ${<< parameters.laconditionouioui >>}
           
-      - run :
-          name: Third step
-          command: |
-              echo "Third "
-              echo "step"
-              echo << parameters.expand >>
-              echo << pipeline.git.branch >>
-
+      - greeting:
+          to: ${<< parameters.anothercondition >>}
+ 
 # Orchestrate or schedule a set of jobs
 workflows:
   # Name the workflow "welcome"
   welcome:
     jobs:
-      - messer:
-          pre-steps:
-            - run:
-                command: |
-                    echo 'export condition_needed="true"' >> $BASH_ENV
-                    source $BASH_ENV
-          filters:
-            tags:
-              only: /.*/
+      - messer
 
