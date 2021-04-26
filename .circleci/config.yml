@@ -66,9 +66,7 @@ jobs:
                 else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
                 #else TAGANCH=<< pipeline.git.branch >>
               fi
-              source $BASH_ENV
-              echo ${<< parameters.tag-or-branch >>}
-              echo ${<< parameters.laconditionouioui >>}
+
           
       - when:
           condition:
@@ -87,7 +85,7 @@ jobs:
 
       
       - greeting:
-          to: $RECIPIENT
+          to: ${<< parameters.tag-or-branch >>}
           
       - run :
           name: Third step
@@ -103,6 +101,11 @@ workflows:
   welcome:
     jobs:
       - messer:
+          pre-steps:
+            - run:
+                command: |
+                    echo 'export condition_needed="true"' >> $BASH_ENV
+                    source $BASH_ENV
           filters:
             tags:
               only: /.*/
