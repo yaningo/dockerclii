@@ -40,7 +40,7 @@ jobs:
 
       - when:
           condition:
-            equal: [ true, << parameters.laconditionouioui >> ]
+            equal: [ true, "${<< parameters.laconditionouioui >>}" ]
           steps:
             - run:
                 name: Testing logic statemet with env_var_name
@@ -50,7 +50,7 @@ jobs:
                   
       - when:
           condition:
-            equal: [ true, << parameters.anothercondition >> ]
+            equal: [ true,  "${<< parameters.anothercondition >>}"]
           steps:
             - run:
                 name: Testing logic statemet with the other env_var_name
