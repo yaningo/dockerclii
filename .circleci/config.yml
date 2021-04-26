@@ -25,13 +25,14 @@ jobs:
       - run:
           name: Tag or Branch
           command: |
+              source $BASH_ENV
               if [[ -z "<< pipeline.git.branch >>" ]]; then
                 echo "export TAGANCH=<< pipeline.git.tag >>" >> $BASH_ENV
-                #TAGANCH=<< pipeline.git.tag >>
+                ##TAGANCH=<< pipeline.git.tag >>
                 else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-                #else TAGANCH=<< pipeline.git.branch >>
+                ##else TAGANCH=<< pipeline.git.branch >>
               fi
-              source $BASH_ENV
+              
 
       - greeting:
           to: ${<< parameters.tag-or-branch >>}
