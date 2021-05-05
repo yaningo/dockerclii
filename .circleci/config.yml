@@ -55,16 +55,19 @@ workflows:
     jobs:
 #       - messer
       - sayhello:
-          saywhat: $MAVEN-COMMAN
+          saywhat: $MAVEN-COMMAND
           pre-steps:
             - when:
                 condition:
                   equal: [ master, << pipeline.git.branch >> ]
                 steps:
-                  - run: echo 'export MAVEN-COMMAND=deploy' >> $BASH_ENV
+                    - run: MAVEN-COMMAND=deploy
+#                   - run: echo 'export MAVEN-COMMAND=deploy' >> $BASH_ENV
+
             
             - unless:
                 condition:
                   equal: [ master, << pipeline.git.branch >> ]
                 steps:
-                  - run: echo 'echo MAVEN-COMMAN=package' >> $BASH_ENV
+                    - run: MAVEN-COMMAND=package
+#                   - run: echo 'echo MAVEN-COMMAND=package' >> $BASH_ENV
