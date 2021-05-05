@@ -61,13 +61,11 @@ workflows:
                 condition:
                   equal: [ master, << pipeline.git.branch >> ]
                 steps:
-                    - run: MAVEN-COMMAND=deploy
-#                   - run: echo 'export MAVEN-COMMAND=deploy' >> $BASH_ENV
+                  - run: echo 'export MAVEN-COMMAND=deploy' >> $BASH_ENV
 
             
             - unless:
                 condition:
                   equal: [ master, << pipeline.git.branch >> ]
                 steps:
-                    - run: MAVEN-COMMAND=package
-#                   - run: echo 'echo MAVEN-COMMAND=package' >> $BASH_ENV
+                  - run: echo 'echo MAVEN-COMMAND=package' >> $BASH_ENV
