@@ -10,33 +10,51 @@ commands:
       - run:
           name: Greetings
           command: echo "Hello << parameters.to >>"
-      
+
 jobs:
+  sayhello: # defines a parameterized job
+    description: A job that does very little other than demonstrate what a parameterized job looks like
+    parameters:
+      saywhat:
+        description: "To whom shall we say hello?"
+        default: "World"
+        type: string
+    docker:
+      - image: circleci/node
+    steps:
+      - run: echo "Hello << parameters.saywhat >>"
+      
+      
   messer:
     parameters:
-      tag-or-branch:
-        description: Tag or Branch?
+      maven-command:
+        description: Package or Deeploy?
         type: env_var_name
-        default: TAGANCH
+        default: pac-or-dep
 
     docker:
       - image: circleci/node
     steps:    
-      - run:
-          name: Tag or Branch
-          command: |
-              if [[ -z "<< pipeline.git.branch >>" ]]; then
-                echo "export TAGANCH=<< pipeline.git.tag >>" >> $BASH_ENV
-                else echo "export TAGANCH=<< pipeline.git.branch >>" >> $BASH_ENV
-              fi
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - run: echo "export pac-or-dep=deploy" >> $BASH_ENV
+            
+      - unless:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - run: echo "export pac-or-dep=package" >> $BASH_ENV
               
       - greeting:
-          to: ${<< parameters.tag-or-branch >>}
+          to: ${<< parameters.maven-command >>}
           
 workflows:
   welcome:
     jobs:
-      - messer:
-          filters:
-            tags:
-              only: /.*/
+      - messer
+      - sayhello:
+          saywhat: ${<< parameters.maven-command >>}
+          requires:
+            - messer
