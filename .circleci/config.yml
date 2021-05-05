@@ -54,7 +54,7 @@ workflows:
   welcome:
     jobs:
       - messer
-      #- sayhello:
-      #    saywhat: ${<< parameters.maven-command >>}
-      #    requires:
-      #      - messer
+      - sayhello:
+          saywhat: $PACDEP
+          requires:
+            - messer
