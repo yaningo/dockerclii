@@ -1,6 +1,6 @@
 version: 2.1
 
-commands: # a reusable command with parameters
+commands:
   greeting:
     parameters:
       to:
@@ -10,66 +10,38 @@ commands: # a reusable command with parameters
       - run:
           name: Greetings
           command: echo "Hello << parameters.to >>"
-      
+
 jobs:
-  messer:
+  sayhello: # defines a parameterized job
+    description: A job that does very little other than demonstrate what a parameterized job looks like
     parameters:
-      laconditionouioui:
-        description: Set in Project Seetings
-        type: env_var_name
-        default: condition_needed
-        
-      anothercondition:
-        description: Set durinng the build
-        type: env_var_name
-        default: other_condition
-        
+      saywhat:
+        description: "To whom shall we say hello?"
+        default: "World"
+        type: string
     docker:
       - image: circleci/node
     steps:
-      - run :
-          name: Checking parameters values
-          command: |
-              echo "This is the env var set in Project Settings"
-              echo ${<< parameters.laconditionouioui >>}
-              
-              echo "Setting the other env var now"
-              echo 'export other_condition="true"' >> $BASH_ENV
-              source $BASH_ENV
-              echo ${<< parameters.laconditionouioui >>}
-
-      - when:
-          condition:
-            equal: [ true, "${<< parameters.laconditionouioui >>}" ]
-          steps:
-            - run:
-                name: Testing logic statemet with env_var_name
-                command: |
-                  echo "It should be working... Is it?"
-                  echo ${<< parameters.laconditionouioui >>}
-                  
-      - when:
-          condition:
-            equal: [ true,  "${<< parameters.anothercondition >>}"]
-          steps:
-            - run:
-                name: Testing logic statemet with the other env_var_name
-                command: |
-                  echo "What about this?"
-                  echo ${<< parameters.anothercondition >>}
-                  
-
+      - run: echo "Hello << parameters.saywhat >>"
       
-      - greeting:
-          to: ${<< parameters.laconditionouioui >>}
           
-      - greeting:
-          to: ${<< parameters.anothercondition >>}
- 
-# Orchestrate or schedule a set of jobs
 workflows:
-  # Name the workflow "welcome"
   welcome:
     jobs:
-      - messer
+#       - messer
+      - sayhello:
+          saywhat: $MAVEN_COMMAND
+          pre-steps:
+            - when:
+                condition:
+                  equal: [ lacondition, << pipeline.git.branch >> ]
+                steps:
+                  - run: echo 'export MAVEN_COMMAND=deploy' >> $BASH_ENV
+
+            
+            - unless:
+                condition:
+                  equal: [ lacondition, << pipeline.git.branch >> ]
+                steps:
+                  - run: echo 'export MAVEN_COMMAND=package' >> $BASH_ENV
 
