@@ -58,13 +58,13 @@ workflows:
           saywhat: $PACDEP
           pre-steps:
             - when:
-          condition:
-            equal: [ master, << pipeline.git.branch >> ]
-          steps:
-            - run: echo 'export PACDEP="deploy"' >> $BASH_ENV
+                condition:
+                  equal: [ master, << pipeline.git.branch >> ]
+                steps:
+                  - run: echo 'export PACDEP="deploy"' >> $BASH_ENV
             
             - unless:
-          condition:
-            equal: [ master, << pipeline.git.branch >> ]
-          steps:
-            - run: echo 'export PACDEP="package"' >> $BASH_ENV
+                condition:
+                  equal: [ master, << pipeline.git.branch >> ]
+                steps:
+                  - run: echo 'export PACDEP="package"' >> $BASH_ENV
