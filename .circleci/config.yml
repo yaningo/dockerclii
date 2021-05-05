@@ -39,13 +39,13 @@ jobs:
           condition:
             equal: [ master, << pipeline.git.branch >> ]
           steps:
-            - run: echo "export pac-or-dep=deploy" >> $BASH_ENV
+            - run: echo 'export pac-or-dep="deploy"' >> $BASH_ENV
             
       - unless:
           condition:
             equal: [ master, << pipeline.git.branch >> ]
           steps:
-            - run: echo "export pac-or-dep=package" >> $BASH_ENV
+            - run: echo 'export pac-or-dep="package"' >> $BASH_ENV
               
       - greeting:
           to: ${<< parameters.maven-command >>}
