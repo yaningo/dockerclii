@@ -25,36 +25,46 @@ jobs:
       - run: echo "Hello << parameters.saywhat >>"
       
       
-  messer:
-    parameters:
-      maven-command:
-        description: Package or Deeploy?
-        type: env_var_name
-        default: PACDEP
+#   messer:
+#     parameters:
+#       maven-command:
+#         description: Package or Deeploy?
+#         type: env_var_name
+#         default: PACDEP
 
-    docker:
-      - image: circleci/node
-    steps:    
-      - when:
+#     docker:
+#       - image: circleci/node
+#     steps:    
+#       - when:
+#           condition:
+#             equal: [ master, << pipeline.git.branch >> ]
+#           steps:
+#             - run: echo 'export PACDEP="deploy"' >> $BASH_ENV
+            
+#       - unless:
+#           condition:
+#             equal: [ master, << pipeline.git.branch >> ]
+#           steps:
+#             - run: echo 'export PACDEP="package"' >> $BASH_ENV
+              
+#       - greeting:
+#           to: ${<< parameters.maven-command >>}
+          
+workflows:
+  welcome:
+    jobs:
+#       - messer
+      - sayhello:
+          saywhat: $PACDEP
+          pre-steps:
+            - when:
           condition:
             equal: [ master, << pipeline.git.branch >> ]
           steps:
             - run: echo 'export PACDEP="deploy"' >> $BASH_ENV
             
-      - unless:
+            - unless:
           condition:
             equal: [ master, << pipeline.git.branch >> ]
           steps:
             - run: echo 'export PACDEP="package"' >> $BASH_ENV
-              
-      - greeting:
-          to: ${<< parameters.maven-command >>}
-          
-workflows:
-  welcome:
-    jobs:
-      - messer
-      - sayhello:
-          saywhat: $PACDEP
-          requires:
-            - messer
