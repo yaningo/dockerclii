@@ -22,7 +22,7 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-     - setup
-         context:
-           - toto
+      - setup:
+          context:
+            - toto
       
