@@ -14,6 +14,7 @@ jobs:
           
       - run: |
           ssh remote-docker \<<EOF
+            export FOO
             sudo bash -c 'echo $FOO'
             echo $FOO
             sudo docker info
