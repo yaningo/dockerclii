@@ -14,8 +14,8 @@ jobs:
           
       - run: |
           ssh remote-docker \<<EOF
-            sudo bash -c 'echo $bar'
-            echo $bar
+            sudo bash -c 'echo $FOO'
+            echo $FOO
             sudo docker info
           EOF
           
