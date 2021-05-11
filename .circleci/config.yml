@@ -13,11 +13,11 @@ jobs:
           version: 19.03.13
           
       - run: |
-        ssh remote-docker \<<EOF
-          sudo bash -c 'echo $bar'
-          echo $bar
-          sudo docker info
-        EOF
+          ssh remote-docker \<<EOF
+            sudo bash -c 'echo $bar'
+            echo $bar
+            sudo docker info
+          EOF
           
           
 workflows:
