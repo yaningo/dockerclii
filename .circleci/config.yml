@@ -14,10 +14,8 @@ jobs:
           
       - run: |
           ssh remote-docker \<<EOF
-            export FOO
-            sudo bash -c 'echo $FOO'
-            echo $FOO
-            sudo docker info
+            sudo bash -c 'echo $toto_var'
+            echo $toto_var
           EOF
           
           
@@ -25,4 +23,6 @@ workflows:
   build-deploy:
     jobs:
      - setup
+         contexts:
+           - toto
       
