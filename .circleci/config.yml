@@ -4,13 +4,12 @@ jobs:
   setup:
     docker:
       - image: circleci/node
-    command: sh -c "echo ${<<parameters.ARG>>}; sh -c env
     parameters:
       ARG:
         type: env_var_name
         default: foo
     environment:
-      FOO: $foo
+      FOO: ${<<parameters.ARG>>}
    
     steps:
       - run: sh -c env
