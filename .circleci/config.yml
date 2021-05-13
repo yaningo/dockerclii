@@ -9,7 +9,7 @@ jobs:
           name: I test I test
           command: |
               echo "export plan_diff=tototot" >> $BASH_ENV; source $BASH_ENV
-              echo "export MESSAGE=\"Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`\"" >> $BASH_ENV
+              echo ' export MESSAGE="Changes to be applied from terraform: ```$plan_diff```" ' >> $BASH_ENV
               source $BASH_ENV
               echo $MESSAGE
       
