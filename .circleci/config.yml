@@ -3,26 +3,12 @@ version: 2.1
 jobs:
   setup:
     docker:
-      - image: circleci/python
-      
-    environment:
-      FOO: bar
+      - image: cimg/base:2021.04
       
     steps:
-      - setup_remote_docker:
-          version: 19.03.13
-          
-      - run: |
-          ssh remote-docker \<<EOF
-            sudo bash -c 'echo $toto_var'
-            echo $toto_var
-          EOF
-          
+      - run: git version
           
 workflows:
   build-deploy:
     jobs:
-      - setup:
-          context:
-            - toto
-      
+      - setup
