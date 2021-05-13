@@ -4,7 +4,7 @@ jobs:
   setup:
     docker:
       - image: circleci/node
-          command: sh -c "echo ${<<parameters.ARG>>}; sh -c env
+    command: sh -c "echo ${<<parameters.ARG>>}; sh -c env
     parameters:
       ARG:
         type: env_var_name
