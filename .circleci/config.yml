@@ -1,10 +1,19 @@
 version: 2.1
 
+orbs:
+  windows: circleci/windows@2.4.0
+  
 jobs:
   setup:
     docker:
       - image: cimg/base:2021.04
+    steps:
+      - run: git version
       
+  setup-windows:
+    executor:
+      name: windows/default
+      shell: bash.exe
     steps:
       - run: git version
           
@@ -12,3 +21,4 @@ workflows:
   build-deploy:
     jobs:
       - setup
+      - setup-windows
