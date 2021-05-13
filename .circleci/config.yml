@@ -13,6 +13,7 @@ jobs:
    
     steps:
       - run: sh -c env
+      - run: echo ${<<parameters.ARG>>}
       
 workflows:
   build-deploy:
