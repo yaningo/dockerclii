@@ -10,7 +10,7 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
-      - run: export DOCKER_VERSION >> BASH_ENV
+      - run: echo $DOCKER_VERSION
       - continuation/continue:
           parameters: '{"la_version": "$DOCKER_VERSION"}'
           configuration_path: .circleci/local.yml
