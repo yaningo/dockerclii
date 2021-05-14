@@ -4,18 +4,25 @@ jobs:
   setup:
     docker:
       - image: circleci/node
-    parameters:
-      ARG:
-        type: env_var_name
-        default: foo
-    environment:
-      FOO: ${<<parameters.ARG>>}
-   
     steps:
-      - run: sh -c env
-      - run: echo ${<<parameters.ARG>>}
+      - run: ./script.sh
+      - run:
+          name: I test I test
+          command: |
+              source $BASH_ENV
+              echo $plan_diff
+              echo $FILE
+              echo $MESSAGE
       
+  setup-windows:
+    executor:
+      name: windows/default
+      shell: bash.exe
+    steps:
+      - run: git version
+          
 workflows:
   build-deploy:
     jobs:
       - setup
+#       - setup-windows
