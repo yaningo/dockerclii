@@ -4,18 +4,17 @@ jobs:
   setup:
     docker:
       - image: circleci/node
+    parameters:
+      docker-version:
+       type: env_var_name
+       description: Remote docker version to setup for docker builds.
+       default: DOCKER_VERSION
     steps:
-      - checkout
-      - run:
-          command: |
-              chmod +x ./script.sh
-              ./script.sh
-      - run:
-          name: I test I test
-          command: |
-              echo $plan_diff
-              echo $FILE
-              echo $MESSAGE
+      - run: echo ${<< parameters.docker-version >>}
+      - docker/install-docker:
+          version: v${<< parameters.docker-version >>}
+      - setup_remote_docker:
+          version: ${<< parameters.docker-version >>}
           
 workflows:
   build-deploy:
