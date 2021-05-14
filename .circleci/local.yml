@@ -14,17 +14,17 @@ jobs:
   setup:
     docker:
       - image: circleci/node
-#     parameters:
-#       docker-version:
-#        type: env_var_name
-#        description: Remote docker version to setup for docker builds.
-#        default: DOCKER_VERSION
+    parameters:
+      docker-version:
+       type: env_var_name
+       description: Remote docker version to setup for docker builds.
+       default: <<pipeline.parameters.la_version>>
     steps:
-      - run: echo << pipeline.parameters.la_version >>
+      - run: echo << pipeline.parameters.docker-version >>
       - docker/install-docker:
-          version: v<< pipeline.parameters.la_version >>
+          version: v<< parameters.docker-version >>
       - setup_remote_docker:
-          version: << pipeline.parameters.la_version >>
+          version: << parameters.docker-version >>
           
 workflows:
   build-deploy:
