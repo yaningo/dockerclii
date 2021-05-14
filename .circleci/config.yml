@@ -12,6 +12,7 @@ jobs:
       - checkout
       - run: export DOCKER_VERSION >> BASH_ENV
       - continuation/continue:
+          parameters: '{"la_version": "$DOCKER_VERSION"}'
           configuration_path: .circleci/local.yml
         
 workflows:
