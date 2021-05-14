@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
+      - checkout
       - run: ./script.sh
       - run:
           name: I test I test
@@ -13,16 +14,8 @@ jobs:
               echo $plan_diff
               echo $FILE
               echo $MESSAGE
-      
-  setup-windows:
-    executor:
-      name: windows/default
-      shell: bash.exe
-    steps:
-      - run: git version
           
 workflows:
   build-deploy:
     jobs:
       - setup
-#       - setup-windows
