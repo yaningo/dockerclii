@@ -6,7 +6,8 @@ orbs:
 parameters:
   la_version:
    type: string
-   description: Remote docker version to setup for docker builds.  
+   description: Remote docker version to setup for docker builds.
+   default: zero
   
   
 jobs:
