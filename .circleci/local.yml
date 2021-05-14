@@ -14,23 +14,23 @@ jobs:
   setup:
     docker:
       - image: circleci/node
-    parameters:
-      docker-version:
-       type: env_var_name
-       description: Remote docker version to setup for docker builds.
-       default: dodo
+#     parameters:
+#       docker-version:
+#        type: env_var_name
+#        description: Remote docker version to setup for docker builds.
+#        default: dodo
     steps:
       - run:
           nam: Set version
           command: |
               echo ' export "dodo=<< pipeline.parameters.la_version >>" ' >> BASH_ENV
               source BASH_ENV
-              echo $DODO
+              echo $dodo
       
       - docker/install-docker:
-          version: v${<< parameters.docker-version >>}
+          version: v<< pipeline.parameters.la_version >>
       - setup_remote_docker:
-          version: ${<< parameters.docker-version >>}
+          version: << pipeline.parameters.la_version >>
           
 workflows:
   build-deploy:
