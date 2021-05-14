@@ -18,12 +18,12 @@ jobs:
       docker-version:
        type: env_var_name
        description: Remote docker version to setup for docker builds.
-       default: DODO
+       default: dodo
     steps:
       - run:
           nam: Set version
           command: |
-              echo ' export "DODO=<< pipeline.parameters.la_version >>" ' >> BASH_ENV
+              echo ' export "dodo=<< pipeline.parameters.la_version >>" ' >> BASH_ENV
               source BASH_ENV
               echo $DODO
       
