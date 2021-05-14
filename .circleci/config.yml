@@ -1,25 +1,20 @@
 version: 2.1
-  
+
+setup: true
+ 
 orbs:
-  docker: circleci/docker@1.5.0
-  
+  continuation: circleci/continuation@0.1.2
+
 jobs:
-  setup:
-    docker:
-      - image: circleci/node
-    parameters:
-      docker-version:
-       type: env_var_name
-       description: Remote docker version to setup for docker builds.
-       default: DOCKER_VERSION
+  init:
+    executor: continuation/default
     steps:
-      - run: echo ${<< parameters.docker-version >>}
-      - docker/install-docker:
-          version: v${<< parameters.docker-version >>}
-      - setup_remote_docker:
-          version: ${<< parameters.docker-version >>}
-          
+      - checkout
+      - run: export DOCKER_VERSION >> BASH_ENV
+      - continuation/continue:
+          configuration_path: ./local.yml
+        
 workflows:
-  build-deploy:
+  setup:
     jobs:
-      - setup
+      - init
