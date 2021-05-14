@@ -20,11 +20,11 @@ jobs:
 #        description: Remote docker version to setup for docker builds.
 #        default: DOCKER_VERSION
     steps:
-      - run: echo << pipeline.parameters.docker-version >>
+      - run: echo << pipeline.parameters.la_version >>
       - docker/install-docker:
-          version: v<< pipeline.parameters.docker-version >>
+          version: v<< pipeline.parameters.la_version >>
       - setup_remote_docker:
-          version: << pipeline.parameters.docker-version >>
+          version: << pipeline.parameters.la_version >>
           
 workflows:
   build-deploy:
