@@ -1,8 +1,8 @@
 #!/bin/bash
 # GET THE PLAN FILE
-echo 'export FILE="./.terraform/plan/tfplan"' >> $BASH_ENV
+FILE="./.terraform/plan/tfplan"
 
 # GET THE DIFF
-echo 'export plan_diff=$(echo "totototo is tititi")' >> $BASH_ENV
+plan_diff=$(echo "totototo is tititi")
 
 echo 'export MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"' >> $BASH_ENV
