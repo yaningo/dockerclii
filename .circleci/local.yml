@@ -24,6 +24,7 @@ jobs:
           nam: Set version
           command: |
               echo ' export "DODO=<< pipeline.parameters.la_version >>" ' >> BASH_ENV
+              source BASH_ENV
               echo $DODO
       
       - docker/install-docker:
