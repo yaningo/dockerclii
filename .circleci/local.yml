@@ -30,7 +30,7 @@ jobs:
       - docker/install-docker:
           version: v<< pipeline.parameters.la_version >>
       - setup_remote_docker:
-          version: << pipeline.parameters.la_version >>
+          version: "<< pipeline.parameters.la_version >>"
           
 workflows:
   build-deploy:
