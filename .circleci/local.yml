@@ -3,21 +3,27 @@ version: 2.1
 orbs:
   docker: circleci/docker@1.5.0
   
+parameters:
+  la_version:
+   type: string
+   description: Remote docker version to setup for docker builds.  
+  
+  
 jobs:
   setup:
     docker:
       - image: circleci/node
-    parameters:
-      docker-version:
-       type: env_var_name
-       description: Remote docker version to setup for docker builds.
-       default: DOCKER_VERSION
+#     parameters:
+#       docker-version:
+#        type: env_var_name
+#        description: Remote docker version to setup for docker builds.
+#        default: DOCKER_VERSION
     steps:
-      - run: echo ${<< parameters.docker-version >>}
+      - run: echo << pipeline.parameters.docker-version >>
       - docker/install-docker:
-          version: v${<< parameters.docker-version >>}
+          version: v<< pipeline.parameters.docker-version >>
       - setup_remote_docker:
-          version: ${<< parameters.docker-version >>}
+          version: << pipeline.parameters.docker-version >>
           
 workflows:
   build-deploy:
