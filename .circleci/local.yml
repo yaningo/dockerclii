@@ -18,13 +18,18 @@ jobs:
       docker-version:
        type: env_var_name
        description: Remote docker version to setup for docker builds.
-       default: <<pipeline.parameters.la_version>>
+       default: DODO
     steps:
-      - run: echo << pipeline.parameters.docker-version >>
+      - run:
+          nam: Set version
+          command: |
+              echo ' export "DODO=<< pipeline.parameters.docker-version >>" ' >> BASH_ENV
+              echo $DODO
+      
       - docker/install-docker:
-          version: v<< parameters.docker-version >>
+          version: v${<< parameters.docker-version >>}
       - setup_remote_docker:
-          version: << parameters.docker-version >>
+          version: ${<< parameters.docker-version >>}
           
 workflows:
   build-deploy:
