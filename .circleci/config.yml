@@ -1,21 +1,20 @@
 version: 2.1
-
-setup: true
- 
+  
 orbs:
-  continuation: circleci/continuation@0.1.2
-
+  docker: circleci/docker@1.5.0
+  
 jobs:
-  init:
-    executor: continuation/default
-    steps:
-      - checkout
-      - run: echo $DOCKER_VERSION
-      - continuation/continue:
-          parameters: '{"la_version": "$DOCKER_VERSION"}'
-          configuration_path: .circleci/local.yml
-        
-workflows:
   setup:
+    docker:
+      - image: circleci/node
+
+    steps:
+      - docker/install-docker:
+          version: $DOCKER_VERSION
+      - setup_remote_docker:
+          version: ${!DOCKER_VERSION}
+          
+workflows:
+  build-deploy:
     jobs:
-      - init
+      - setup
