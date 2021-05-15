@@ -13,6 +13,7 @@ jobs:
       - run:
           name: I test I test
           command: |
+              source $BASH_ENV
               echo $MESSAGE
           
 workflows:
