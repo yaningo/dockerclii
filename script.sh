@@ -8,5 +8,5 @@ plan_diff=$(echo "totototo is tititi")
 echo $plan_diff
 
 # echo 'export MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"' >> $BASH_ENV
-MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"'
+MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"
 echo $MESSAGE
