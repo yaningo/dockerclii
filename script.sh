@@ -11,4 +11,4 @@
 # echo $MESSAGE
 
 
-FILE="./.terraform/plan/tfplan"; plan_diff=$(echo "totototo is tititi"; MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"; echo $MESSAGE
+FILE="./.terraform/plan/tfplan"; plan_diff="totototo is tititi"; MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"; echo $MESSAGE
