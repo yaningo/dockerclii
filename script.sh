@@ -13,3 +13,4 @@
 
 FILE="./.terraform/plan/tfplan"; plan_diff="totototo is tititi"; MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"; echo $MESSAGE
 echo 'export MESSAGE' >> $BASH_ENV
+source $BASH_ENV
