@@ -7,7 +7,7 @@ parameters:
       lacondition:
         description: La condition
         type: string
-        default: $condition_needed
+        default: ''
         
 commands: # a reusable command with parametersssssss
   greeting:
