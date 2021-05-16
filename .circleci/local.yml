@@ -1,38 +1,61 @@
 version: 2.1
-  
+
 orbs:
-  docker: circleci/docker@1.5.0
+  detect: circleci/os-detect@0.3.0
   
 parameters:
-  la_version:
-   type: string
-   description: Remote docker version to setup for docker builds.
-   default: zero
-  
-  
-jobs:
-  setup:
-    docker:
-      - image: circleci/node
-#     parameters:
-#       docker-version:
-#        type: env_var_name
-#        description: Remote docker version to setup for docker builds.
-#        default: dodo
+      lacondition:
+        description: La condition
+        type: string
+        
+commands: # a reusable command with parametersssssss
+  greeting:
+    parameters:
+      to:
+        default: "world"
+        type: string
     steps:
       - run:
-          nam: Set version
-          command: |
-              echo ' export "dodo=<< pipeline.parameters.la_version >>" ' >> BASH_ENV
-              source BASH_ENV
-              echo $dodo
+          name: Greetings
+          command: echo "Hello << parameters.to >>"
       
-      - docker/install-docker:
-          version: v<< pipeline.parameters.la_version >>
-      - setup_remote_docker:
-          version: "<< pipeline.parameters.la_version >>"
+jobs:
+  messer:
+    parameters:
+      laconditionouioui:
+        description: La condition
+        type: string
+        default: $condition_needed
+        
+    docker:
+      - image: circleci/node
+    steps:
+      - detect/init:
+          extended: false
           
+      - run: |
+          echo << pipeline.parameters.lacondition >>
+          echo "Oh la laaaaa" 
+          echo $condition_needed
+          
+      - when:
+          condition:
+            equal: [ "true", << pipeline.parameters.lacondition >> ]
+          steps:
+            - run:
+                name: Testing env_var_name interpolation
+                command: |
+                  echo "Step by step"
+                  echo << parameters.laconditionouioui >>
+                  echo "Wooohoo Ça marche !!!!!!"
+      
+      - greeting:
+          to: << parameters.laconditionouioui >>
+          
+
+# Orchestrate or schedule a set of jobs
 workflows:
-  build-deploy:
+  # Name the workflow "welcome"
+  welcome:
     jobs:
-      - setup
+      - messer
