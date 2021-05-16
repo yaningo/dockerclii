@@ -35,7 +35,7 @@ jobs:
           
       - when:
           condition:
-            equal: [ "true", << pipeline.parameters.lacondition >> ]
+            equal: [ true, << pipeline.parameters.lacondition >> ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
