@@ -7,6 +7,7 @@ parameters:
       lacondition:
         description: La condition
         type: string
+        default: $condition_needed
         
 commands: # a reusable command with parametersssssss
   greeting:
@@ -21,12 +22,6 @@ commands: # a reusable command with parametersssssss
       
 jobs:
   messer:
-    parameters:
-      laconditionouioui:
-        description: La condition
-        type: string
-        default: $condition_needed
-        
     docker:
       - image: circleci/node
     steps:
@@ -40,17 +35,17 @@ jobs:
           
       - when:
           condition:
-            equal: [ "true", << pipeline.parameters.lacondition >> ]
+            equal: [ true, << pipeline.parameters.lacondition >> ]
           steps:
             - run:
                 name: Testing env_var_name interpolation
                 command: |
                   echo "Step by step"
-                  echo << parameters.laconditionouioui >>
+                  echo << pipeline.parameters.laconditionouioui >>
                   echo "Wooohoo Ça marche !!!!!!"
       
       - greeting:
-          to: << parameters.laconditionouioui >>
+          to: << pipeline.parameters.laconditionouioui >>
           
 
 # Orchestrate or schedule a set of jobs
