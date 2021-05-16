@@ -41,11 +41,11 @@ jobs:
                 name: Testing env_var_name interpolation
                 command: |
                   echo "Step by step"
-                  echo << pipeline.parameters.laconditionouioui >>
+                  echo << pipeline.parameters.lacondition >>
                   echo "Wooohoo Ça marche !!!!!!"
       
       - greeting:
-          to: << pipeline.parameters.laconditionouioui >>
+          to: << pipeline.parameters.lacondition >>
           
 
 # Orchestrate or schedule a set of jobs
