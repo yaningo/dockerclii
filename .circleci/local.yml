@@ -6,8 +6,8 @@ orbs:
 parameters:
       lacondition:
         description: La condition
-        type: string
-        default: ''
+        type: boolean
+        default: false
         
 commands: # a reusable command with parametersssssss
   greeting:
