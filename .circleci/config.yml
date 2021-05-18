@@ -9,7 +9,7 @@ jobs:
           PHP_VERSION: 7.3
     steps:
       - run: sudo apt --version
-      - run: sudo apt-get update && sudo apt-get update apt && sudo apt-get upgrade apt
+      - run: sudo apt-get update && sudo apt update apt && sudo apt-get upgrade apt
       - run: sudo apt --version
       - run: sudo apt upgrade apt
       - run: sudo apt --version
