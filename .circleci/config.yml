@@ -1,25 +1,16 @@
 version: 2.1
 
-commands:
-  greeting:
-    parameters:
-      to:
-        default: "world"
-        type: string
-    steps:
-      - run:
-          name: Greetings
-          command: echo "Hello << parameters.to >>"
-
 jobs:
   bloop:
     docker:
-      - image: ebizmarts/magento2-php73:0.0.4
+#       - image: ebizmarts/magento2-php73:0.0.4
+        - image: circleci/php
         environment:
           PHP_VERSION: 7.3
     steps:
       - run: sudo apt-get update
       - run: sudo apt-get install apt-transport-https
+      - run: sudo apt --version
       
           
 workflows:
