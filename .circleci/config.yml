@@ -8,10 +8,9 @@ jobs:
         environment:
           PHP_VERSION: 7.3
     steps:
-      - run: sudo apt-get update
-      - run: sudo apt-get install apt-transport-https
       - run: sudo apt --version
-      
+      - run: sudo apt-get update
+      - run: sudo apt-get install apt-transport-https      
           
 workflows:
   welcome:
