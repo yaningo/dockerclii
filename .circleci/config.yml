@@ -35,9 +35,9 @@ jobs:
        type: enum
     tag:
       default: latest-debian
-       description: |
+      description: |
           Specific Hadolint image (make sure to use a `debian` tag, otherwise image will not be usable on CircleCI): https://hub.docker.com/r/hadolint/hadolint/tags
-       type: string
+      type: string
         
   hellolint:
     executor: hadolint
