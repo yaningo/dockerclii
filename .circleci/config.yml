@@ -11,7 +11,7 @@ jobs:
       - run: sudo apt --version
       - run: sudo sed -i '2,2s/buster/buster*/' /etc/apt/preferences.d/argon2-buster
       - run: sudo apt-get --version
-      - run: sudo apt-get update && apt-get install apt-transport-https      
+      - run: sudo apt-get update && sudo apt-get install apt-transport-https      
           
 workflows:
   welcome:
