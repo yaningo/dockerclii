@@ -10,7 +10,7 @@ jobs:
     steps:
       - run: sudo apt --version
       - run: sudo apt update
-      - run: sudo apt full-upgrade
+      - run: sudo apt upgrade apt
       - run: sudo apt --version
       - run: sudo apt-get update
       - run: sudo apt-get --version
