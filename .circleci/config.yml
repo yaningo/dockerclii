@@ -13,6 +13,9 @@ jobs:
       - run: sudo apt upgrade
       - run: sudo apt --version
       - run: sudo apt-get update
+      - run: sudo apt-get --version
+      - run: sudo apt-get upgrade
+      - run: sudo apt-get --version
       - run: sudo apt-get install apt-transport-https      
           
 workflows:
