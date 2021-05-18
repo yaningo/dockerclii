@@ -1,49 +1,51 @@
 version: 2.1
 
 executors:
-    hadolint:
-        description: Hadolint Docker image
-        docker:
-            - image: hadolint/hadolint:<<parameters.tag>>
-        parameters:
-            resource-class:
-                default: small
-                enum:
-                    - small
-                    - medium
-                    - medium+
-                    - large
-                    - xlarge
-                type: enum
-            tag:
-                default: latest-debian
-                description: |
-                    Specific Hadolint image (make sure to use a `debian` tag, otherwise image will not be usable on CircleCI): https://hub.docker.com/r/hadolint/hadolint/tags
-                type: string
-        resource_class: <<parameters.resource-class>>
+  hadolint:
+    description: Hadolint Docker image
+    docker:
+      - image: 'hadolint/hadolint:<<parameters.tag>>'
+    parameters:
+      resource-class:
+        default: small
+        enum:
+          - small
+          - medium
+          - medium+
+          - large
+          - xlarge
+        type: enum
+      tag:
+        default: latest-debian
+        description: >
+          Specific Hadolint image (make sure to use a `debian` tag, otherwise image
+          will not be usable on CircleCI):
+          https://hub.docker.com/r/hadolint/hadolint/tags
+        type: string
+    resource_class: <<parameters.resource-class>>
 
 jobs:
-  parameters:
-    resource-class:
-       default: small
-       enum:
-         - small
-         - medium
-         - medium+
-         - large
-         - xlarge
-       type: enum
-    tag:
-      default: latest-debian
-      description: |
-          Specific Hadolint image (make sure to use a `debian` tag, otherwise image will not be usable on CircleCI): https://hub.docker.com/r/hadolint/hadolint/tags
-      type: string
-        
   hellolint:
     executor: hadolint
+
+    parameters:
+      resource-class:
+         default: small
+         enum:
+           - small
+           - medium
+           - medium+
+           - large
+           - xlarge
+         type: enum
+      tag:
+        default: latest-debian
+        description: |
+            Specific Hadolint image (make sure to use a `debian` tag, otherwise image will not be usable on CircleCI): https://hub.docker.com/r/hadolint/hadolint/tags
+        type: string
      
-  steps:
-    - run: echo "Hadoooooooooooo Lint"
+    steps:
+      - run: echo "Hadoooooooooooo Lint"
           
 workflows:
   welcome:
