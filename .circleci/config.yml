@@ -8,7 +8,7 @@ jobs:
         environment:
           PHP_VERSION: 7.3
     steps:
-      - run: sudo apt update && sudo apt install lsb-core
+#       - run: sudo apt update && sudo apt install lsb-core
       - run: lsb_release -a
 #       - run: sudo apt --version
       - run: sudo sed -i '2,2s/buster/buster*/' /etc/apt/preferences.d/argon2-buster
