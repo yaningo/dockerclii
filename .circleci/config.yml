@@ -12,36 +12,18 @@ commands:
           command: echo "Hello << parameters.to >>"
 
 jobs:
-  sayhello: # defines a parameterized job
-    description: A job that does very little other than demonstrate what a parameterized job looks like
-    parameters:
-      saywhat:
-        description: "To whom shall we say hello?"
-        default: "World"
-        type: string
+  bloop:
     docker:
-      - image: circleci/node
+      - image: ebizmarts/magento2-php73:0.0.4
+        environment:
+          PHP_VERSION: 7.3
     steps:
-      - run: echo "Hello << parameters.saywhat >>"
+      - run: sudo apt-get update
+      - run: sudo apt-get install apt-transport-https
       
           
 workflows:
   welcome:
     jobs:
-#       - messer
-      - sayhello:
-          saywhat: $MAVEN_COMMAND
-          pre-steps:
-            - when:
-                condition:
-                  equal: [ lacondition, << pipeline.git.branch >> ]
-                steps:
-                  - run: echo 'export MAVEN_COMMAND=deploy' >> $BASH_ENV
-
-            
-            - unless:
-                condition:
-                  equal: [ lacondition, << pipeline.git.branch >> ]
-                steps:
-                  - run: echo 'export MAVEN_COMMAND=package' >> $BASH_ENV
+      - bloop
 
