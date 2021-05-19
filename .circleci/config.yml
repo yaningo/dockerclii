@@ -52,11 +52,10 @@ jobs:
       resource-class: << parameters.executor-class >>
      
     steps:
-      - run: echo "Hadoooooooooooo Lint"
+      - run: hadolint --version
           
 workflows:
   welcome:
     jobs:
       - hellolint:
-          executor-class: medium+
           version: 2.2.0-debian
