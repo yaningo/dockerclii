@@ -59,4 +59,4 @@ workflows:
   welcome:
     jobs:
       - hellolint:
-          executor-class: medium+
+          hadolint-tag: 2.2.0-debian
