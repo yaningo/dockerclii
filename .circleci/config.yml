@@ -54,6 +54,7 @@ jobs:
      
     steps:
       - run: hadolint --version
+      - run: echo $HOME
           
 workflows:
   welcome:
