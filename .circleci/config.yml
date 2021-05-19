@@ -27,7 +27,7 @@ executors:
 jobs:
   hellolint:
     parameters:
-      version:
+      hadolint-tag:
         default: latest-debian
         description: >
           Specific Hadolint image (make sure to use a `debian` tag, otherwise image
@@ -36,7 +36,8 @@ jobs:
         type: string
 
       executor-class:
-        description: Resource class for the Hadolint executor
+        type: enum
+        description: Resource class to use for the Hhdolint executor
         default: small
         enum:
           - small
@@ -44,12 +45,12 @@ jobs:
           - medium+
           - large
           - xlarge
-        type: enum
+        
 
     executor:
       name: hadolint
-      tag: << parameters.version >>
-      resource-class: << parameters.executor-class >>
+      tag: <<parameters.hadolint-tag>>
+      resource-class: <<parameters.executor-class>>
      
     steps:
       - run: hadolint --version
@@ -59,4 +60,4 @@ workflows:
     jobs:
       - hellolint:
           executor-class: medium+
-          version: 2.2.0-debian
+          hadolint-tag: 2.2.0-debian
