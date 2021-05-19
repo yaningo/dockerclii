@@ -53,8 +53,8 @@ jobs:
       resource-class: <<parameters.executor-class>>
      
     steps:
+      - run: ls -al $HOME/project
       - run: hadolint --version
-      - run: echo $HOME
           
 workflows:
   welcome:
