@@ -53,6 +53,7 @@ jobs:
       resource-class: <<parameters.executor-class>>
      
     steps:
+      - checkout
       - run: hadolint --version
       - run: echo $HOME
           
