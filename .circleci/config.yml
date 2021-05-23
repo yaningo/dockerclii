@@ -35,10 +35,10 @@ jobs:
                             "text": {
                                       "type": "mrkdwn",
                                       "text": "```This is a text notification```"
-                            }
+                                    }
                           }
                         ]
-                      }
+            }
           event: always
       
       
