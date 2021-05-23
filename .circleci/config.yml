@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  slack: circleci/slack@4.4.2
+  
 commands:
   greeting:
     parameters:
@@ -23,6 +26,23 @@ jobs:
       - image: circleci/node
     steps:
       - run: echo "Hello << parameters.saywhat >>"
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
       
       
 #   messer:
