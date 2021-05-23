@@ -32,13 +32,10 @@ jobs:
               "blocks": [
                 {
                   "type": "section",
-                  "fields": [
-                    {
+                  "text": {
                       "type": "mrkdwn",
                       "text": "```This is a text notification```",
-                      "emoji": true
-                    }
-                  ]
+                  }
                 }
               ]
             }
