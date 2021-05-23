@@ -26,6 +26,8 @@ jobs:
       - image: circleci/node
     steps:
       - run: echo "Hello << parameters.saywhat >>"
+      - run: echo ' export MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`" ' >> $BASH_ENV
+      - run: echo $MESSAGE
       - slack/notify:
           custom: |
             {
@@ -34,7 +36,7 @@ jobs:
                             "type": "section",
                             "text": {
                                       "type": "mrkdwn",
-                                      "text": "```This is a text notification```"
+                                      "text": "$MESSAGE"
                                     }
                           }
                         ]
