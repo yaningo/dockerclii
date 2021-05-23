@@ -76,6 +76,7 @@ workflows:
 #       - messer
       - sayhello:
           saywhat: $MAVEN_COMMAND
+          context: slouck
           pre-steps:
             - when:
                 condition:
