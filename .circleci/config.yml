@@ -28,7 +28,11 @@ jobs:
       - run: echo "Hello << parameters.saywhat >>"
       - run:
           command: |
-            echo ' export MESSAGE="Changes to be applied from terraform: \`\`\`otootototottof\`\`\`" ' >> $BASH_ENV
+            echo ' export plan_diff=$(whoami) ' >> $BASH_ENV
+      - run: echo "$plan_diff"
+      - run:
+          command: |
+            echo ' export MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`" ' >> $BASH_ENV
       - run: echo "$MESSAGE"
       - slack/notify:
           custom: |
