@@ -26,7 +26,7 @@ jobs:
       - image: circleci/node
     steps:
       - run: echo "Hello << parameters.saywhat >>"
-      - run: echo ' export MESSAGE="Changes to be applied from terraform: otootototottof" ' >> $BASH_ENV
+      - run: echo ' export MESSAGE="Changes to be applied from terraform\: otootototottof" ' >> $BASH_ENV
       - run: echo $MESSAGE
       - slack/notify:
           custom: |
