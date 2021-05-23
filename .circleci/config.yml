@@ -28,17 +28,17 @@ jobs:
       - run: echo "Hello << parameters.saywhat >>"
       - slack/notify:
           custom: |
-            {
-	            "blocks": [
-		            {
-			            "type": "section",
-			            "text": {
-				                    "type": "mrkdwn",
-				                    "text": "```This is a text notification```"
-			             }
-		             }
-	             ]
-             }
+	    {
+              "blocks": [
+                          {
+                            "type": "section",
+                            "text": {
+                                      "type": "mrkdwn",
+                                      "text": "```This is a text notification```"
+                            }
+                          }
+                        ]
+                      }
           event: always
       
       
