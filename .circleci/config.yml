@@ -40,7 +40,7 @@ jobs:
                             "type": "section",
                             "text": {
                                       "type": "mrkdwn",
-                                      "text": "$MESSAGE"
+                                      "text": $MESSAGE
                                     }
                           }
                         ]
