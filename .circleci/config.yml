@@ -22,7 +22,7 @@ jobs:
                 osID=macos
                 ;;
               msys_nt*)
-                osID=$(systeminfo|grep "^OS Name"|awk -F':' '{print $2}'|awk '{$1=""; print}')
+                osID=$(systeminfo|grep "^OS Name"|awk -F':' '{print $2}'|awk '{$1=""; $2=""; print}')
                 ;;
               *)
                 echo "Unsupported operating system."
