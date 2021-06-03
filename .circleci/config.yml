@@ -7,13 +7,18 @@ jobs:
   build:
     executor:
       name: win/default
-      shell: bash.exe
     steps:
       - run:
           command: |
-            uname
-            family=$(uname -s | tr '[:upper:]' '[:lower:]')
-             
+            type=$(uname -s | tr '[:upper:]' '[:lower:]')
+            echo "export family=$(echo $type)" >> BASH_ENV
+      - run:
+          shell: bash.exe
+          command: |
+            type=$(uname -s | tr '[:upper:]' '[:lower:]')
+            echo "export family=$(echo $type)" >> BASH_ENV
+          when: on_fail
+          command: |
             case $family in
               linux)
                 osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
