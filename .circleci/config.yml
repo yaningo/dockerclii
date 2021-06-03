@@ -36,8 +36,8 @@ jobs:
                 ;;
             esac
 
-            echo "export OS_VERSION=$(echo "$osVersion")">> $BASH_ENV
-            echo "export OS_ID=$(echo "$osID")" >> $BASH_ENV
+            echo 'export OS_VERSION="$(echo $osVersion)" '>> $BASH_ENV
+            echo ' export OS_ID="$(echo $osID)" '>> $BASH_ENV
 
             echo $osVersion
             echo $osID
@@ -50,8 +50,8 @@ jobs:
             command -v sudo >/dev/null 2>&1 || { SUDO=""; }
 
       - run: |
-          echo OS is "$OS_ID"
-          echo Version is "$OS_VERSION"
+          echo "OS is $OS_ID"
+          echo "Version is $OS_VERSION"
 workflows:
   whatos:
     jobs:
