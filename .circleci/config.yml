@@ -30,15 +30,14 @@ jobs:
                 ;;
             esac
 
-            echo 'export OSD_ID=$(echo "$osID")' >> $BASH_ENV
-
             case $osID in
               *Windows*)
                 osVersion=$(systeminfo|grep "^OS Version"|awk -F':' '{print $2}'|awk -F' ' '{print $1}')
                 ;;
             esac
 
-            echo 'export OS_VERSION=$(echo "$osVersion")'>> $BASH_ENV
+            echo 'export OS_VERSION="$(echo $osVersion)"'>> $BASH_ENV
+            echo 'export OS_ID="$(echo $osID)"' >> $BASH_ENV
 
             echo $osVersion
             echo $osID
@@ -51,7 +50,7 @@ jobs:
             command -v sudo >/dev/null 2>&1 || { SUDO=""; }
 
       - run: |
-          echo "OS is $OSD_ID"
+          echo "OS is $OS_ID"
           echo "Version is $OS_VERSION"
 workflows:
   whatos:
