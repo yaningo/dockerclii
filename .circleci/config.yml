@@ -37,7 +37,7 @@ jobs:
             esac
 
             echo "export OS_VERSION=$(echo $osVersion)" >> $BASH_ENV
-            echo "export OS_ID=$(printf %b${osID})" >> $BASH_ENV
+            echo "export OS_ID=$(echo -e "$osID") >> $BASH_ENV
 
             echo $osVersion
             echo $osID
