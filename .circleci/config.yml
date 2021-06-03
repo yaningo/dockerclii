@@ -10,8 +10,7 @@ jobs:
     steps:
       - run:
           command: |
-            type=$(uname -s | tr '[:upper:]' '[:lower:]')
-            echo "export family=$(echo $type)" >> BASH_ENV
+            uname -s | tr '[:upper:]' '[:lower:]'
       - run:
           shell: bash.exe
           command: |
