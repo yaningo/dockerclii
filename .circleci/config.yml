@@ -1,21 +1,59 @@
 version: 2.1
-  
+
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
-  setup:
-    docker:
-      - image: circleci/node
+  build:
+    executor:
+      name: win/default
+      shell: bash.exe
     steps:
-      - checkout
       - run:
           command: |
-              chmod +x ./script.sh
-              ./script.sh
-      - run:
-          name: I test I test
-          command: |
-              echo $MESSAGE
-          
+            uname
+            family=$(uname -s | tr '[:upper:]' '[:lower:]')
+             
+            case $family in
+              linux)
+                osID=$(grep -e "^ID=" /etc/os-release | cut -c4-)
+                ;;
+              darwin)
+                osID=macos
+                ;;
+              msys_nt*)
+                osID=$(systeminfo|grep "^OS Name"|awk -F':' '{print $2}'|awk '{$1=""; print}')
+                ;;
+              *)
+                echo "Unsupported operating system."
+                exit 1
+                ;;
+            esac
+
+            echo 'export OSD_ID=$(echo "$osID")' >> $BASH_ENV
+
+            case $osID in
+              *Windows*)
+                osVersion=$(systeminfo|grep "^OS Version"|awk -F':' '{print $2}'|awk -F' ' '{print $1}')
+                ;;
+            esac
+
+            echo 'export OS_VERSION=$(echo "$osVersion")'>> $BASH_ENV
+
+            echo $osVersion
+            echo $osID
+
+
+
+            if [[ $EUID -ne 0 ]]; then
+              SUDO=sudo
+            fi
+            command -v sudo >/dev/null 2>&1 || { SUDO=""; }
+
+      - run: |
+          echo "OS is $OSD_ID"
+          echo "Version is $OS_VERSION"
 workflows:
-  build-deploy:
+  whatos:
     jobs:
-      - setup
+      - build
