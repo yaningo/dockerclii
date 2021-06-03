@@ -37,7 +37,7 @@ jobs:
             esac
 
             echo "export OS_VERSION=$(echo $osVersion)" >> $BASH_ENV
-            echo "export OS_ID=$(echo -e "$osID")" >> $BASH_ENV
+            echo "export OS_ID=$(printf %s${osID})" >> $BASH_ENV
 
             echo $osVersion
             echo $osID
@@ -52,6 +52,12 @@ jobs:
       - run: |
           echo OS is "$OS_ID"
           echo Version is "$OS_VERSION"
+          case $OS_ID in
+              *2019*)
+                echo "WIIIIIIIIIIIIIIIN DOES"
+                ;;
+          esac
+
 workflows:
   whatos:
     jobs:
