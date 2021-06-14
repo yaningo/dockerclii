@@ -5,15 +5,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - checkout
-      - run:
-          command: |
-              chmod +x ./script.sh
-              ./script.sh
-      - run:
-          name: I test I test
-          command: |
-              echo $MESSAGE
+      - run: echo $WEIRD_ENV
           
 workflows:
   build-deploy:
