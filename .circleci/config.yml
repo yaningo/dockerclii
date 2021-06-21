@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run: echo $WEIRD_ENV
+      - run: docker -v
           
 workflows:
   build-deploy:
