@@ -46,6 +46,9 @@ jobs:
                         ]
             }
           event: always
+          
+      - greetings:
+          to: $CIRCLE_USERNAME
       
       
 #   messer:
