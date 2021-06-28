@@ -47,7 +47,7 @@ jobs:
             }
           event: always
           
-      - greetings:
+      - greeting:
           to: $CIRCLE_USERNAME
       
       
