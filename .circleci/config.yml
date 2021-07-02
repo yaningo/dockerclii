@@ -10,7 +10,7 @@ jobs:
           echo "Hello file" > ~/tmp/toto.txt
           pwd
           ls -al
-          ls -al .
+          ls -al /home/circleci
           ls -al ~/tmp
           ls -al /home/circleci/tmp
       - persist_to_workspace:
