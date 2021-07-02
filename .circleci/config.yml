@@ -12,7 +12,7 @@ jobs:
           ls -al
           ls -al ~/tmp
       - persist_to_workspace:
-          root: tmp
+          root: ./tmp
           paths:
             - toto.txt
   space:
