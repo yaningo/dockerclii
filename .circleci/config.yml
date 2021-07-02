@@ -19,7 +19,7 @@ jobs:
     working_directory: ~/project
     steps:
       - attach_workspace:
-          at: tmp
+          at: ./tmp
       - run: cat tmp/toto.txt
       
           
