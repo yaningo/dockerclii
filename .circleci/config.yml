@@ -7,9 +7,9 @@ jobs:
     steps:
       - run: echo "Hello file" > /tmp/toto.txt
       - persist_to_workspace:
-          root: .
+          root: /tmp
           paths:
-            - .
+            - toto.txt
   space:
     docker:
       - image: circleci/node
