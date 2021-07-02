@@ -8,6 +8,8 @@ jobs:
       - run: |
           mkdir ~/tmp
           echo "Hello file" > ~/tmp/toto.txt
+          pwd
+          ls -al
           ls -al ~/tmp
       - persist_to_workspace:
           root: tmp
