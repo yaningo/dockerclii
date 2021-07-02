@@ -5,7 +5,9 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run: echo "Hello file" > ~/tmp/toto.txt
+      - run: |
+          mkdir ~/tmp
+          echo "Hello file" > ~/tmp/toto.txt
       - persist_to_workspace:
           root: tmp
           paths:
