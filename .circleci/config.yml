@@ -6,8 +6,8 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
+      - setup_remote_docker
+#           version: 19.03.13
       - run: docker version
       - run:
           name: Build docker image
