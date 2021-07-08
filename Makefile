@@ -1,2 +1,2 @@
-deps/install:
-  echo "Hello";
+.PHONY: deps/install
+deps/install: echo "Hello";
