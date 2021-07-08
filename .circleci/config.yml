@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            make image/build
+            docker build -t myim:1.0 .
       
 workflows:
   build-deploy:
