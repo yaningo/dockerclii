@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node
     steps:
       - setup_remote_docker:
-          version: 20.10.07
+          version: 20.10.06
       
           
 workflows:
