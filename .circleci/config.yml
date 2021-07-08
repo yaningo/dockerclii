@@ -15,6 +15,7 @@ jobs:
             make build/image
       
 workflows:
+  version: 2
   build-deploy:
     jobs:
       - setup
