@@ -1,2 +1,2 @@
 deps/install:
-                echo "Hello";
+  echo "Hello";
