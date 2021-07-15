@@ -4,15 +4,18 @@ jobs:
   setup:
     docker:
       - image: circleci/node
+        environment:
+          ENVFROMPROJECT: $foo
     steps:
-      - checkout
-      - setup_remote_docker
+      - run: env
+#       - checkout
+#       - setup_remote_docker
 #           version: 19.03.13
-      - run: docker version
-      - run:
-          name: Build docker image
-          command: |
-            make build/image
+#       - run: docker version
+#       - run:
+#           name: Build docker image
+#           command: |
+#             make build/image
       
 workflows:
   version: 2
