@@ -10,8 +10,7 @@ jobs:
         environment:
           ENVFROMCONTEXT: "$toto_var"	
     steps:
-      - run: |
-          echo $ENVFROMCONTEXT
+      - run: echo $ENVFROMCONTEXT
 
 #       - checkout
 #       - setup_remote_docker
