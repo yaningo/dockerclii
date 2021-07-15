@@ -7,7 +7,7 @@ jobs:
         environment:
           ENVFROMPROJECT: $foo
     steps:
-      - run: env
+      - run: echo $ENVFROMPROJECT
 #       - checkout
 #       - setup_remote_docker
 #           version: 19.03.13
