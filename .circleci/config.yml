@@ -3,11 +3,17 @@ version: 2
 jobs:
   setup:
     docker:
-      - image: circleci/node
+      - image: yaningo/my-node:test
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
         environment:
           ENVFROMCONTEXT: $toto_var	
     steps:
-      - run: echo $ENVFROMCONTEXT
+      - run: |
+          echo $ENVFROMCONTEXT
+          echo $DOCKERHUB_USER
+          echo $DOCKERHUB_PASSWORD
 #       - checkout
 #       - setup_remote_docker
 #           version: 19.03.13
