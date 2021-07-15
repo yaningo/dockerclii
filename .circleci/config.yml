@@ -4,7 +4,6 @@ jobs:
   setup:
     machine:
       image: ubuntu-2004:202010-01
-        environment:
           
     steps:
       - run: docker run --rm yaningo/my-node:test --env $toto_var echo $toto_var
