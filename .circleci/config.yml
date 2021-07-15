@@ -6,7 +6,7 @@ jobs:
       image: ubuntu-2004:202010-01
           
     steps:
-      - run: docker run --rm yaningo/my-node:test -e $toto_var echo $toto_var
+      - run: docker run -e $toto_var yaningo/my-node:test  echo $toto_var
 
 #       - checkout
 #       - setup_remote_docker
