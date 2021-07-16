@@ -2,15 +2,11 @@ version: 2
   
 jobs:
   setup:
-    docker:
-      - image: yaningo/my-node:test
-        auth:
-          username: $DOCKERHUB_USER
-          password: $DOCKERHUB_PASSWORD
-        environment:
-          ENVFROMCONTEXT: "$toto_var"
+    machine:
+      image: ubuntu-2004:202010-01
+          
     steps:
-      - run: echo $ENVFROMCONTEXT
+      - run: docker run --env ENVFROMCONTEXT=$toto_var yaningo/my-node:test env
 
 #       - checkout
 #       - setup_remote_docker
