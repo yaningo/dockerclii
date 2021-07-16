@@ -8,7 +8,7 @@ jobs:
       - run: |
           mkdir ~/project/tmp
           echo "Hello file" > ~/project/tmp/toto.txt
-          kubectl -v
+          kubectl version
       - persist_to_workspace:
           root: tmp
           paths:
