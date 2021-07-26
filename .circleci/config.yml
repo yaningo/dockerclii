@@ -11,8 +11,8 @@ jobs:
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update
           sudo apt install python3.8
-          sudo update-alternatives --config python /usr/bin/python python /usr/bin/python3.8
-           python --version
+          sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+          python --version
           curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" \
               -o "awscli-bundle.zip"
           unzip awscli-bundle.zip
