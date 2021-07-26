@@ -12,14 +12,16 @@ jobs:
           sudo apt update
           sudo apt install python3.8
           sudo apt install python3.8-venv
+          sudo update-alternatives --remove python /usr/bin/python2
           sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
-          sudo update-alternatives --config python
           python --version
           
           curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" \
               -o "awscli-bundle.zip"
           unzip awscli-bundle.zip
           sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+          
+          /usr/local/bin/aws --version
       
           
 workflows:
