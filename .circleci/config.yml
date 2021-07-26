@@ -2,31 +2,23 @@ version: 2.1
   
 jobs:
   setup:
-    docker:
-      - image: google/cloud-sdk@sha256:e9db2327807bf8215bdd9768e7ae6afa154585ec78d0c5088fd99dabd53cc518
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - run: |
-          mkdir ~/project/tmp
-          echo "Hello file" > ~/project/tmp/toto.txt
-          kubectl version --client
-      - persist_to_workspace:
-          root: tmp
-          paths:
-            - toto.txt
-  space:
-    docker:
-      - image: circleci/node
-    working_directory: ~/project
-    steps:
-      - attach_workspace:
-          at: tmp
-      - run: cat tmp/toto.txt
+          sudo apt update
+          sudo apt install software-properties-common
+          sudo add-apt-repository ppa:fkrull/deadsnakes
+          sudo apt update
+          sudo apt install python3.8
+          sudo python --version
+          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" \
+              -o "awscli-bundle.zip"
+          unzip awscli-bundle.zip
+          sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
       
           
 workflows:
   build-deploy:
     jobs:
       - setup
-      - space:
-          requires:
-            - setup
