@@ -6,27 +6,9 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - run:
-          name: Install Python 3.8 and AWS CLI 1 latest
+          name: Docker version
           command: |
-            sudo apt update
-            sudo apt install software-properties-common
-            sudo add-apt-repository ppa:deadsnakes/ppa -y
-            sudo apt update
-            sudo apt install python3.8
-            sudo apt install python3.8-venv
-            sudo update-alternatives --remove python /usr/bin/python2
-            sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 5
-            # sudo apt install python-is-python3
-            sudo update-alternatives --config python /usr/bin/python3.8
-            
-            python --version
-          
-            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" \
-                -o "awscli-bundle.zip"
-            unzip awscli-bundle.zip
-            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-          
-            /usr/local/bin/aws --version
+            docker --version
       
           
 workflows:
