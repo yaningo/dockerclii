@@ -15,6 +15,12 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@7.0.0
 
+executors:
+  myexec:
+    machine:
+      image: ubuntu-2004:202010-01
+
+
 commands:
 
 jobs:
@@ -24,9 +30,8 @@ workflows:
     jobs:
       - aws-ecr/build-and-push-image:
           repo: "70194"
-          executor:
-            image: "ubuntu-2004:202104-01"
-            
+          executor: myexec
+
           post-steps:
             - run: docker --version
       
