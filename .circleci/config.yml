@@ -51,7 +51,9 @@ jobs:
       - greeting:
           to: $CIRCLE_USERNAME
           
-      - run: echo "Public IP is now $(curl checkip.amazonaws.com)"
+      - run: |
+          echo "Public IP is now $(curl checkip.amazonaws.com)"
+          sleep 14
       
       
 #   messer:
