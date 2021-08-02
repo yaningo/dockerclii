@@ -7,9 +7,9 @@ jobs:
     steps:
       - run:
           command: |
-                   git clone --branch shallow --single-branch --depth 1 https://github.com/XkuzemyFrench/restore-cache.git .
-                   git fetch --depth=1 --force origin "shallow:remotes/origin/shallow"
-                   git checkout -q -B shallow
+                   git clone --branch another-pr --single-branch --depth 1 https://github.com/XkuzemyFrench/restore-cache.git .
+                   git fetch --depth=1 --force origin "another-pr:remotes/origin/another-pr"
+                   git checkout -q -B another-pr
                    
 workflows:
 
