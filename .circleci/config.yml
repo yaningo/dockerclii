@@ -10,7 +10,7 @@ jobs:
           command: |
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
-            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3jqLURsPxOOZ/Y3xdcQdbZeioZlMSAxfyp6uN021mA/ueWL8oYWr5OGLMDUuuwt8sggtB65mEQAXRVVkXB7aRcwRtF3DrTB5eRwtDEcQt6lUIrl/ViVXzJaH6gkQz2h6iN7269/fAE6UP1pp8ExSzuuGrm7Ub0YJOhanGQRCRRdklUFnLu4GAb4hmTUqh1kT4gpnqLqMBwQrPS8Bh/fsdtBHkgRr/mCezr/x/BmzWucthWWIODj9m+5ROemIoBpmR6WMREyl1u6EQ+HTR9gYmb3lHP/m7xQK5paWdddPOYTY6VIIMFcOrw182C/P3Oe+B8URRCRDAjYhy1i/aZV0zGEflaYY3R74uk+d3xBjHaIZxRVfq4kj3EmziGVxnJgkQUm7ft/fEXKNHPpfv5YfEvjYxNjjlAUi9epecT+0lOSxm4o/CZlV+0eIZ2CwQ+tNGpe1MDznlMZeq0L3UJjRGsfPTrrF6AI/fCW6WWIfYflKyHmmYqaa3FMI8boDVFHU= ' >> ~/.ssh/known_hosts
+            echo 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILtr1kQ4eTl86Cc761MHeRxKWqc5Tk0Fkwu6v6nJkgi5' >> ~/.ssh/known_hosts
             (umask 077; touch ~/.ssh/id_rsa)
             chmod 0600 ~/.ssh/id_rsa
             (cat \<<EOF > ~/.ssh/id_rsa
