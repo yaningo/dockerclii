@@ -10,13 +10,9 @@ jobs:
           command: |
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
-            echo 'github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILtr1kQ4eTl86Cc761MHeRxKWqc5Tk0Fkwu6v6nJkgi5' >> ~/.ssh/known_hosts
-            (umask 077; touch ~/.ssh/id_rsa)
-            chmod 0600 ~/.ssh/id_rsa
-            (cat \<<EOF > ~/.ssh/id_rsa
-            $CHECKOUT_KEY
-            EOF
-            )
+            if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
+              ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+            fi
 #       - add_ssh_keys:
 #           fingerprints:
 #             - "0c:aa:90:49:d0:31:99:7e:92:04:ce:ec:8b:39:dc:7d"
