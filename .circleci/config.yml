@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  travail:
+  travaile:
     docker:
       - image: circleci/node
     steps:
@@ -31,4 +31,4 @@ workflows:
 
   whodidthis:
     jobs:
-      - travail
+      - travaile
