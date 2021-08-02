@@ -13,9 +13,9 @@ jobs:
             if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
               ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
             fi
-#       - add_ssh_keys:
-#           fingerprints:
-#             - "0c:aa:90:49:d0:31:99:7e:92:04:ce:ec:8b:39:dc:7d"
+      - add_ssh_keys:
+          fingerprints:
+            - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
       - run:
           command: |
              git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
