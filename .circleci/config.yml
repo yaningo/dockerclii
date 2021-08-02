@@ -7,7 +7,7 @@ jobs:
     steps:
       - run:
           command: |
-                   git clone --branch shallow --single-branch --depth 1 https://github.com/XkuzemyFrench/trbsht.git .
+                   git clone --branch shallow --single-branch --depth 1 https://github.com/XkuzemyFrench/restore-cache.git .
                    git fetch --depth=1 --force origin "shallow:remotes/origin/shallow"
                    git checkout -q -B shallow
                    
