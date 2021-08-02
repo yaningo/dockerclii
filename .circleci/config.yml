@@ -7,9 +7,13 @@ jobs:
     steps:
       - run:
           command: |
-                   git clone --branch master --single-branch --depth 1 "https://github.com/XkuzemyFrench/restore-cache.git" .
-                   git fetch --depth=1 --force origin "master:remotes/origin/master"
-                   git checkout -q -B master
+             sudo echo "Host github.com" >> ~/.ssh/config
+             sudo echo " Hostname ssh.github.com" >> ~/.ssh/config
+             sudo echo " Port 443" >> ~/.ssh/config
+             
+             git clone --branch master --single-branch --depth 1 "https://github.com/XkuzemyFrench/restore-cache.git" .
+             git fetch --depth=1 --force origin "master:remotes/origin/master"
+             git checkout -q -B master
                    
 workflows:
 
