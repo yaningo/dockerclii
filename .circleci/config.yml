@@ -8,15 +8,11 @@ jobs:
       - run:
           name: Git config
           command: |
-            mkdir -p ~/.ssh
-            touch ~/.ssh/known_hosts
-            if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
-              ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
-            fi 
+            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3jqLURsPxOOZ/Y3xdcQdbZeioZlMSAxfyp6uN021mA/ueWL8oYWr5OGLMDUuuwt8sggtB65mEQAXRVVkXB7aRcwRtF3DrTB5eRwtDEcQt6lUIrl/ViVXzJaH6gkQz2h6iN7269/fAE6UP1pp8ExSzuuGrm7Ub0YJOhanGQRCRRdklUFnLu4GAb4hmTUqh1kT4gpnqLqMBwQrPS8Bh/fsdtBHkgRr/mCezr/x/BmzWucthWWIODj9m+5ROemIoBpmR6WMREyl1u6EQ+HTR9gYmb3lHP/m7xQK5paWdddPOYTY6VIIMFcOrw182C/P3Oe+B8URRCRDAjYhy1i/aZV0zGEflaYY3R74uk+d3xBjHaIZxRVfq4kj3EmziGVxnJgkQUm7ft/fEXKNHPpfv5YfEvjYxNjjlAUi9epecT+0lOSxm4o/CZlV+0eIZ2CwQ+tNGpe1MDznlMZeq0L3UJjRGsfPTrrF6AI/fCW6WWIfYflKyHmmYqaa3FMI8boDVFHU= ' >> ~/.ssh/known_hosts
       
-      - add_ssh_keys:
-          fingerprints:
-            - "0c:aa:90:49:d0:31:99:7e:92:04:ce:ec:8b:39:dc:7d"
+#       - add_ssh_keys:
+#           fingerprints:
+#             - "0c:aa:90:49:d0:31:99:7e:92:04:ce:ec:8b:39:dc:7d"
       - run:
           command: |
              git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
