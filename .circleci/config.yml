@@ -5,6 +5,15 @@ jobs:
     docker:
       - image: circleci/node
     steps:
+      - run:
+          name: Git config
+          command: |
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
+              ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+            fi 
+      
       - add_ssh_keys:
           fingerprints:
             - "0c:aa:90:49:d0:31:99:7e:92:04:ce:ec:8b:39:dc:7d"
