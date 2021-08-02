@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Git config
           command: |
+            git --version
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
             if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
