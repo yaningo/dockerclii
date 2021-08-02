@@ -9,9 +9,8 @@ jobs:
           command: |
              git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
              
-             git clone --branch master --single-branch --depth 1 "https://github.com/XkuzemyFrench/restore-cache.git" .
-             git fetch --depth=1 --force origin "master:remotes/origin/master"
-             git checkout -q -B master
+             git clone --depth 1 --branch "$CIRCLE_BRANCH" $CIRCLE_REPOSITORY_URL .
+             git checkout -q -B "$CIRCLE_BRANCH"
                    
 workflows:
 
