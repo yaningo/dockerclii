@@ -23,6 +23,8 @@ jobs:
              
              git clone --depth 1 --branch "$CIRCLE_BRANCH" $CIRCLE_REPOSITORY_URL .
              git checkout -q -B "$CIRCLE_BRANCH"
+             
+             sleep 25
                    
 workflows:
 
