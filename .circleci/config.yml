@@ -1,4 +1,4 @@
-# version: 2.1
+version: 2.1
   
 # jobs:
 #   setup:
@@ -10,30 +10,29 @@
 #           command: |
 #             docker --version
 
-version: 2.1
-
-orbs:
-  aws-ecr: circleci/aws-ecr@7.0.0
-
-executors:
-  myexec:
-    machine:
-      image: ubuntu-2004:202104-01
-
-
-commands:
-
 jobs:
+  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
+  build-and-test:  
+    # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
+    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # Be sure to update the Docker image tag below to openjdk version of your application.
+    # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
+    docker:
+      - image: cimg/openjdk:11.0
+    
+    steps:
+      - run:
+          name: Install jFrog CLI
+          command: curl -fL https://getcli.jfrog.io | sh
+      - run:
+          name: Check jFrog CLI version
+          command: jfrog --version
+
 
 workflows:
   build-and-deploy:
     jobs:
-      - aws-ecr/build-and-push-image:
-          repo: "70194"
-          executor: myexec
-
-          post-steps:
-            - run: docker --version
+      - build-and-test
       
           
 # workflows:
