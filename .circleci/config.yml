@@ -25,9 +25,7 @@ jobs:
     
     steps:
        
-      - run: |
-            # sudo apt-get --allow-releaseinfo-change-suite update
-            
+      - run: |            
             sudo apt-get update
             sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
             
@@ -35,10 +33,9 @@ jobs:
             
             # AZ_REPO=$(lsb_release -cs)
             # echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
-            
-            sudo apt-get --allow-releaseinfo-change-suite update
-            
+                        
             sudo apt-get update
+            sudo apt-get --allow-releaseinfo-change-suite update
             sudo apt-get install azure-cli
 
 workflows:
