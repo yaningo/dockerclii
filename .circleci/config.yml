@@ -21,7 +21,7 @@ jobs:
     # Be sure to update the Docker image tag below to openjdk version of your application.
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
-      - image: circleci/golang:1.16
+      - image: cimg/go:1.16
     
     steps:
        
@@ -35,7 +35,7 @@ jobs:
             echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
                         
             sudo apt-get update
-            sudo apt-get --allow-releaseinfo-change-suite update
+            # sudo apt-get --allow-releaseinfo-change-suite update
             sudo apt-get install azure-cli
 
 workflows:
