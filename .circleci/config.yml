@@ -11,7 +11,7 @@ version: 2.1
 #             docker --version
 
 orbs:
-  azure-cli: circleci/azure-cli@1.2.0
+  azure-cli: circleci/azure-cli@1.1.0
   
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
