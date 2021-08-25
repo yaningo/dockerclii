@@ -11,7 +11,7 @@ version: 2.1
 #             docker --version
 
 orbs:
-  azure-cli: circleci/azure-cli@1.1.0
+  azure-cli: circleci/azure-cli@1.2.0
   
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -24,19 +24,20 @@ jobs:
       - image: cimg/go:1.16
     
     steps:
-      - run: |
-            # sudo apt-get --allow-releaseinfo-change-suite update
+       - azure-cli/install
+#       - run: |
+#             # sudo apt-get --allow-releaseinfo-change-suite update
             
-            sudo apt-get update
-            sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+#             sudo apt-get update
+#             sudo apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
             
-            curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+#             curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
             
-            AZ_REPO=$(lsb_release -cs)
-            echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+#             AZ_REPO=$(lsb_release -cs)
+#             echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
             
-            sudo apt-get update
-            sudo apt-get install azure-cli
+#             sudo apt-get update
+#             sudo apt-get install azure-cli
 
 workflows:
   build-and-deploy:
