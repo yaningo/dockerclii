@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run: sudo mkdir /Users/distiller
+      - run: ls /tmp
 #       - run:
 #           name: Git config
 #           command: |
