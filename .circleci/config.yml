@@ -5,13 +5,18 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run: pwd
+      - run: |
+          pwd
+          ls /tmp
       
   macky:
     macos:
       xcode: "12.5.1"
     steps:
-      - run: pwd
+      - run: |
+          pwd
+          ls /tmp
+      
 #       - run:
 #           name: Git config
 #           command: |
