@@ -1,21 +1,15 @@
 version: 2.1
 
+orbs:
+  jq: circleci/jq@2.2.0
+
 jobs:
   travaile:
     docker:
       - image: circleci/node
     steps:
-      - run: |
-          pwd
-          ls /tmp
+      - jq/install
       
-  macky:
-    macos:
-      xcode: "12.5.1"
-    steps:
-      - run: |
-          pwd
-          ls /tmp
       
 #       - run:
 #           name: Git config
@@ -43,4 +37,3 @@ workflows:
   whodidthis:
     jobs:
       - travaile
-      - macky
