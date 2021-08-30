@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  jq: circleci/jq@2.2.0
+  jq: circleci/jq@2.2
 
 jobs:
   travaile:
