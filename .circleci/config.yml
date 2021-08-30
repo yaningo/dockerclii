@@ -6,7 +6,7 @@ orbs:
 jobs:
   travaile:
     docker:
-      - image: circleci/node
+      - image: cimg/node:10.24.0
     steps:
       - jq/install
       
