@@ -5,26 +5,27 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run:
-          name: Git config
-          command: |
-            git --version
-            mkdir -p ~/.ssh
-            touch ~/.ssh/known_hosts
-            if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
-              ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
-            fi
-      - add_ssh_keys:
-          fingerprints:
-            - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
-      - run:
-          command: |
-             git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
+      - run: mkdir /Users/distiller
+#       - run:
+#           name: Git config
+#           command: |
+#             git --version
+#             mkdir -p ~/.ssh
+#             touch ~/.ssh/known_hosts
+#             if [ ! -n "$(grep "^github.com " "$HOME"/.ssh/known_hosts)" ]; then
+#               ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+#             fi
+#       - add_ssh_keys:
+#           fingerprints:
+#             - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
+#       - run:
+#           command: |
+#              git config --global url."ssh://git@github.com".insteadOf "https://github.com" || true
              
-             git clone --depth 1 --branch "$CIRCLE_BRANCH" $CIRCLE_REPOSITORY_URL .
-             git checkout -q -B "$CIRCLE_BRANCH"
+#              git clone --depth 1 --branch "$CIRCLE_BRANCH" $CIRCLE_REPOSITORY_URL .
+#              git checkout -q -B "$CIRCLE_BRANCH"
              
-             sleep 25
+#              sleep 25
                    
 workflows:
 
