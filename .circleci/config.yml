@@ -8,8 +8,7 @@ jobs:
     docker:
       - image: cimg/node:10.24.0
     steps:
-      - jq/install:
-          override: true
+      - run: echo "Hello"
       
       
 #       - run:
@@ -37,4 +36,7 @@ workflows:
 
   whodidthis:
     jobs:
-      - travaile
+      - travaile:
+          post-steps:
+            - jq/install:
+                override: true
