@@ -29,14 +29,15 @@ workflows:
   version: 2
   papa:
     jobs:
-      - premier:
-          context: Lecontext
+      - premier
+   
+      - start-trigger-metrics-collection:
+          type: approval
 
-  tata:
-    jobs:
       - deuxieme:
-          context: Lecontext
+          requires:
+            - start-trigger-metrics-collection
+      
   lala:
     jobs:
-      - troisieme:
-          context: Lecontext
+      - troisieme
