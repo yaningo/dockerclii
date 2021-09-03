@@ -8,6 +8,7 @@ jobs:
       - run:
           command: |
                    echo job1
+                   echo $HOME
                    
   deuxieme:
     docker:
@@ -31,13 +32,13 @@ workflows:
     jobs:
       - premier
    
-      - start-trigger-metrics-collection:
-          type: approval
+#       - start-trigger-metrics-collection:
+#           type: approval
 
-      - deuxieme:
-          requires:
-            - start-trigger-metrics-collection
+#       - deuxieme:
+#           requires:
+#             - start-trigger-metrics-collection
       
-  lala:
-    jobs:
-      - troisieme
+#   lala:
+#     jobs:
+#       - troisieme
