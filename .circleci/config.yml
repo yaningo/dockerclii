@@ -21,8 +21,8 @@ jobs:
     docker:
       - image: cimg/node:10.24.0
     steps:
-      - run: ls -al
       - checkout
+      - run: ls -al
       - attach_workspace:
           at: ~/project/wksp
       - run: ls -al
