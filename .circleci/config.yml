@@ -27,6 +27,7 @@ jobs:
       - attach_workspace:
           at: ~/project/wksp
       - run: |
+          cd wksp
           pwd
           ls -al
                    
