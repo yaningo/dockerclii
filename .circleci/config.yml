@@ -2,25 +2,25 @@ version: 2.1
 
 jobs:
   travail:
-    working_directory: ~/wksp
+    working_directory: ~/project/wksp
     docker:
       - image: cimg/node:10.24.0
     steps:
       - checkout
       - persist_to_workspace:
-          root: ~/wksp
+          root: ~/project/wksp
           paths:
             - myfile.txt
       
   leworkspace:
-    working_directory: ~/wksp
+    working_directory: ~/project/wksp
     docker:
       - image: cimg/node:10.24.0
     steps:
       - run: ls -al
       - checkout
       - attach_workspace:
-          at: ~/wksp
+          at: ~/project/wksp
       - run: ls -al
                    
 workflows:
