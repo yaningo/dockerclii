@@ -23,10 +23,14 @@ jobs:
       - image: cimg/node:10.24.0
     steps:
       - checkout
-      - run: ls -al
+      - run: |
+          pwd
+          ls -al
       - attach_workspace:
           at: ~/project/wksp
-      - run: ls -al
+      - run: |
+          pwd
+          ls -al
                    
 workflows:
 
