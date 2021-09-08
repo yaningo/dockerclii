@@ -11,7 +11,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - myfile.txt
+            - other-stuff/*
       
   leworkspace:
     working_directory: ~/project/wksp
