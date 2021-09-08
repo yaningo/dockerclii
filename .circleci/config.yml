@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          cd wksp
+          cd wksp/other-stuff
           pwd
           ls -alt --time-style=full-iso
           sleep 5
