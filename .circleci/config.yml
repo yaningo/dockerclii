@@ -14,7 +14,7 @@ jobs:
       - persist_to_workspace:
           root: ~/project/wksp
           paths:
-            - new-file.txt
+            - other-stuff
       
   leworkspace:
     docker:
