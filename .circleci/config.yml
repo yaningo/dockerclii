@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: cimg/node:10.24.0
     steps:
-      - run: checkout
+      - checkout
       - persist_to_workspace:
           root: ~/wksp
           paths:
@@ -18,7 +18,7 @@ jobs:
       - image: cimg/node:10.24.0
     steps:
       - run: ls -al
-      - run: checkout
+      - checkout
       - attach_workspace:
           at: ~/wksp
       - run: ls -al
