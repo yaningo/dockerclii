@@ -2,7 +2,6 @@ version: 2.1
 
 jobs:
   travail:
-    working_directory: ~/project/wksp
     docker:
       - image: cimg/node:10.24.0
     steps:
@@ -11,14 +10,13 @@ jobs:
       - run: |
           ls -al wksp
           pwd
-          echo "toto" > new-file.txt
+          echo "toto" > ~/project/wksp/new-file.txt
       - persist_to_workspace:
-          root: .
+          root: ~/project/wksp
           paths:
             - new-file.txt
       
   leworkspace:
-    working_directory: ~/project/wksp
     docker:
       - image: cimg/node:10.24.0
     steps:
