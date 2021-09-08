@@ -25,7 +25,7 @@ jobs:
           cd wksp
           pwd
           ls -al
-          sleep 15
+          sleep 65
       - attach_workspace:
           at: ~/project/wksp
       - run: |
