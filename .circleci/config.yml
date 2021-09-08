@@ -7,7 +7,7 @@ jobs:
       - image: cimg/node:10.24.0
     steps:
       - checkout
-      - run: ls -al
+      - run: ls -al wksp
       - persist_to_workspace:
           root: .
           paths:
