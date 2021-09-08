@@ -10,11 +10,11 @@ jobs:
       - run: |
           ls -al wksp
           pwd
-          echo "toto" > ~/project/wksp/new-file.txt
+          echo "toto" > ~/project/wksp/myfile.txt
       - persist_to_workspace:
           root: ~/project/wksp
           paths:
-            - other-stuff
+            - myfile.txt
       
   leworkspace:
     docker:
@@ -22,16 +22,16 @@ jobs:
     steps:
       - checkout
       - run: |
-          cd wksp/other-stuff
+          cd wksp
           pwd
           ls -alt --time-style=full-iso
+          cat myfile.txt
           sleep 5
       - attach_workspace:
           at: ~/project/wksp
       - run: |
-          cd wksp/other-stuff
           pwd
-          ls -alt --time-style=full-iso
+          cat myfile.txt
                    
 workflows:
 
