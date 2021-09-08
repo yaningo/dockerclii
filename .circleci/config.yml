@@ -30,6 +30,7 @@ jobs:
       - attach_workspace:
           at: ~/project/wksp
       - run: |
+          cd wksp
           pwd
           cat myfile.txt
                    
