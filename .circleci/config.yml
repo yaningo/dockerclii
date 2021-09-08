@@ -11,10 +11,11 @@ jobs:
       - run: |
           ls -al wksp
           pwd
+          echo "toto" > new-file.txt
       - persist_to_workspace:
           root: .
           paths:
-            - other-stuff/*
+            - new-file.txt
       
   leworkspace:
     working_directory: ~/project/wksp
