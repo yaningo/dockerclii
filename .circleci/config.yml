@@ -24,12 +24,12 @@ jobs:
       - run: |
           cd wksp
           pwd
-          ls -al
+          ls -al --full-time
           sleep 65
       - attach_workspace:
           at: ~/project/wksp
       - run: |
-          cd wksp
+          cd wksp/other-stuff
           pwd
           ls -al
                    
