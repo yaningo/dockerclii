@@ -14,7 +14,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - ./other-stuff
+            - other-stuff/*
       
   leworkspace:
     working_directory: ~/project/wksp
