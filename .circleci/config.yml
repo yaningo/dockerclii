@@ -31,7 +31,7 @@ jobs:
       - run: |
           cd wksp/other-stuff
           pwd
-          ls -al
+          ls -alt --time-style=full-iso
                    
 workflows:
 
