@@ -7,11 +7,14 @@ jobs:
       - image: cimg/node:10.24.0
     steps:
       - checkout
-      - run: ls -al wksp
+      
+      - run: |
+          ls -al wksp
+          pwd
       - persist_to_workspace:
           root: .
           paths:
-            - other-stuff/*
+            - .
       
   leworkspace:
     working_directory: ~/project/wksp
