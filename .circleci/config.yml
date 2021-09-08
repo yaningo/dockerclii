@@ -12,7 +12,6 @@ jobs:
           paths:
             - myfile.txt
       
- jobs:
   leworkspace:
     working_directory: ~/wksp
     docker:
