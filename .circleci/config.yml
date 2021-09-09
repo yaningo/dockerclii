@@ -12,7 +12,7 @@ jobs:
             docker --version
       - run: echo "toto" > /tmp/file.txt
       - run: mv Dockerfile /tmp
-      - run: docker build -f Dockerfile /tmp
+      - run: docker build /tmp
       
           
 workflows:
