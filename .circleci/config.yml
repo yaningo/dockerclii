@@ -10,8 +10,8 @@ jobs:
           name: Docker version
           command: |
             docker --version
-      - run: echo "toto" > file.txt
-      - run: docker build .
+      - run: echo "toto" > /tmp/file.txt
+      - run: docker build -f Dockerfile /tmp
       
           
 workflows:
