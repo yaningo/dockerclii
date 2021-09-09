@@ -10,7 +10,9 @@ jobs:
           name: Docker version
           command: |
             docker --version
-      - run: echo "toto" > /tmp/file.txt
+      - run: |
+          echo "toto" > /tmp/file.txt
+          sudo chown -R $USER /tmp
       - run: mv Dockerfile /tmp
       - run: docker build /tmp
       
