@@ -6,9 +6,8 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - run: |
-          while true
+          while cat toto.txt
             do
-              cat toto.txt
               echo "Still here...."
             done
 
