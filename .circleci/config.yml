@@ -6,6 +6,7 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - run: |
+          cat toto.txt
           while cat toto.txt
             do
               echo "Still here...."
