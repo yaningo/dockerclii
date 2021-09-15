@@ -5,17 +5,13 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
-      - checkout
-      - run:
-          name: Docker version
-          command: |
-            docker --version
       - run: |
-          echo "toto" > /tmp/file.txt
-          sudo chown -R $USER /tmp
-      - run: mv Dockerfile /tmp
-      - run: docker build /tmp
-      
+          while true
+            do
+              cat toto.txt
+              echo "Still here...."
+            done
+
           
 workflows:
   build-deploy:
