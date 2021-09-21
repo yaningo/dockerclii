@@ -1,16 +1,16 @@
 version: 2.1
+
+orbs:
+  node: 'circleci/node@4.7.0'
+  serverless: 'circleci/serverless-framework@1.0.1'
   
 jobs:
   setup:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/node:12.18
     steps:
-      - run: |
-          cat toto.txt
-          while cat toto.txt
-            do
-              echo "Still here...."
-            done
+      - serverless/setup
+      - run: sls --version
 
           
 workflows:
