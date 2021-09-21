@@ -6,8 +6,7 @@ orbs:
   
 jobs:
   setup:
-    docker:
-      - image: cimg/node:12.18
+    executor: serverless/default
     steps:
       - serverless/setup
       - run: sls --version
