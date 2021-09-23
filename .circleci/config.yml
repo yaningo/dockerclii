@@ -2,14 +2,11 @@ version: 2.1
   
 jobs:
   setup:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: circleci/node
     steps:
       - run: |
-          cat toto.txt
-          while cat toto.txt
-            do
-              echo "Still here...."
+          sudo apt-get --yes update && sudo apt-get install --yes --no-install-recommends openjdk-11-jdk-headless ca-certificates-java
             done
 
           
