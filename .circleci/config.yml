@@ -7,8 +7,6 @@ jobs:
     steps:
       - run: |
           sudo apt-get --yes update && sudo apt-get install --yes --no-install-recommends openjdk-11-jdk-headless ca-certificates-java
-            done
-
           
 workflows:
   build-deploy:
