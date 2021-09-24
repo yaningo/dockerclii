@@ -9,8 +9,8 @@ workflows:
           post-install:
             - run: npm run webpack-watch
 
-          requires:
-            - cypress/install
+#           requires:
+#             - cypress/install
           record: true
           parallel: true
           parallelism: 4
