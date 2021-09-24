@@ -4,14 +4,16 @@ orbs:
 workflows:
   run-test:
     jobs:
-      - cypress/install
+      - cypress/install:
+          post-install:
+            - run: npx cypress info
       - cypress/run:
 #           post-install:
-          post-checkout:
-            - run: npm run webpack-watch
+#           post-checkout:
+#             - run: npm run webpack-watch
 
-#           requires:
-#             - cypress/install
+          requires:
+            - cypress/install
           record: true
           parallel: true
           parallelism: 4
