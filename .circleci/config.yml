@@ -7,7 +7,7 @@ workflows:
       - cypress/install
       - cypress/run:
           post-install:
-            - run: npm run run_e2e:au_login
+            - run: npm run webpack-watch
 
           requires:
             - cypress/install
