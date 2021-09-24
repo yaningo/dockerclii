@@ -3,7 +3,7 @@ version: 2
 jobs:
   setup:
     machine:
-      image: ubuntu-2004:202010-01
+      image: ubuntu-2004:202107-02
           
     steps:
       - run: docker run --env ENVFROMCONTEXT=$toto_var yaningo/my-node:test env
@@ -11,7 +11,7 @@ jobs:
 #       - checkout
 #       - setup_remote_docker
 #           version: 19.03.13
-#       - run: docker version
+      - run: docker version
 #       - run:
 #           name: Build docker image
 #           command: |
