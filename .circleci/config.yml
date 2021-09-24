@@ -1,16 +1,16 @@
 version: 2.1
-  
-jobs:
-  setup:
-    docker:
-      - image: circleci/node
-    steps:
-      - checkout
-      - setup_remote_docker
-#           version: 20.10.7
-      - run: docker build .
-          
+orbs:
+  cypress: cypress-io/cypress@1.28.0
 workflows:
-  build-deploy:
+  run-test:
     jobs:
-      - setup
+      - cypress/install
+      - cypress/run:
+          post-install:
+            - run: npm run run_e2e:au_login
+
+          requires:
+            - cypress/install
+          record: true
+          parallel: true
+          parallelism: 4
