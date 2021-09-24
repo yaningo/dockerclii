@@ -1,26 +1,26 @@
-# version: 2.1
-# orbs:
-#   cypress: cypress-io/cypress@1.28.0
-# workflows:
-#   run-test:
-#     jobs:
-#       - cypress/install
-#       - cypress/run:
-#           post-install:
-#             - run: npm run webpack-watch
-
-#           requires:
-#             - cypress/install
-#           record: true
-#           parallel: true
-#           parallelism: 4
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@1.28.0
 workflows:
-  build:
+  run-test:
     jobs:
+#       - cypress/install
       - cypress/run:
           post-install:
-            - run: npx cypress info
+            - run: npm run webpack-watch
+
+          requires:
+            - cypress/install
+          record: true
+          parallel: true
+          parallelism: 4
+# version: 2.1
+# orbs:
+#   cypress: cypress-io/cypress@1
+# workflows:
+#   build:
+#     jobs:
+#       - cypress/run:
+#           post-install:
+#             - run: npx cypress info
 
