@@ -9,7 +9,9 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: ./script.sh
+      - run: |
+          chmod +x ./script.sh
+          ./script.sh
       - slack/notify:
           custom: |
             {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
