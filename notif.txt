@@ -1,5 +1,7 @@
- ~ update in-place
+  ~ update in-place
   # module.a-module.kubectl_manifest.this[0] will be updated in-place
   ~ resource "kubectl_manifest" "this" {
         id                      = "/apis/apps/v1/namespaces/my-namespace/deployments/a"
       ~ yaml_body               = (sensitive value)
+      ~ yaml_body_parsed        = <<-EOT
+              namespace: my-namespace
