@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: |     
-          echo 'export BLA="$(cat notif.txt| awk \'{printf "%s\\n", $0}\'|sed \'s/\"/\\"/g\')"' >> $BASH_ENV
+          echo \'export BLA=\"$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \"\' >> $BASH_ENV
           echo 'export MESSAGE="Changes to be applied from terraform: \`\`\`\'$BLA\'\`\`\`" ' >> $BASH_ENV
           #echo 'export "GOOD_MESS=$(echo \"$MESSAGE\" | awk \'{printf "%s\\n", $0}\'|sed \'s/\"/\\"/g\')'
           source $BASH_ENV
