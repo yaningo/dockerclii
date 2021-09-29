@@ -10,11 +10,12 @@ jobs:
     steps:
       - checkout
       - run: ./script.sh
-      - slack/notify
+      - slack/notify:
           custom: |
             {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
           
 workflows:
   build-deploy:
     jobs:
-      - setup
+      - setup:
+          context: slouck
