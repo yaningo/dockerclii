@@ -1,4 +1,7 @@
 version: 2.1
+
+orbs:
+  slack: circleci/slack@4.4.4
   
 jobs:
   setup:
@@ -6,9 +9,10 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - setup_remote_docker
-#           version: 20.10.7
-      - run: docker build .
+      - run: ./script.sh
+      - slack/notify
+          custom: |
+            {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
           
 workflows:
   build-deploy:
