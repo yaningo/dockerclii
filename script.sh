@@ -11,7 +11,7 @@ echo $plan_diff
 echo $FILE
 source $BASH_ENV
 
-echo 'export MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"' >> $BASH_ENV; source $BASH_ENV
+echo 'export MESSAGE="Changes to be applied from terraform: \`\`\`pioupiou\`\`\`"' >> $BASH_ENV; source $BASH_ENV
 echo $plan_diff
 echo $FILE
 echo $MESSAGE
