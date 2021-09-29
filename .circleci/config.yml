@@ -9,9 +9,10 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: |
-          chmod +x ./script.sh
-          ./script.sh
+      - run: |     
+          echo 'export BLA="$(cat notif.txt)"' >> $BASH_ENV
+          echo 'export MESSAGE="Changes to be applied from terraform: \`\`\`$BLA\`\`\`" ' >> $BASH_ENV
+          source $BASH_ENV
       - slack/notify:
           custom: |
             {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
