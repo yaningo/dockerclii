@@ -5,3 +5,27 @@
       ~ yaml_body               = (sensitive value)
       ~ yaml_body_parsed        = <<-EOT
               namespace: my-namespace
+                  - command:
+                    - /bin/sh
+                    - -c
+                    - node index.js
+                    - name: NAMESPACE
+                    - name: NODE_NAME
+                    - name: POD_IP
+                    - name: TEST_DB_ENDPOINT
+                      value: test-db-endpoint
+                    - name: ENV_VARIABLE_1
+                      value: http://test.my-namespace/test/test/
+                    - name: ENV_VARIABLE_2
+                      value: test-env-2
+                    - name: ENV_VARIABLE_3
+                      value: test-env.test-env-3
+                    - name: ENV_VARIABLE_4
+                    - name: ENV_VARIABLE_5
+                    - name: ENV_VARIABLE_6
+                    - name: ENV_VARIABLE_7
+                      value: test-env.test-env-3
+          -         image: image.repo.com/a:test-release-1
+          +         image: image.repo.com/a:test-release-2
+                    - containerPort: 80
+Plan: 0 to add, 1 to change, 0 to destroy.
