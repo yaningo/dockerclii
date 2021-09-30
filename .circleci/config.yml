@@ -18,7 +18,7 @@ jobs:
           
           #cat notif.txt|awk '{printf "%s\\n", $0}' > message.txt ####  Doesn't work > parse error: Invalid numeric literal at line 7, column 183
 
-          echo 'export MESSAGE="*Changes to be applied from terraform:* \`\`\`$(cat message.txt)\`\`\`" ' >> $BASH_ENV
+          echo 'export MESSAGE="*Our Changes to be applied from terraform:* \`\`\`$(cat message.txt)\`\`\`" ' >> $BASH_ENV
           #echo 'export "GOOD_MESS=$(echo \"$MESSAGE\" | awk \'{printf "%s\\n", $0}\'|sed \'s/\"/\\"/g\')'
           source $BASH_ENV
           #echo $BLA
