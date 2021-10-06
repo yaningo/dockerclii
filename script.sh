@@ -19,7 +19,7 @@
 # FILE="./.terraform/plan/tfplan"; plan_diff="totototo is tititi"; MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"
 # echo $MESSAGE
 
-FILE="./notif.txt"
+FILE="./other_notif.txt"
 cat $FILE|awk '{printf "%s\\n", $0}'|sed 's/\"/\\"/g' > message.txt
 echo 'export MESSAGE="*Our Changes to be applied from terraform:* \`\`\`$(cat message.txt)\`\`\`" ' >> $BASH_ENV
 echo $MESSAGE
