@@ -29,7 +29,7 @@ jobs:
 #           #echo$$GOOD_MESS
       - slack/notify:
           custom: |
-            {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
+            {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "```$MESSAGE```" }}]}
           
 workflows:
   build-deploy:
