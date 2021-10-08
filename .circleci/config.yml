@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Is curl here?
           command: |
-              sudo apt-get update && apt-get install curl
+              apk update && apk upgrade && apk add curl
               curl checkip.amazonaws.com 
       
       
