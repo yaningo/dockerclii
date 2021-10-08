@@ -10,7 +10,9 @@ jobs:
     steps:
       - run:
           name: Is curl here?
-          command: curl checkip.amazonaws.com 
+          command: |
+              sudo apt-get update && apt-get install curl
+              curl checkip.amazonaws.com 
       
       
           
