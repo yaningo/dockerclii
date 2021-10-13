@@ -28,15 +28,16 @@ jobs:
       - run:
           name: 'Build all'
           command: |
+            echo Hello 
             git status
+            VERSION=blah
             
-            if git describe --all > .version.txt
+            if git describe --tags > .version.txt
             then
               DISPLAY_VERSION=`cat .version.txt`
             else
               DISPLAY_VERSION=$VERSION
             fi
-            IMAGE_NAME="gcr.io/${GOOGLE_PROJECT}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
             
             git show-branch
 
@@ -47,17 +48,6 @@ jobs:
             | head -n1 \
             | sed "s/^.*\[//")
             
-            cat \<<END >> ./buildenv
-            export DISPLAY_VERSION="${DISPLAY_VERSION}"
-            export VERSION="${VERSION}"
-            export IMAGE_NAME="${IMAGE_NAME}"
-            export MERGE_BRANCH="${MERGE_BRANCH}"
-            END
-            cat \<<END > ./info.txt
-            Version: ${VERSION}
-            DisplayVersion: ${DISPLAY_VERSION}
-            ImageName: ${IMAGE_NAME}:${CIRCLE_BRANCH/\//-}
-            ImageName: ${IMAGE_NAME}:${CIRCLE_SHA1}
-            ImageName: ${IMAGE_NAME}:${DISPLAY_VERSION}
-            MergeTo: ${MERGE_BRANCH}
-            END
+            echo $DISPLAY_VERSION
+            echo $MERGE_BRANCH
+
