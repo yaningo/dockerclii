@@ -1,16 +1,63 @@
-version: 2.1
+# version: 2.1
   
-jobs:
-  setup:
-    docker:
-      - image: circleci/node
-    steps:
-      - checkout
-      - setup_remote_docker
-#           version: 20.10.7
-      - run: docker build .
+# jobs:
+#   setup:
+#     docker:
+#       - image: circleci/node
+#     steps:
+#       - checkout
+#       - setup_remote_docker
+# #           version: 20.10.7
+#       - run: docker build .
           
-workflows:
-  build-deploy:
-    jobs:
-      - setup
+# workflows:
+#   build-deploy:
+#     jobs:
+#       - setup
+
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.3
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.5.1-browsers
+    steps:
+      - browser-tools/install-browser-tools
+      - checkout
+      - run:
+          name: 'Build all'
+          command: |
+            git status
+            
+            if git describe --all > .version.txt
+            then
+              DISPLAY_VERSION=`cat .version.txt`
+            else
+              DISPLAY_VERSION=$VERSION
+            fi
+            IMAGE_NAME="gcr.io/${GOOGLE_PROJECT}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}"
+            
+            git show-branch
+
+            MERGE_BRANCH=$(git show-branch \
+            | sed "s/].*//" \
+            | grep "\*" \
+            | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
+            | head -n1 \
+            | sed "s/^.*\[//")
+            
+            cat \<<END >> ./buildenv
+            export DISPLAY_VERSION="${DISPLAY_VERSION}"
+            export VERSION="${VERSION}"
+            export IMAGE_NAME="${IMAGE_NAME}"
+            export MERGE_BRANCH="${MERGE_BRANCH}"
+            END
+            cat \<<END > ./info.txt
+            Version: ${VERSION}
+            DisplayVersion: ${DISPLAY_VERSION}
+            ImageName: ${IMAGE_NAME}:${CIRCLE_BRANCH/\//-}
+            ImageName: ${IMAGE_NAME}:${CIRCLE_SHA1}
+            ImageName: ${IMAGE_NAME}:${DISPLAY_VERSION}
+            MergeTo: ${MERGE_BRANCH}
+            END
