@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run: |
           chmod +x ./script.sh
+          set -o xtrace
           ./script.sh
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
