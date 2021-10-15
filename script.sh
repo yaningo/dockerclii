@@ -1,5 +1,5 @@
 #!/bin/bash
-set -o xtrace
+set -x
 
 # GET THE PLAN FILE
 # echo ' export FILE="./.terraform/plan/tfplan" ' >> $BASH_ENV
