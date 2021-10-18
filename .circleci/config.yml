@@ -6,7 +6,11 @@ jobs:
 #       image: ubuntu-1604:202007-01
 #     resource_class: large
     steps:
-      - run: docker -v
+      - checkout
+      - run: |
+          OHLALA=sacrebleu!
+          chmod +x ./script.sh
+          ./script.sh
 #       - checkout
 #       - run:
 #           name: Updating Java and sbt versions
