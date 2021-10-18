@@ -9,7 +9,9 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: mkdir supafolda
+      - run: |
+          mkdir supafolda
+          cp ./script.sh supafolda
       - run:
           working_directory: supafolda
           command: |
