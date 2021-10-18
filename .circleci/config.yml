@@ -33,6 +33,7 @@ jobs:
 #           echo $MESSAGE
           
       - slack/notify:
+          working_directory: supafolda
           custom: |
             {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "```$MESSAGE```" }}]}
           
