@@ -25,5 +25,5 @@ FILE="./other_notif.txt"
 cat $FILE
 cat $FILE|awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > message.txt
 # cat $FILE > message.txt
-echo 'export MESSAGE="Our Changes to be applied from terraform: \`\`\`$(cat message.txt)\`\`\`" ' >> $BASH_ENV
+echo 'export MESSAGE="Our Changes to be applied from terraform: \`\`\`$(cat supafolda/message.txt)\`\`\`" ' >> $BASH_ENV
 echo $MESSAGE
