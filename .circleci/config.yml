@@ -9,10 +9,12 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: |
-          chmod +x ./script.sh
-          set -o xtrace
-          ./script.sh
+      - run: mkdir supafolda
+      - run:
+          working_directory: supafolda
+          command: |
+              chmod +x ./script.sh
+              ./script.sh
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
 #           cat notif.txt|sed ':a;N;$!ba;s/\n/\\n/g'|sed 's/\"/\\"/g' > message.txt
@@ -27,7 +29,7 @@ jobs:
 #           source $BASH_ENV
 #           #echo $BLA
 #           echo $MESSAGE
-#           #echo$$GOOD_MESS
+          
       - slack/notify:
           custom: |
             {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "```$MESSAGE```" }}]}
