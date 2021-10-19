@@ -16,7 +16,7 @@ jobs:
       - run: |
           ssh remote-docker \ ssh -V
       - run: |
-          ssh remote-docker \ echo "Public IP is now $(curl checkip.amazonaws.com)"
+          ssh remote-docker \ curl checkip.amazonaws.com
           
 workflows:
   build-deploy:
