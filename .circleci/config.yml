@@ -8,6 +8,8 @@ jobs:
 #       - checkout
       - setup_remote_docker:
            version: 20.10.7
+           
+      - run: echo "Public IP is now $(curl checkip.amazonaws.com)"
 
       - run: |
           ssh remote-docker \ ssh -V
