@@ -11,12 +11,17 @@ jobs:
       - checkout
       - run: |
           mkdir supafolda
-          cp ./script.sh supafolda
+          # cp ./script.sh supafolda
       - run:
           working_directory: supafolda
           command: |
-              chmod +x ./script.sh
-              ./script.sh
+              # START reproducing 97880 #####
+              FILE="../leterraplan.json"
+              cat $FILE
+              cat $FILE|grep -E "\#" |awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > ~/project/message.txt
+              echo 'export MESSAGE="Our Changes to be applied from terraform: $(cat ~/project/message.txt)" ' >> $BASH_ENV
+              echo $MESSAGE
+              # END reproducing 97880 #####
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
 #           cat notif.txt|sed ':a;N;$!ba;s/\n/\\n/g'|sed 's/\"/\\"/g' > message.txt
