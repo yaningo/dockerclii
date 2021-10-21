@@ -21,7 +21,7 @@ set -x
 # FILE="./.terraform/plan/tfplan"; plan_diff="totototo is tititi"; MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`"
 # echo $MESSAGE
 
-FILE="./leterraplan.json"
+FILE="../leterraplan.json"
 cat $FILE
 #cat $FILE|grep -E "^\s*[#~+-]" |awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > message.txt
 cat $FILE|grep -E "\#" |awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > message.txt
