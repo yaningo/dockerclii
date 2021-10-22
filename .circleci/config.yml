@@ -8,6 +8,8 @@ jobs:
       - run: |
           app_version=1.0.0.1
           echo "export APP_VERSION_ENV=${app_version}" >> $BASH_ENV
+          artifact_url=$OHLALA/$app_version
+          echo "export ARTIFACT_URL=${artifact_url}" >> $BASH_ENV
 #       - checkout
 #       - run:
 #           name: Updating Java and sbt versions
@@ -24,7 +26,10 @@ jobs:
 #             sbt sbtVersion
 #             echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
 #             echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
-      - run: echo $APP_VERSION_ENV
+      - run: |
+          echo $APP_VERSION_ENV
+          echo $ARTIFACT_URL
+
 workflows:
   version: 2
   ci:
