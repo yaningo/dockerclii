@@ -8,11 +8,12 @@ jobs:
 #       - checkout
       - run: |
           echo 'export liststuff="ls -al"' >> $BASH_ENV
+          mkdir mydir
+          echo 'export MYDIR=mydir'>> $BASH_ENV 
       
       - run: |
-          touch text.txt
-          bash -c $liststuff
-          bash -c "$liststuff ~/"
+          touch $MYDIR/text.txt
+          bash -c "$liststuff $MYDIR"
           
 workflows:
   build-deploy:
