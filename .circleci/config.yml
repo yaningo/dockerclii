@@ -9,9 +9,8 @@ jobs:
       - run: |
           sudo echo 'alias liststuff="ls -al"' > ~/.bash_aliases
           source ~/.bashrc
-          cat ~/.bashrc
-          cat ~/.profile
           cat ~/.bash_aliases
+          liststuff
       
       - run: |
           source ~/.bashrc
