@@ -12,6 +12,7 @@ jobs:
       - run: |
           touch text.txt
           bash -c $liststuff
+          bash -c "$liststuff ~/"
           
 workflows:
   build-deploy:
