@@ -9,7 +9,7 @@ jobs:
       - run: export alias liststuff="ls -al"
            
       - run: |
-          source ~/. bashrc
+          source ~/.bashrc
           liststuff
           
 workflows:
