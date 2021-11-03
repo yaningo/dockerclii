@@ -7,7 +7,7 @@ jobs:
     steps:
 #       - checkout
       - run: |
-          echo 'export liststuff=ls -a' >> $BASH_ENV
+          echo 'export liststuff="ls -al"' >> $BASH_ENV
       
       - run: |
           bash -c $liststuff ~
