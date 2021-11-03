@@ -7,14 +7,10 @@ jobs:
     steps:
 #       - checkout
       - run: |
-          sudo echo 'alias liststuff="ls -al"' > ~/.bash_aliases
-          source ~/.bashrc
-          cat ~/.bash_aliases
-          liststuff
+          sudo echo 'export liststuff="ls -al"' >> $BASH_ENV
       
       - run: |
-          source ~/.bashrc
-          liststuff
+          bash -c $liststuff
           
 workflows:
   build-deploy:
