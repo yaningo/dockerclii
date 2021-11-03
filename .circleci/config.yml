@@ -7,8 +7,8 @@ jobs:
     steps:
 #       - checkout
       - run: |
-          sudo echo 'alias liststuff="ls -al"' >> ~/.profile
-          source ~/.profile
+          sudo echo 'alias liststuff="ls -al"' >> ~/.bashrc
+          source ~/.bashrc
           liststuff
       
       - run: liststuff
