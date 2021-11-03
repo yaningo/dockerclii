@@ -6,7 +6,9 @@ jobs:
       - image: circleci/node
     steps:
 #       - checkout
-      - run: sudo echo 'alias liststuff="ls -al"' >> ~/.bashrc
+      - run: |
+          sudo echo 'alias liststuff="ls -al"' >> ~/.bashrc
+          source ~/.bashrc
       
       - run: liststuff
           
