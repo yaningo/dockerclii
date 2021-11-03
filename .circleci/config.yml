@@ -6,16 +6,7 @@ jobs:
       - image: circleci/node
     steps:
 #       - checkout
-      - run: |
-          echo 'export alias liststuff="ls -al"' >> $BASH_ENV
-          echo 'export TOTO="Boo!"' >> $BASH_ENV
-          
-      - run: echo $TOTO
-          
-      - run: |
-          echo $TOTO
-          source ~/.bashrc
-          liststuff
+      - run: ls -al ~
           
 workflows:
   build-deploy:
