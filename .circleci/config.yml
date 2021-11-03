@@ -7,10 +7,11 @@ jobs:
     steps:
 #       - checkout
       - run: |
-          sudo echo 'alias liststuff="ls -al"' >> ~/.bashrc
+          sudo echo 'alias liststuff="ls -al"' > ~/.bash_aliases
           source ~/.bashrc
           cat ~/.bashrc
           cat ~/.profile
+          cat ~/.bash_aliases
       
       - run: liststuff
           
