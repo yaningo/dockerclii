@@ -10,6 +10,7 @@ jobs:
           echo 'export liststuff=ls -al' >> $BASH_ENV
       
       - run: |
+          touch text.txt
           bash -c $liststuff
           
 workflows:
