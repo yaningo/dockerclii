@@ -6,17 +6,9 @@ jobs:
       - image: circleci/node
     steps:
 #       - checkout
-      - run: echo "Public IP is now $(curl checkip.amazonaws.com)"
-      
-      - setup_remote_docker:
-           version: 20.10.7
+      - run: echo 'alias liststuff="ls -al"' >> $BASH_ENV
            
-      - run: echo "Public IP is now $(curl checkip.amazonaws.com)"
-
-      - run: |
-          ssh remote-docker \ ssh -V
-      - run: |
-          ssh remote-docker \ curl checkip.amazonaws.com
+      - run: liststuff
           
 workflows:
   build-deploy:
