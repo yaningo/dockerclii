@@ -5,16 +5,10 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-#       - checkout
+      - checkout
       - run: |
-          echo 'export liststuff="ls -al"' >> $BASH_ENV
-          mkdir mydir
-          echo 'export MYDIR=mydir'>> $BASH_ENV 
-      
-      - run: |
-          touch $MYDIR/text.txt
-          bash -c "$liststuff $MYDIR"
-          
+          git diff --name-only HEAD HEAD~1 | grep "packages/lane-mobile\|packages/lane-shared\|packages/react-native"
+                
 workflows:
   build-deploy:
     jobs:
