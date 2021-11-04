@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   setup:
     docker:
-      - image: circleci/node
+      - image: circleci/android@sha256:bbb23159c50376f1825f4c991122e57df02609f84de083d8f8509cb8905a03e9
     steps:
       - checkout
       - run: |
