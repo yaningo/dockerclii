@@ -17,7 +17,7 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - run: echo 'export ISSUE_KEY="123"' >> $BASH_ENV
-      - greetings:
+      - greeting:
           to: $ISSUE_KEY
 workflows:
   version: 2
