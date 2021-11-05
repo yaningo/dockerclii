@@ -1,12 +1,24 @@
 version: 2.1
-orbs:
-  docker: circleci/docker@1.7.0
+
+commands:
+  greeting:
+    parameters:
+      to:
+        default: "world"
+        type: string
+    steps:
+      - run:
+          name: Greetings
+          command: echo "Hello << parameters.to >>"
+
 jobs:
   master-build:
-    executor: docker/docker
+    docker:
+      - image: circleci/python:3.6.4
     steps:
-      - docker/install-docker
-
+      - run: echo 'export ISSUE_KEY="123"' >> $BASH_ENV
+      - greetings:
+          to: $ISSUE_KEY
 workflows:
   version: 2
   ci:
