@@ -20,7 +20,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node
+      - image: unityci/editor:2019.4.19f1-linux-il2cpp-0
     steps:
 
       - run:
