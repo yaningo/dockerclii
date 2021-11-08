@@ -20,7 +20,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: 717232957798.dkr.ecr.us-west-2.amazonaws.com/loom-base:4.1.0
+      - image: circleci/node
     steps:
 
       - run:
