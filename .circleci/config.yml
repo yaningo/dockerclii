@@ -16,38 +16,18 @@
 #       - setup
 
 version: 2.1
-orbs:
-  browser-tools: circleci/browser-tools@1.2.3
+
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5.1-browsers
+      - image: 717232957798.dkr.ecr.us-west-2.amazonaws.com/loom-base:4.1.0
     steps:
-      - browser-tools/install-browser-tools
-      - checkout
+
       - run:
-          name: 'Build all'
-          command: |
-            echo Hello 
-            git status
-            VERSION=blah
-            
-            if git describe --tags > .version.txt
-            then
-              DISPLAY_VERSION=`cat .version.txt`
-            else
-              DISPLAY_VERSION=$VERSION
-            fi
-            
-            git show-branch
-
-            MERGE_BRANCH=$(git show-branch \
-            | sed "s/].*//" \
-            | grep "\*" \
-            | grep -v "$(git rev-parse --abbrev-ref HEAD)" \
-            | head -n1 \
-            | sed "s/^.*\[//")
-            
-            echo $DISPLAY_VERSION
-            echo $MERGE_BRANCH
-
+          name: What SSH version?
+          command: ssh -V
+  
+workflows:
+  build-deploy:
+    jobs:
+      - build
