@@ -7,10 +7,10 @@ jobs:
     steps:
       - run:
           command: sleep 5
-          name: build/static-content/linux
 
           
 workflows:
   build-deploy:
     jobs:
-      - setup
+      - setup:
+          name: build/static-content/linux
