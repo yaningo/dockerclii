@@ -1,33 +1,16 @@
-# version: 2.1
-  
-# jobs:
-#   setup:
-#     docker:
-#       - image: circleci/node
-#     steps:
-#       - checkout
-#       - setup_remote_docker
-# #           version: 20.10.7
-#       - run: docker build .
-          
-# workflows:
-#   build-deploy:
-#     jobs:
-#       - setup
-
 version: 2.1
-
-jobs:
-  build:
-    docker:
-      - image: unityci/editor:2019.4.19f1-linux-il2cpp-0
-    steps:
-      - checkout
-      - run:
-          name: What SSH version?
-          command: ssh -V
   
+jobs:
+  setup:
+    docker:
+      - image: circleci/node
+    steps:
+      - run:
+          command: sleep 300
+          background: true
+          no_output_timeout: 4m
+          
 workflows:
   build-deploy:
     jobs:
-      - build
+      - setup
