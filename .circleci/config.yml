@@ -6,11 +6,11 @@ jobs:
       - image: circleci/node
     steps:
       - run:
-          command: sleep 170
+          command: sleep 700
           background: true
-          no_output_timeout: 2m
+#           no_output_timeout: 2m
           
-      - run: sleep 160
+      - run: sleep 660
           
 workflows:
   build-deploy:
