@@ -13,4 +13,4 @@ workflows:
   build-deploy:
     jobs:
       - setup:
-          name: "pikachu/static-content/linux"
+          name: "pikachu-static-content/linux"
