@@ -1,19 +1,21 @@
 version: 2.1
-  
+
+parameters:
+  last_successful_commit:
+    type: string
+    default: "0816ff9b329e63746f394f6061743cdc913ae7c2"
+    
 jobs:
   setup:
     docker:
-      - image: circleci/android@sha256:bbb23159c50376f1825f4c991122e57df02609f84de083d8f8509cb8905a03e9
+      - image: circleci/node
+    environment:
+      LAST_SUCCESSFUL_COMMIT: << pipeline.parameters.last_successful_commit >>
     steps:
-      - checkout
-      - run: |
-          if git diff --name-only HEAD HEAD~1 | grep -q "packages/lane-mobile\|packages/lane-shared\|packages/react-native" || [ "${CIRCLE_BRANCH}" == "develop" ]; then
-            echo "Changes in packages/lane-mobile, or we are building develop."
-            echo "Building a new Android app..."
-          else
-            echo "No changes in packages/lane-mobile, not building a new app."
-            circleci-agent step halt
-          fi
+      - run:|
+          echo $LAST_SUCCESSFUL_COMMIT
+          echo ${LAST_SUCCESSFUL_COMMIT}
+          echo ${!LAST_SUCCESSFUL_COMMIT}
           
                 
 workflows:
