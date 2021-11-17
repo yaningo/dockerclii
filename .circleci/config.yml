@@ -12,7 +12,7 @@ jobs:
     environment:
       LAST_SUCCESSFUL_COMMIT: << pipeline.parameters.last_successful_commit >>
     steps:
-      - run:|
+      - run: |
           echo $LAST_SUCCESSFUL_COMMIT
           echo ${LAST_SUCCESSFUL_COMMIT}
           echo ${!LAST_SUCCESSFUL_COMMIT}
