@@ -15,7 +15,8 @@ jobs:
       - run: |
           echo $LAST_SUCCESSFUL_COMMIT
           echo ${LAST_SUCCESSFUL_COMMIT}
-          echo ${!LAST_SUCCESSFUL_COMMIT}
+          URL="https://bitbucket.org/ed-app/ed/branches/compare/${CIRCLE_SHA1}%0D${LAST_SUCCESSFUL_COMMIT}#commits"
+          echo $URL
           
                 
 workflows:
