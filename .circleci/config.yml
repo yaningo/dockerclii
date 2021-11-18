@@ -1,22 +1,14 @@
 version: 2.1
-
-parameters:
-  last_successful_commit:
-    type: string
-    default: "0816ff9b329e63746f394f6061743cdc913ae7c2"
     
 jobs:
   setup:
     docker:
       - image: circleci/node
-    environment:
-      LAST_SUCCESSFUL_COMMIT: << pipeline.parameters.last_successful_commit >>
     steps:
       - run: |
-          echo $LAST_SUCCESSFUL_COMMIT
-          echo ${LAST_SUCCESSFUL_COMMIT}
-          URL="https://bitbucket.org/ed-app/ed/branches/compare/${CIRCLE_SHA1}%0D${LAST_SUCCESSFUL_COMMIT}#commits"
-          echo $URL
+          echo $NOMNOM
+          PASS=echo $NOMNOM | base64 --decode
+          echo $PASS
           
                 
 workflows:
