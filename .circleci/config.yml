@@ -13,4 +13,4 @@ workflows:
   build-deploy:
     jobs:
       - setup:
-          name: "🧹 Emoji"
+          name: /🧹 Emoji
