@@ -2,15 +2,14 @@ version: 2.1
     
 jobs:
   setup:
-    docker:
-      - image: node@sha256:ab6c8cd32006f8a4c1c795e55ddfbc7f54f5a3fb7318506ecb355cab8f5e7182
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - run: |
-          node -v
+          aws --version
 # Comment here 😃           
                 
 workflows:
   build-deploy:
     jobs:
-      - setup:
-          name: /🧹 Emoji
+      - setup
