@@ -12,4 +12,5 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-      - setup
+      - setup:
+          name: "🧹 Emoji"
