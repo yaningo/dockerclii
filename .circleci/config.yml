@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   setup:
     machine:
-      image: ubuntu-2004:202111-01
+      image: true
     steps:
       - run: |
           aws --version
