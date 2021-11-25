@@ -2,8 +2,7 @@ version: 2.1
     
 jobs:
   setup:
-    machine:
-      image: true
+    machine: true
     steps:
       - run: |
           aws --version
