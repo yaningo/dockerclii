@@ -2,10 +2,12 @@ version: 2.1
     
 jobs:
   setup:
-    machine: true
+    docker:
+      - image: circleci/ruby:2.6.8-node-browsers
     steps:
       - run: |
-          aws --version
+          circleci tests split --help
+          
 # Comment here 😃           
                 
 workflows:
