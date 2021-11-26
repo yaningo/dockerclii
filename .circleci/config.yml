@@ -5,6 +5,15 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.8-node-browsers
     steps:
+      - run:
+          command: |
+            while true; do
+              sleep 5
+              ps auxwwf
+              echo "======"
+            done
+          background: true
+    
       - run: |
           circleci tests split --help
           
