@@ -1,25 +1,18 @@
 version: 2.1
-    
-jobs:
-  setup:
-    docker:
-      - image: circleci/ruby:2.6.8-node-browsers
-    steps:
-      - run:
-          command: |
-            while true; do
-              sleep 5
-              ps auxwwf
-              echo "======"
-            done
-          background: true
-    
-      - run: |
-          circleci tests split --help
-          
-# Comment here 😃           
-                
+
+orbs:
+  aws-ecr: circleci/aws-ecr@7.3.0
+
+executors:
+  le-202111-ubuntu:
+    machine:
+      image: ubuntu-2004:202111-01
+
 workflows:
-  build-deploy:
+  build-test:
     jobs:
-      - setup
+      - aws-ecr/build-and-push-image:
+          pre-steps:
+            - run: aws --version
+          repo: al-test
+          executor: le-202111-ubuntu
