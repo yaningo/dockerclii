@@ -2,13 +2,12 @@ version: 2.1
 
 orbs:
   aws-ecr: circleci/aws-ecr@7.3.0
-  aws-cli: circleci/aws-cli@2.0.6
+  # aws-cli: circleci/aws-cli@2.0.6
 
-executors:
-  le-202111-ubuntu:
-    machine:
-      image: ubuntu-2004:202111-01
-      # docker_layer_caching: true
+# executors:
+#   le-202111-ubuntu:
+#     machine:
+#       image: ubuntu-2004:202111-01
 
 workflows:
   build-test:
@@ -22,4 +21,4 @@ workflows:
             - run: aws --version
           repo: yann
           tag: ouioui
-          executor: le-202111-ubuntu
+          # executor: le-202111-ubuntu
