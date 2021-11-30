@@ -21,4 +21,5 @@ workflows:
             #     override-installed: true
             - run: aws --version
           repo: yann
+          tag: ouioui
           executor: le-202111-ubuntu
