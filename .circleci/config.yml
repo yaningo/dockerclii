@@ -18,7 +18,7 @@ workflows:
 #             - checkout
             - aws-cli/setup:
                 override-installed: true
-#                 version: 2.3.4
+                version: 2.4.3
             - run: aws --version
           repo: al-test
           executor: le-202111-ubuntu
