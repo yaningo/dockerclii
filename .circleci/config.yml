@@ -17,8 +17,8 @@ workflows:
           pre-steps:
             - run: lsb_release -a
 #             - checkout
-#             - aws-cli/setup:
-#                 override-installed: true
+            - aws-cli/setup:
+                override-installed: true
 #                 version: 2.4.3
             - run: aws --version
           repo: al-test
