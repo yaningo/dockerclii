@@ -16,9 +16,9 @@ workflows:
       - aws-ecr/build-and-push-image:
           pre-steps:
 #             - checkout
-            - aws-cli/setup:
-                override-installed: true
-                version: 2.4.3
+#             - aws-cli/setup:
+#                 override-installed: true
+#                 version: 2.4.3
             - run: aws --version
           repo: al-test
           executor: le-202111-ubuntu
