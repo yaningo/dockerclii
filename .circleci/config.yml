@@ -7,15 +7,8 @@ jobs:
     steps:
       - run:
           command: |
-            while true; do
-              sleep 5
-              ps auxwwf
-              echo "======"
-            done
-          background: true
-    
-      - run: |
-          circleci tests split --help
+            cd ~
+            pwd
           
 # Comment here 😃           
                 
