@@ -6,7 +6,7 @@ commands:
       - attach_workspace:
           at: .
       - run: pwd
-      - run: touch .env
+#       - run: touch .env
       - run: cat .env
       - run: |-
           source .env
