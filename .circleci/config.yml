@@ -3,8 +3,9 @@ version: 2.1
 commands:
   testscheck:
     steps:
-      - attach_workspace:
-          at: .
+      - checkout
+#       - attach_workspace:
+#           at: .
       - run: pwd
 #       - run: touch .env
       - run: cat .env
