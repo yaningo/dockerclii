@@ -1,18 +1,35 @@
 version: 2.1
-    
-jobs:
-  setup:
-    docker:
-      - image: circleci/ruby:2.6.8-node-browsers
+
+commands:
+  testscheck:
     steps:
-      - run:
-          command: |
-            cd ~
-            pwd
+      - attach_workspace:
+          at: .
+      - run: pwd
+      - run: touch .env
+      - run: cat .env
+      - run: |-
+          source .env
+          echo RUN_TESTS $RUN_TESTS
+          if [ "$RUN_TESTS" != "true" ]; then
+            echo Terminating - $RUN_TESTS not specified
+            circleci-agent step halt
+          fi
           
-# Comment here 😃           
-                
+executors:
+  main:
+    docker:
+      - image: circleci/python:3.6-stretch-node
+
+jobs:
+  build:
+    executor: main
+    steps:
+      - checkout
+      - testscheck
+      - run: echo "didnt fail"
+
 workflows:
-  build-deploy:
+  workflow1:
     jobs:
-      - setup
+      - build
