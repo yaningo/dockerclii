@@ -3,16 +3,16 @@ version: 2.1
 commands:
   testscheck:
     steps:
-      - checkout
 #       - attach_workspace:
 #           at: .
       - run: pwd
 #       - run: touch .env
       - run: echo $SSH_AUTH_SOCK
       - run: cat .env
-      - run: echo $SSH_AUTH_SOCK
       - run: |-
           source .env
+          echo $SSH_AUTH_SOCK
+
           echo RUN_TESTS $RUN_TESTS
           if [ "$RUN_TESTS" != "true" ]; then
             echo Terminating - $RUN_TESTS not specified
