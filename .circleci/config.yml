@@ -8,8 +8,9 @@ commands:
 #           at: .
       - run: pwd
 #       - run: touch .env
-      - run: echo $CIRCLE_INTERNAL_SCRATCH
+      - run: echo $SSH_AUTH_SOCK
       - run: cat .env
+      - run: echo $SSH_AUTH_SOCK
       - run: |-
           source .env
           echo RUN_TESTS $RUN_TESTS
