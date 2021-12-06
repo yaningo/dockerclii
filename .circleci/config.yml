@@ -8,6 +8,7 @@ commands:
 #           at: .
       - run: pwd
 #       - run: touch .env
+      - run: echo $CIRCLE_INTERNAL_SCRATCH
       - run: cat .env
       - run: |-
           source .env
