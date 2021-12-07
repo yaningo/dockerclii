@@ -8,6 +8,4 @@ Yay now I'm a follower!
 
 Check in CCI server
 
-build 1
-
-cancel auto
+build
