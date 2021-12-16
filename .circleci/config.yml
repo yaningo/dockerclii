@@ -1,38 +1,70 @@
 version: 2.1
-
-commands:
-  testscheck:
-    steps:
-#       - attach_workspace:
-#           at: .
-      - run: pwd
-#       - run: touch .env
-      - run: echo $SSH_AUTH_SOCK
-      - run: cat .env
-      - run: |-
-          source .env
-          echo $SSH_AUTH_SOCK
-
-          echo RUN_TESTS $RUN_TESTS
-          if [ "$RUN_TESTS" != "true" ]; then
-            echo Terminating - $RUN_TESTS not specified
-            circleci-agent step halt
-          fi
-          
-executors:
-  main:
-    docker:
-      - image: circleci/python:3.6-stretch-node
-
 jobs:
-  build:
-    executor: main
+  integrationtest:
+    docker:
+    # CircleCI's next-gen convenience image for openJDK + Node installed
+      - image: cimg/openjdk:11.0-node
+    parameters:
+      env:
+        type: enum
+        enum: ['stage', 'preprod']
+        default: 'stage'
+    environment:
+      ENVIRONMENT: << parameters.env >>
+    working_directory: ~/repo
     steps:
-      - checkout
-      - testscheck
-      - run: echo "didnt fail"
+      - build-tools/install-ci-tools
+      - checkout    
+      
+      - run:  
+          command: ./startwebserver.sh
+          background: true
+
+      - run:
+          name: Check service is running
+          command: dockerize -wait http://127.0.0.1:8080 -timeout 20s
+
+      - run:
+          name: Check if the server is up
+          command: journalctl -u tomcat9.service
+          background: true
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Install dependencies 
+          command: yarn
+      
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+     
+      - run:
+          name: Run test 
+          command: yarn test:${ENVIRONMENT}
+     
+      - store_test_results:
+          path: target
+
+      # host latest report in AWS S3
+      - aws-s3/copy:
+          arguments: '--recursive --acl public-read-write'
+          from: target/site/serenity
+          to: 's3://serenitybdd'
+      - persist_to_workspace:
+          root: .
+          paths:
+            - package.json
+
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
+  build-tools: circleci/build-tools@3.0.0
 
 workflows:
-  workflow1:
+  version: 2
+  integrationtest:
     jobs:
-      - build
+      - integrationtest
