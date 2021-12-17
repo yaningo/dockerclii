@@ -1,27 +1,17 @@
 version: 2
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: golang:alpine
   
 jobs:
   setup:
-    machine:
-#       image: ubuntu-2004:202107-02
-      image: ubuntu-1604:201903-01
-          
+    <<: *defaults
     steps:
-#       - run: docker run --env ENVFROMCONTEXT=$toto_var yaningo/my-node:test env
+      - checkout
 
-#       - checkout
-#       - setup_remote_docker
-#           version: 19.03.13
-      - run: docker version
-#       - run:
-#           name: Build docker image
-#           command: |
-#             make build/image
-      
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - setup:
-          context:
-            - toto
+      - setup
