@@ -10,7 +10,7 @@ jobs:
     executor: main
     steps:
       - run: |
-          sudo apt-get update && sudo apt-get install libpq-dev -y
+          sudo apt-get update && sudo apt list --installed|grep libpq
 
 workflows:
   workflow1:
