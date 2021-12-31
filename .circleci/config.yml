@@ -3,16 +3,14 @@ version: 2.1
 executors:
   main:
     docker:
-      - image: cimg/base:2021.04
+      - image: circleci/ruby:2.5.7-buster-node-browsers
 
 jobs:
   build:
     executor: main
     steps:
-      - setup_remote_docker:
-          version: 19.03.13
       - run: |
-          ssh remote-docker \ ping registry-1.docker.io
+          sudo apt-get install libpq-dev
 
 workflows:
   workflow1:
