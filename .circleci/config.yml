@@ -1,36 +1,21 @@
 version: 2.1
 
-commands:
-  testscheck:
-    steps:
-#       - attach_workspace:
-#           at: .
-      - run: pwd
-#       - run: touch .env
-      - run: echo $SSH_AUTH_SOCK
-      - run: cat .env
-      - run: |-
-          source .env
-          echo $SSH_AUTH_SOCK
 
-          echo RUN_TESTS $RUN_TESTS
-          if [ "$RUN_TESTS" != "true" ]; then
-            echo Terminating - $RUN_TESTS not specified
-            circleci-agent step halt
           fi
           
 executors:
   main:
     docker:
-      - image: circleci/python:3.6-stretch-node
+      - image: cimg/base:2021.04
 
 jobs:
   build:
     executor: main
     steps:
-      - checkout
-      - testscheck
-      - run: echo "didnt fail"
+      - setup_remote_docker:
+          version: 19.03.13
+      - run: |
+          ssh remote-docker \ traceroute registry-1.docker.io/v2
 
 workflows:
   workflow1:
