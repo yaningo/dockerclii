@@ -10,7 +10,7 @@ jobs:
     executor: main
     steps:
       - run: |
-          sudo apt-get update && sudo apt list --installed|grep libpq
+          sudo apt-get update && sudo apt list --installed
 
 workflows:
   workflow1:
