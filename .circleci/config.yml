@@ -3,7 +3,7 @@ version: 2.1
 executors:
   main:
     docker:
-      - image: circleci/ruby:2.5.7-buster-node-browsers
+      - image: cimg/ruby:2.5.7
 
 jobs:
   build:
