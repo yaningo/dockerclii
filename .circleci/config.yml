@@ -9,6 +9,7 @@ jobs:
   build:
     executor: main
     steps:
+      - setup_remote_docker
       - run: |
           which ruby
 
