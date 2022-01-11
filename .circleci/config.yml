@@ -3,15 +3,14 @@ version: 2.1
 executors:
   main:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/base
 
 jobs:
   build:
     executor: main
     steps:
-      - setup_remote_docker
       - run: |
-          which ruby
+          ssh -V
 
 workflows:
   workflow1:
