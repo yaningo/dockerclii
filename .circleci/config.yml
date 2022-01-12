@@ -8,6 +8,7 @@ commands:
   
   check-something:
     steps:
+      - checkout
       - run: |
           source ./script.sh
           CancelJob
