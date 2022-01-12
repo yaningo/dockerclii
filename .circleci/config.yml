@@ -1,29 +1,24 @@
 version: 2.1
 
+executors:
+  main:
+    docker:
+      - image: cimg/ruby:2.5.7
 commands:
-  greeting:
-    parameters:
-      to:
-        default: "world"
-        type: string
+  
+  check-something:
     steps:
-      - run:
-          name: Greetings
-          command: echo "Hello << parameters.to >>"
+      - run: |
+          source ./script.sh
+          CancelJob
 
 jobs:
-  master-build:
-    docker:
-      - image: circleci/python:3.6.4
+  build:
+    executor: main
     steps:
-      - run: echo 'export ISSUE_KEY="123"' >> $BASH_ENV
-      - run:
-          name: test result
-          command: source $BASH_ENV
-      - greeting:
-          to: $ISSUE_KEY
+      - check-something
+      
 workflows:
-  version: 2
-  ci:
+  workflow1:
     jobs:
-      - master-build
+      - build
