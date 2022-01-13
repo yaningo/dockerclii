@@ -9,7 +9,9 @@ jobs:
   build:
     executor: main
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.13
+
       - run: ssh remote-docker \ lsb_release -a
 
 workflows:
