@@ -2,4 +2,4 @@
 
 Checking status checks after re-enabling GitHub status updates
 
-checking checks
+checking checks when caancelling
