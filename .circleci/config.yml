@@ -1,22 +1,10 @@
 version: 2.1
+orbs:
+  terraform: circleci/terraform@3.0.0
 
-executors:
-  main:
-    docker:
-      - image: cimg/base:2020.08
-
-jobs:
-  build:
-    executor: main
-    steps:
-      - setup_remote_docker:
-          version: 20.10.11
-      - run: |
-          ssh remote-docker \ lsb_release -a
-          ssh remote-docker \ uname -r
-      - run: plou
-
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  workflow1:
+  terraform-validate:
     jobs:
-      - build
+      - terraform-validate:
