@@ -3,14 +3,26 @@ orbs:
   terraform: circleci/terraform@3.0.0
 jobs:
   terraform-validate:
-    docker:
-      - image: cimg/base:2020.08
+    executor: terraform/default
     steps:
-      - checkout
+      - run: |
+          apk add perl
+          ln -s /usr/bin/sha1sum /usr/bin/shasum
       - terraform/install:
           arch: amd64
           os: linux
           terraform_version: "1.1.2"
+      - terraform/fmt:
+          path: .
+      - terraform/validate:
+          path: .
+      - terraform/init:
+          backend: true
+          backend_config_file: backend.hcl
+          path: .
+      - terraform/plan:
+          backend_config_file: backend.hcl
+          path: .
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -18,3 +30,4 @@ workflows:
   terraform-validate:
     jobs:
       - terraform-validate
+
