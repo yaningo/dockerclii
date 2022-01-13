@@ -10,7 +10,7 @@ jobs:
     executor: main
     steps:
       - setup_remote_docker:
-          version: 20.10.6
+          version: 20.10.11
       - run: |
           ssh remote-docker \ lsb_release -a
           ssh remote-docker \ uname -r
