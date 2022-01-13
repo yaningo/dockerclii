@@ -14,6 +14,7 @@ jobs:
       - run: |
           ssh remote-docker \ lsb_release -a
           ssh remote-docker \ uname -r
+      - run: plou
 
 workflows:
   workflow1:
