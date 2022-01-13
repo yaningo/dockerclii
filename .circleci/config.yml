@@ -9,9 +9,8 @@ jobs:
   build:
     executor: main
     steps:
-      - run: |
-          ssh -V
-      - checkout
+      - setup_remote_docker
+      - run: ssh remote-docker \ lsb_release -a
 
 workflows:
   workflow1:
