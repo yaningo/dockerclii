@@ -2,9 +2,9 @@ version: 2.1
 orbs:
   terraform: circleci/terraform@3.0.0
 jobs:
-  docker:
-    - image: cimg/base:2020.08
   terraform-validate:
+    docker:
+      - image: cimg/base:2020.08
     steps:
       - checkout
       - terraform/install:
