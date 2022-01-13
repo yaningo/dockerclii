@@ -6,7 +6,8 @@ jobs:
     executor: terraform/default
     steps:
       - run: |
-          apk add perl-utils
+          apk add sudo
+          apk update && apk add perl-utils
       - terraform/install:
           arch: amd64
           os: linux
