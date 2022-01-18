@@ -16,8 +16,11 @@ commands:
 jobs:
   build:
     executor: main
+    environment:
+      CLOCLO: $QA_RDS_HOSTNAME
     steps:
-      - check-something
+      - echo $CLOCLO > lolo.txt
+      - cat lolo.txt
       
 workflows:
   workflow1:
