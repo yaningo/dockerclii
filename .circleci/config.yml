@@ -20,8 +20,8 @@ jobs:
       CLOCLO: QA_RDS_HOSTNAME
     steps:
       - run: |
-          echo ${CLOCLO} > lolo.txt
-          cat lolo.txt
+          echo ${CLOCLO} > loloo.txt
+          cat loloo.txt
       
 workflows:
   workflow1:
