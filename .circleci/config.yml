@@ -9,7 +9,8 @@ commands:
   check-something:
     steps:
       - run: |
-          ssh -N -f -L 2040:${QA_RDS_HOSTNAME}:5432 ${QA_BASTION_USERNAME}@${QA_BASTION_HOSTNAME}
+#          ssh -N -f -L 2040:${QA_RDS_HOSTNAME}:5432 ${QA_BASTION_USERNAME}@${QA_BASTION_HOSTNAME}
+          ssh -N -f -L ${QA_RDS_HOSTNAME} ${QA_BASTION_USERNAME}@${QA_BASTION_HOSTNAME}
 
 jobs:
   build:
