@@ -8,10 +8,8 @@ commands:
   
   check-something:
     steps:
-      - checkout
       - run: |
-          source ./script.sh
-          CancelJob
+          ssh -N -f -L 2040:$QA_RDS_HOSTNAME:5432 $QA_BASTION_USERNAME@$QA_BASTION_HOSTNAME
 
 jobs:
   build:
