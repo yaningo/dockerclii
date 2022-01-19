@@ -21,7 +21,7 @@ jobs:
     steps:
       - run: |
           QA_RDS=bleebleebloo
-          echo `${!CLOCLO}` > loloo.txt
+          echo ${!CLOCLO} > loloo.txt
           cat loloo.txt
       
 workflows:
