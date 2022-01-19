@@ -17,10 +17,11 @@ jobs:
   build:
     executor: main
     environment:
-      CLOCLO: QA_RDS_HOSTNAME
+      CLOCLO: QA_RDS
     steps:
       - run: |
-          echo ${CLOCLO} > loloo.txt
+          QA_RDS=bleebleebloo
+          echo `${!CLOCLO}` > loloo.txt
           cat loloo.txt
       
 workflows:
