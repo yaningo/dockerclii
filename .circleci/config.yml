@@ -1,5 +1,7 @@
 version: 2.1
 
+orbs:
+  ruby: circleci/ruby@1.4.0
 executors:
   main:
     docker:
@@ -16,13 +18,10 @@ commands:
 jobs:
   build:
     executor: main
-    environment:
-      CLOCLO: QA_RDS
     steps:
-      - run: |
-          QA_RDS=bleebleebloo
-          echo "${!CLOCLO}" > loloo.txt
-          cat loloo.txt
+      - ruby/install:
+          version: '3.1.0'
+      - run: ruby -v
       
 workflows:
   workflow1:
