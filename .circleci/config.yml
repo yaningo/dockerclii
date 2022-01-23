@@ -5,7 +5,7 @@ orbs:
 executors:
   main:
     docker:
-      - image: cimg/ruby:2.5.7
+      - image: cimg/base:2022.01
 commands:
   
   check-something:
