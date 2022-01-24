@@ -19,9 +19,9 @@ jobs:
   build:
     executor: main
     steps:
-      - ruby/install:
-          version: '3.1.0'
-      - run: ruby -v
+      - checkout
+      - store_artifacts:
+          path: ./dummy_dir
       
 workflows:
   workflow1:
