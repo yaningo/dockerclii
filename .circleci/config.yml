@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: cimg/php:7.4-node
     steps:
-      - run: sudo apt install docker-php-ext-install
+      - run: docker-php-ext-install
       
                    
 workflows:
