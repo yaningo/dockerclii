@@ -5,6 +5,7 @@ jobs:
   terraform-validate:
     executor: terraform/default
     steps:
+      - checkout
       - run: |
           apk add sudo
           apk update && apk add perl-utils
