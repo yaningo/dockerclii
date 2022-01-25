@@ -8,6 +8,9 @@ jobs:
       - run: |
           apk add sudo
           apk update && apk add perl-utils
+          
+      - run: git show $CIRCLE_SHA1^
+      
       - terraform/install:
           arch: amd64
           os: linux
