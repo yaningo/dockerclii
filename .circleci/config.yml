@@ -20,8 +20,10 @@ jobs:
     executor: main
     steps:
       - checkout
+      - run: tar -cvzf archive.tar.gz ./dummy_dir
       - store_artifacts:
-          path: ./dummy_dir
+          path: ./archive.tar.gz
+          destination: archived_folder
       
 workflows:
   workflow1:
