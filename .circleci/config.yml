@@ -43,8 +43,7 @@ jobs:
 #           echo $MESSAGE
           
       - slack/notify:
-          custom: |
-              custom: |
+                custom: |
                   {
                     "text": "",
                     "blocks": [
@@ -52,7 +51,7 @@ jobs:
                         "type": "section",
                         "text": {
                           "type": "mrkdwn",
-                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , ${COMMITTER_NAME_VAR} , ${COMMITTER_NAME} , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
+                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , ${COMMITTER_NAME_VAR} , ${COMMITTER_NAME} , ${commit} executed by `${CIRCLE_USERNAME}`"
                         }
                       },
                       {
@@ -71,6 +70,7 @@ jobs:
                     ]
                   }
                 event: always
+              
           
 workflows:
   build-deploy:
