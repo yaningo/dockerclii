@@ -15,12 +15,14 @@ jobs:
       - run:
           working_directory: supafolda
           command: |
+              sudo echo 'export COMMITTER_NAME=$( curl "https://circleci.com/api/v1.1/project/${API_URL}?circle-token=${CIRCLE_API_TOKEN}" | tail -n23 | grep committer_name | cut -f2- -d: | grep -o -P "(?<=\").*(?=\")")' >> $BASH_ENV
+              sudo echo 'export COMMITTER_NAME_VAR="${COMMITTER_NAME}"' >> $BASH_ENV
               # START reproducing 97880 #####
-              FILE="../leterraplan.json"
+              #FILE="../leterraplan.json"
               #cat $FILE
-              cat $FILE|grep -E "\#" |awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > ~/project/message.txt
-              cat ~/project/message.txt
-              echo 'export MESSAGE="Our Changes to be applied from terraform: $(cat ~/project/message.txt)" ' >> $BASH_ENV
+              #cat $FILE|grep -E "\#" |awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > ~/project/message.txt
+              #cat ~/project/message.txt
+              #echo 'export MESSAGE="Our Changes to be applied from terraform: $(cat ~/project/message.txt)" ' >> $BASH_ENV
               # END reproducing 97880 #####
               
       - run: echo $MESSAGE
@@ -41,7 +43,34 @@ jobs:
           
       - slack/notify:
           custom: |
-            {"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
+              custom: |
+                  {
+                    "text": "",
+                    "blocks": [
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , ${COMMITTER_NAME_VAR} , ${COMMITTER_NAME} , ${commit} executed by `${CIRCLE_USERNAME}`"
+                        }
+                      },
+                      {
+                        "type": "actions",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "View Job"
+                            },
+                            "url": "${CIRCLE_BUILD_URL}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                event: always
+             #{"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
           
 workflows:
   build-deploy:
