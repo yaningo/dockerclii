@@ -15,8 +15,9 @@ jobs:
       - run:
           working_directory: supafolda
           command: |
-              sudo echo 'export COMMITTER_NAME=$( curl "https://circleci.com/api/v1.1/project/${API_URL}?circle-token=${CIRCLE_API_TOKEN}" | tail -n23 | grep committer_name | cut -f2- -d: | grep -o -P "(?<=\").*(?=\")")' >> $BASH_ENV
-              sudo echo 'export COMMITTER_NAME_VAR="${COMMITTER_NAME}"' >> $BASH_ENV
+              echo 'export COMMITTER_NAME=$( curl "https://circleci.com/api/v1.1/project/${API_URL}?circle-token=${CIRCLE_API_TOKEN}" | tail -n23 | grep committer_name | cut -f2- -d: | grep -o -P "(?<=\").*(?=\")")' >> $BASH_ENV
+              echo 'export COMMITTER_NAME_VAR="${COMMITTER_NAME}"' >> $BASH_ENV
+              echo 'export LE_COMMIT="John"' >> $BASH_ENV
               # START reproducing 97880 #####
               #FILE="../leterraplan.json"
               #cat $FILE
@@ -51,7 +52,7 @@ jobs:
                         "type": "section",
                         "text": {
                           "type": "mrkdwn",
-                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , ${COMMITTER_NAME_VAR} , ${COMMITTER_NAME} , ${commit} executed by `${CIRCLE_USERNAME}`"
+                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , ${COMMITTER_NAME_VAR} , ${COMMITTER_NAME} , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
                         }
                       },
                       {
@@ -70,7 +71,6 @@ jobs:
                     ]
                   }
                 event: always
-             #{"blocks": [{"type": "section", "text": {"type": "mrkdwn", "text": "$MESSAGE" }}]}
           
 workflows:
   build-deploy:
