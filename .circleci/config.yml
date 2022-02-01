@@ -25,9 +25,6 @@ jobs:
          command: which docker
 
 workflows:
-  flow:
-    jobs:
-      - build
   nightly:
     triggers:
       - schedule:
