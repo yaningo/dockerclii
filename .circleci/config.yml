@@ -13,15 +13,37 @@ jobs:
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
-
+            
+  other_build:
+    docker:
+      - image: openjdk:8
+      
+    steps:
+      - checkout
       - run:
          name: Find le petit Docker Client PR to master non-default again
          command: which docker
 
-      - checkout
-
 workflows:
   version: 2.1
-  build:
+  flow:
     jobs:
       - build
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - tech5irl-patch-1
+    jobs:
+      - build
+  
+  other-flow:
+    jobs:
+      - other_build
+    filters:
+      branches:
+        only:
+          - main
