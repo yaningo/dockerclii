@@ -25,7 +25,6 @@ jobs:
          command: which docker
 
 workflows:
-  version: 2.1
   flow:
     jobs:
       - build
@@ -42,8 +41,8 @@ workflows:
   
   other-flow:
     jobs:
-      - other_build
-    filters:
+      - other_build:
+          filters:
       branches:
         only:
           - main
