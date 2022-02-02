@@ -1,72 +1,17 @@
 version: 2.1
 
-parameters:
-  run_bob:
-    type: boolean
-    default: false
-  run_the:
-    type: boolean
-    default: false
-  run_builder:
-    type: boolean
-    default: false
-
 
 jobs:
   bob:
-    docker:
-      - image: circleci/python
+    machine:
+      image: ubuntu-2004:202101-01
       
     steps:
-      - run:
-          name: Can we
-          command: |
-            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
-            printf -v TOTO "%s" << pipeline.number >>
-            echo BONJOUR-$TOTO
-            
-  the:
-    docker:
-      - image: circleci/python
-      
-    steps:
-      - run:
-          name: Fix?
-          command: |
-            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
-            printf -v TOTO "%s" << pipeline.number >>
-            echo BONJOUR-$TOTO
-            
-  builder:
-    docker:
-      - image: circleci/python
-      
-    steps:
-      - run:
-          name: It?
-          command: |
-            echo "Hello workflow ${CIRCLE_WORKFLOW_ID}"
-            printf -v TOTO "%s" << pipeline.number >>
-            echo BONJOUR-$TOTO
-        
+      - add_ssh_keys:
+          fingerprints:
+            - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
+                 
 workflows:
-  version: 2
   workflow-bob:
-    when: << pipeline.parameters.run_bob >>
     jobs:
       - bob
-      
-  workflow-the:
-    when: << pipeline.parameters.run_the >>
-    jobs:
-      - the
-      
-  workflow-builder:
- #   unless: << pipeline.parameters.run_bob >> || << pipeline.parameters.run_the >>
-    unless:
-      or:
-          - << pipeline.parameters.run_bob >>
-          - << pipeline.parameters.run_the >>
-          - << pipeline.parameters.run_builder >>
-    jobs:
-      - builder
