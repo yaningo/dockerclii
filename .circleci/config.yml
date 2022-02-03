@@ -15,7 +15,7 @@ jobs:
           version: 20.10.7
           
       - run: |
-          docker create -v /cfg --name configs alpine:3.4 /bin/true
+          docker create -v /home/circleci/.ssh --name configs alpine:3.4 /bin/true
           docker cp ~/.ssh configs:/home/circleci/.ssh
             
       - run: docker run -it --volumes-from configs -w /home/circleci/.ssh cimg/node:14.10.1 pwd && ls -al
