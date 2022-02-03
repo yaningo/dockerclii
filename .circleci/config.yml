@@ -14,10 +14,10 @@ jobs:
       - setup_remote_docker:
           version: 20.10.7
             
-      - run: docker run -it --name=le-cont -v ~/.ssh:/home/circleci/.ssh:ro -w /home/circleci/.ssh cimg/node:14.10.1 pwd && ls -al
-      - run: ssh remote-docker \ ls -al /home/circleci/.ssh
+      - run: docker run -it --name=le-cont -v ~/.ssh:/home/circleci/.ssh2:ro -w /home/circleci/.ssh2 cimg/node:14.10.1 pwd && ls -al
+      - run: ssh remote-docker \ ls -al /home/circleci/.ssh2
 #       - run: docker cp /home/circleci/.ssh/*/ le-cont:/home/circleci/.ssh/
-      - run: docker exec le-cont ls -al
+      - run: docker le-cont ls -al
 
                  
 workflows:
