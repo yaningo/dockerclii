@@ -12,7 +12,8 @@ jobs:
             - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
             
             
-      - run: docker run --name=le-cont --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) -w /home/circleci/.ssh/ cimg/node:14.10.1 docker cp /home/circleci/.ssh/* le-cont:/home/circleci/.ssh/ && pwd && ls -al
+      - run: docker run -it --name=le-cont --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) -w /home/circleci/.ssh/ cimg/node:14.10.1 pwd && ls -al
+      - run: docker cp /home/circleci/.ssh/* le-cont:/home/circleci/.ssh/ && docker exec le-cont ls -al
 
                  
 workflows:
