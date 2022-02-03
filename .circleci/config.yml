@@ -18,7 +18,7 @@ jobs:
                --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly \
                --mount type=bind,source=/etc/group,target=/etc/group,readonly \
                -u $(id -u $USER):$(id -g $USER) \
-               -v /home/circleci/.ssh/:/home/circleci/.ssh/:ro
+               -v /home/circleci/.ssh/:/home/circleci/.ssh/:ro \
                -w /home/circleci/.ssh/ \
                cimg/node:14.10.1 \
                pwd && ls -al
