@@ -13,7 +13,7 @@ jobs:
             
       - setup_remote_docker
             
-      - run: docker run -it --rm -v ~/.ssh:/home/user/.ssh:ro -u $(id -u $USER):$(id -g $USER) -w /home/user/.ssh cimg/node:14.10.1
+      - run: docker run --rm -v ~/.ssh:/home/user/.ssh:ro -u $(id -u $USER):$(id -g $USER) -w /home/user/.ssh cimg/node:14.10.1
       
       - run: ssh remote-docker ssh-keygen -l -E md5 -f *rsa*
                  
