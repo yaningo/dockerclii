@@ -10,8 +10,18 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
+            
+      - setup_remote_docker
+            
+      - run: docker run -it --rm -v ~/.ssh:/home/user/.ssh:ro -u $(id -u $USER):$(id -g $USER) -w /home/user/.ssh cimg/node:14.10.1 /bin/bash
+      
+      - run: ssh remote-docker ssh-keygen -l -E md5 -f *rsa*
                  
 workflows:
   workflow-bob:
     jobs:
       - bob
+
+
+
+
