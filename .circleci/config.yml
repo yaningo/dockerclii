@@ -17,7 +17,7 @@ jobs:
       - run: docker run -it --name=le-cont -v ~/.ssh:/home/circleci/.ssh2:ro -w /home/circleci/.ssh2 cimg/node:14.10.1 pwd && ls -al
       - run: ssh remote-docker \ ls -al /home/circleci/.ssh2
 #       - run: docker cp /home/circleci/.ssh/*/ le-cont:/home/circleci/.ssh/
-      - run: docker le-cont ls -al
+      - run: docker exec ls -al
 
                  
 workflows:
