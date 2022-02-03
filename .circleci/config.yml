@@ -16,7 +16,7 @@ jobs:
                     
             
       - run: |
-          docker create -v /home/circleci/ssh2 --name configs alpine:3.4 /bin/true
+          docker create -v ~/.ssh:/home/circleci/ssh2 --name configs alpine:3.4 /bin/true
           docker cp ~/.ssh configs:/home/circleci/ssh2
           docker run -it --volumes-from configs -w /home/circleci/ssh2 cimg/node:14.10.1 pwd && ls -al
           ssh remote-docker \ ls -al /home/circleci/ssh2
