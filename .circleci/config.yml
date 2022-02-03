@@ -3,8 +3,8 @@ version: 2.1
 
 jobs:
   bob:
-    machine:
-      image: ubuntu-2004:202101-01
+    docker:
+      - image: cimg/node:14.10.1
       
     steps:
       - add_ssh_keys:
@@ -13,7 +13,8 @@ jobs:
             
             
       - run: docker run -it --name=le-cont --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) -w /home/circleci/.ssh/ cimg/node:14.10.1 pwd && ls -al
-      - run: docker cp /home/circleci/.ssh/* le-cont:/home/circleci/.ssh/ && docker exec le-cont ls -al
+      - run: docker cp /home/circleci/.ssh/*/ le-cont:/home/circleci/.ssh/
+      - run: docker exec le-cont ls -al
 
                  
 workflows:
