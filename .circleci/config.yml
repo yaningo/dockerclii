@@ -3,8 +3,8 @@ version: 2.1
 
 jobs:
   bob:
-    machine:
-      image: ubuntu-2004:202101-01
+    docker:
+      - image: cimg/node:14.10.1
       
     steps:
       - add_ssh_keys:
