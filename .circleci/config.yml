@@ -12,10 +12,8 @@ jobs:
             - "0b:0f:cf:81:16:ba:54:c8:81:31:16:77:22:02:b1:4f"
             
             
-      - run: docker run --rm -v ~/.ssh:/home/circleci/.ssh2:ro --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) -w /home/circleci/.ssh2 cimg/node:14.10.1
-      - run: ssh remote-docker ls -al
-      - run: ssh remote-docker pwd
-#       - run: ssh remote-docker ssh-keygen -l -E md5 -f *rsa*
+      - run: docker run --rm -v ~/.ssh:/home/circleci/.ssh2:ro --mount type=bind,source=/etc/passwd,target=/etc/passwd,readonly --mount type=bind,source=/etc/group,target=/etc/group,readonly -u $(id -u $USER):$(id -g $USER) -w /home/circleci/.ssh2 cimg/node:14.10.1 pwd && ls -al
+
                  
 workflows:
   workflow-bob:
