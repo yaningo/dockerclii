@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: usdotfhwastoldev/carma-base:develop
     steps:
-      - run: ulimit -a | grep stack
+      - run: grep 'model name' /proc/cpuinfo | wc -l
           
 workflows:
   memoire:
