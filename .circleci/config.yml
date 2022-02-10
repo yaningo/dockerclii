@@ -1,14 +1,22 @@
 version: 2.1
 
 jobs:
-  test:
+  test-node-12:
     docker:
-      - image: cimg/python:3.9
+      - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
-      - setup_remote_docker
-      - run: ${DOCKER_COMPOSE} -v
+      - run: cypress -v
+      - run: npx cypress --version
+      
+  test-node-16:
+    docker:
+      - image: cypress/browsers:node16.5.0-chrome94-ff93
+    steps:
+      - run: cypress -v
+      - run: npx cypress --version
       
 workflows:
   staging-daily:
     jobs:
-    - test
+    - test-node-12
+    - test-node-16
