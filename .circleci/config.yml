@@ -5,14 +5,12 @@ jobs:
     docker:
       - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
-      - run: cypress -v
       - run: npx cypress --version
       
   test-node-16:
     docker:
       - image: cypress/browsers:node16.5.0-chrome94-ff93
     steps:
-      - run: cypress -v
       - run: npx cypress --version
       
 workflows:
