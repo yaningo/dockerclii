@@ -5,13 +5,13 @@ jobs:
     docker:
       - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
-      - run: echo "Hello Hola"
+      - run: echo << pipeline.git.branch >>
            
 workflows:
   staging-pull:
-    when:
-      matches:
-        pattern: "^circleci-project-setup$"
-        value: << pipeline.git.branch >>
+#     when:
+#       matches:
+#         pattern: "^circleci-project-setup$"
+#         value: << pipeline.git.branch >>
     jobs:
     - condy_pull
