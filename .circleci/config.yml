@@ -11,7 +11,7 @@ workflows:
   staging-pull:
     when:
       matches:
-        pattern: "^mas.*$"
+        pattern: "^circleci.*$"
         value: << pipeline.git.branch >>
     jobs:
     - condy_pull
