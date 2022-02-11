@@ -1,20 +1,17 @@
 version: 2.1
 
 jobs:
-  test-node-12:
+  condy_pull:
     docker:
       - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
-      - run: npx cypress --version
-      
-  test-node-16:
-    docker:
-      - image: cypress/browsers:node16.5.0-chrome94-ff93
-    steps:
-      - run: npx cypress --version
-      
+      - run: echo 
+           
 workflows:
-  staging-daily:
+  staging-pull:
+    when:
+      matches:
+        pattern: "^mas\/.*$"
+          value: << pipeline.git.branch >>
     jobs:
-    - test-node-12
-    - test-node-16
+    - condy_pull
