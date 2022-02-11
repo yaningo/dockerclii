@@ -15,3 +15,11 @@ workflows:
         value: << pipeline.git.branch >>
     jobs:
     - condy_pull
+
+  staging-master:
+    when:
+      matches:
+        pattern: "^master$"
+        value: << pipeline.git.branch >>
+    jobs:
+    - condy_pull
