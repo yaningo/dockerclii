@@ -11,7 +11,7 @@ workflows:
   staging-pull:
     when:
       matches:
-        pattern: "^/circleci-project-setup$"
+        pattern: "^circleci-project-setup$"
         value: << pipeline.git.branch >>
     jobs:
     - condy_pull
