@@ -6,6 +6,7 @@ jobs:
       - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
       - run: echo << pipeline.git.branch >>
+      - run: exit 123
            
 workflows:
 
@@ -13,8 +14,3 @@ workflows:
   staging-master:
     jobs:
       - condy_pull
-      
-      - hold265: # <<< A job that will require manual approval in the CircleCI web application.
-          type: approval
-          requires:
-            - condy_pull
