@@ -8,18 +8,13 @@ jobs:
       - run: echo << pipeline.git.branch >>
            
 workflows:
-  staging-pull:
-    when:
-      matches:
-        pattern: "^circleci.*$"
-        value: << pipeline.git.branch >>
-    jobs:
-    - condy_pull
+
 
   staging-master:
-    when:
-      matches:
-        pattern: "^master$"
-        value: << pipeline.git.branch >>
     jobs:
-    - condy_pull
+      - condy_pull
+      
+      - hold265: # <<< A job that will require manual approval in the CircleCI web application.
+          type: approval
+          requires:
+            - condy_pull
