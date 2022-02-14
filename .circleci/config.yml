@@ -3,10 +3,10 @@ version: 2.1
 jobs:
   Docker-Base-Build:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: cimg/python:3.9
     resource_class: small
     steps:
-      - run: sudo apt update && sudo apt install curl
+#       - run: sudo apt update && sudo apt install curl
       - run: curl --version
       - run: curl -sSL http://apache.mirrors.spacedump.net/thrift/0.11.0/thrift-0.11.0.tar.gz -o thrift.tar.gz
            
