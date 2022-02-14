@@ -4,7 +4,7 @@ jobs:
   Docker-Base-Build:
     docker:
       - image: docker:17.05.0-ce-git
-          resource_class: xlarge
+    resource_class: xlarge
     steps:
       - run: - setup_remote_docker
       - run: |
