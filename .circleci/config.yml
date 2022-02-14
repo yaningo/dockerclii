@@ -8,7 +8,7 @@ jobs:
     steps:
       - setup_remote_docker
       - run: |
-          ssh remote-docker \ curl -sSL https://downloads.apache.org/thrift/0.15.0/thrift-0.15.0.tar.gz -o thrift.tar.gz 
+          ssh remote-docker \ curl --version
            
 workflows:
   La-Build:
