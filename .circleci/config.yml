@@ -14,13 +14,14 @@ jobs:
             
       - run: |
           tar -czvf special-file-dir.tar.gz ./packages
-          Tar_Checksum_Val=$(cksum special-file-dir.tar.gz|awk '{ print $1}')
+          Tar_Checksum_Val=$(shasum special-file-dir.tar.gz|awk '{ print $1}')
           echo $Tar_Checksum_Val
           curl --request POST \
             --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/envvar \
             --header "Circle-Token: $API_TOKI" \
             --header 'content-type: application/json' \
             --data '{"name":"Tar_Checksum","value":"'"${Tar_Checksum_Val}"'"}'
+          sleep 10
             
       - save_cache:
           key: my-{{ .Environment.Tar_Checksum }}
