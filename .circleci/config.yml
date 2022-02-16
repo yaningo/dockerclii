@@ -18,6 +18,7 @@ jobs:
           paths:
             - Dockerfile
       - run: |
+          echo "Hello"
           echo $FROM_PR
           echo $PR_NUM
            
