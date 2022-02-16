@@ -1,16 +1,14 @@
 version: 2.1
 
 jobs:
-  Docker-Base-Build:
+  show-pr-refs:
     docker:
       - image: cimg/python:3.9
     resource_class: small
     steps:
-#       - run: sudo apt update && sudo apt upgrade curl
-      - run: curl --version
-      - run: curl -vL http://apache.mirrors.spacedump.net/thrift/0.11.0/thrift-0.11.0.tar.gz -o thrift.tar.gz
+      - run: git show-ref --head --dereference
            
 workflows:
   La-Build:
     jobs:
-    - Docker-Base-Build
+    - show-pr-refs
