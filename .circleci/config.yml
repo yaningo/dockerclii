@@ -3,27 +3,27 @@ version: 2.1
 jobs:
   show-pr-refs:
     parameters:
-       this-pr-cache:
-         type: env_var_name
-         default: CACHE_PR_KEY_${CIRCLE_PULL_REQUEST##*/}
+       this-pr-cache-key:
+         env_var_name: string
+         default: PR_NUM
     docker:
       - image: cimg/python:3.9
     resource_class: small
     steps:
       - checkout
-      - run: echo << parameters.this-pr-cache >>
+      - run: echo "export PR_NUM=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2-)" >> $BASH_ENV
       - run: |
           curl --request POST \
             --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/envvar \
             --header "Circle-Token: $API_TOKI" \
             --header 'content-type: application/json' \
-            --data '{"name":"'"CACHE_PR_KEY_${CIRCLE_PULL_REQUEST##*/}"'","value":"this PR file"}'
+            --data '{"name":"CACHE_PR_KEY","value":"'"my-special-file-from-PR-${CIRCLE_PULL_REQUEST##*/}"'"}'
             
       - restore_cache:
           keys:
-            - my-special-file-{{ .Environment.<< parameters.this-pr-cache >> }}
+            - my-special-file-from-PR-<< parameters.this-pr-cache-key >>
       - save_cache:
-          key: my-special-file-{{ .Environment.<< parameters.this-pr-cache >> }}
+          key: {{ .Environment.CACHE_PR_KEY }}
           paths:
             - ./packages
       - run: |
