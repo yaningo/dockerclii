@@ -7,11 +7,12 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - run: tar -czvf special-file-dir.tar.gz ./packages
-            
+      
       - restore_cache:
           keys:
             - my-{{ checksum "special-file-dir.tar.gz"}}
+            
+      - run: tar -czvf special-file-dir.tar.gz ./packages
             
       - save_cache:
           key: my-{{ checksum "special-file-dir.tar.gz" }}
