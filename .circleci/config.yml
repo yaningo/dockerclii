@@ -4,7 +4,7 @@ jobs:
   show-pr-refs:
     parameters:
        this-pr-cache-key:
-         env_var_name: string
+         type: env_var_name
          default: PR_NUM
     docker:
       - image: cimg/python:3.9
