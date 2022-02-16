@@ -7,7 +7,7 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - run: git show-ref --head --dereference
+      - run: git show-ref --heads
            
 workflows:
   La-Build:
