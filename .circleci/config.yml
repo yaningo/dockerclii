@@ -9,9 +9,9 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - my-special-file
+            - my-special-file-{{ checksum "./special-dir/*" }}
       - save_cache:
-          key: my-special-file
+          key: my-special-file-{{ checksum "./special-dir/*" }}
           paths:
             - /packages
       - run: |
