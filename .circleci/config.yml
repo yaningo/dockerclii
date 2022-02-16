@@ -7,15 +7,16 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - run: FROM_PR=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2-)
+      - run: |
+          FROM_PR=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2-)
+          PR_NUM=${CIRCLE_PULL_REQUEST##*/}
       - restore_cache:
           keys:
-            - myfile-${FROM_PR}
+            - myfile-{{ .Environment.FROM_PR }}
       - save_cache:
-          key: myfile-from-pr-${CIRCLE_PULL_REQUEST##*/}
+          key: myfile-{{ .Environment.PR_NUM }}
           paths:
             - Dockerfile
-      - run: echo $CIRCLE_PULL_REQUEST
            
 workflows:
   La-Build:
