@@ -12,14 +12,14 @@ jobs:
             --url https://circleci.com/api/v2/project/gh/CircleCI-Public/api-preview-docs/envvar \
             --header "Circle-Token: $API_TOKI" \
             --header 'content-type: application/json' \
-            --data '{"name":"CACHE_PR_KEY","value":"${CIRCLE_PULL_REQUEST##*/}"}'
+            --data '{"name":"CACHE_PR_KEY","value":"'"${CIRCLE_PULL_REQUEST##*/}"'"}'
       - restore_cache:
           keys:
             - my-special-file-{{ .Environment.CACHE_PR_KEY }}
       - save_cache:
           key: my-special-file-{{ .Environment.CACHE_PR_KEY }}
           paths:
-            - /packages
+            - ./packages
       - run: |
           echo "Hello Hola"
            
