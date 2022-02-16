@@ -23,7 +23,7 @@ jobs:
             --data '{"name":"Tar_Checksum","value":"'"${Tar_Checksum_Val}"'"}'
             
       - save_cache:
-          key: my-{{ checksum "special-file-dir.tar.gz" }}
+          key: my-{{ .Environment.Tar_Checksum }}
           paths:
             - ./packages
             
