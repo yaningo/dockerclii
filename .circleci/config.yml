@@ -17,6 +17,7 @@ jobs:
           key: myfile-{{ .Environment.PR_NUM }}
           paths:
             - Dockerfile
+      - run: echo "Hello"
            
 workflows:
   La-Build:
