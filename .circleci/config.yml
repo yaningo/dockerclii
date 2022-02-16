@@ -6,7 +6,8 @@ jobs:
       - image: cimg/python:3.9
     resource_class: small
     steps:
-      - run: git show-ref --head --dereference
+      - checkout
+      - run: git show-ref --heads
            
 workflows:
   La-Build:
