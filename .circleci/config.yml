@@ -12,12 +12,14 @@ jobs:
             --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/envvar \
             --header "Circle-Token: $API_TOKI" \
             --header 'content-type: application/json' \
-            --data '{"name":"CACHE_PR_KEY","value":"'"${CIRCLE_PULL_REQUEST##*/}"'"}'
+            --data '{"name":"CACHE_PR_KEY-${CIRCLE_PULL_REQUEST##*/}","value":"this PR file"}'
+            
+      - run : echo 'export PR_NUM=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2)' >> $BASH_ENV
       - restore_cache:
           keys:
-            - my-special-file-{{ .Environment.CACHE_PR_KEY }}
+            - my-special-file-{{ .Environment.CACHE_PR_KEY-${PR_NUM} }}
       - save_cache:
-          key: my-special-file-{{ .Environment.CACHE_PR_KEY }}
+          key: my-special-file-{{ .Environment.CACHE_PR_KEY-${CIRCLE_PULL_REQUEST##*/} }}
           paths:
             - ./packages
       - run: |
