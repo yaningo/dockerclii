@@ -10,9 +10,16 @@ jobs:
       
       - restore_cache:
           keys:
-            - my-{{ checksum "special-file-dir.tar.gz"}}
+            - my-{{ {{ .Environment.Tar_Checksum }}}}
             
-      - run: tar -czvf special-file-dir.tar.gz ./packages
+      - run: |
+          tar -czvf special-file-dir.tar.gz ./packages
+          Tar_Checksum_Val=$(cksum special-file-dir.tar.gz)
+          curl --request POST \
+            --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/envvar \
+            --header "Circle-Token: $API_TOKI" \
+            --header 'content-type: application/json' \
+            --data '{"name":"Tar_Checksum","value":"'"${Tar_Checksum_Val}"'"}'
             
       - save_cache:
           key: my-{{ checksum "special-file-dir.tar.gz" }}
