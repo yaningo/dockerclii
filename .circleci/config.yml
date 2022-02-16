@@ -10,7 +10,7 @@ jobs:
       
       - restore_cache:
           keys:
-            - my-{{ {{ .Environment.Tar_Checksum }}}}
+            - my-{{ .Environment.Tar_Checksum }}
             
       - run: |
           tar -czvf special-file-dir.tar.gz ./packages
