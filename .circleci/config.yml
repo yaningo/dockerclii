@@ -15,6 +15,7 @@ jobs:
           key: myfile-from-pr-${CIRCLE_PULL_REQUEST##*/}
           paths:
             - Dockerfile
+      - run: echo $CIRCLE_PULL_REQUEST
            
 workflows:
   La-Build:
