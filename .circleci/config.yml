@@ -5,11 +5,9 @@ jobs:
     docker:
       - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
-      - run: cypress --version
+      - run: npx cypress info
            
 workflows:
-
-
   staging-master:
     jobs:
       - condy_pull
