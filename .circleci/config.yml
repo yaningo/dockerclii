@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: |
           curl --request POST \
-            --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/api-preview-docs/envvar \
+            --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/envvar \
             --header "Circle-Token: $API_TOKI" \
             --header 'content-type: application/json' \
             --data '{"name":"CACHE_PR_KEY","value":"'"${CIRCLE_PULL_REQUEST##*/}"'"}'
