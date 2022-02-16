@@ -8,8 +8,8 @@ jobs:
     steps:
       - checkout
       - run: |
-          FROM_PR=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2-)
-          PR_NUM=${CIRCLE_PULL_REQUEST##*/}
+          echo "export FROM_PR=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2-)" >> $BASH_ENV
+          echo "export PR_NUM=${CIRCLE_PULL_REQUEST##*/}" >> $BASH_ENV
       - restore_cache:
           keys:
             - myfile-{{ .Environment.FROM_PR }}
@@ -17,7 +17,9 @@ jobs:
           key: myfile-{{ .Environment.PR_NUM }}
           paths:
             - Dockerfile
-      - run: echo "Hello"
+      - run: |
+          echo $FROM_PR
+          echo $PR_NUM
            
 workflows:
   La-Build:
