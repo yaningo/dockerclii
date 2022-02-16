@@ -10,6 +10,7 @@ jobs:
       - run: |
           echo "export FROM_PR=$(git show -s --format=%s $CIRCLE_SHA1|awk '{ print $4}'|cut -c 2-)" >> $BASH_ENV
           echo "export PR_NUM=${CIRCLE_PULL_REQUEST##*/}" >> $BASH_ENV
+          source $BASH_ENV
       - restore_cache:
           keys:
             - myfile-{{ .Environment.FROM_PR }}
