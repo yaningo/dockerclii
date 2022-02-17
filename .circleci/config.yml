@@ -2,21 +2,27 @@ version: 2.1
 defaults: &defaults
   working_directory: ~/app
   docker:
-    - image: checkmarx/cx-flow
+    - image: checkmarx/cx-flow@sha256:2b2a2f09680e6c3ba21b00cf8ab4005baa133f0eeeaeb406f09b01a832fffb67
   
 jobs:
   setup:
     <<: *defaults
     steps:
+      
       - checkout
+      - run:
+          command: |
+            which git
+            which ssh
+          when: always
 
 workflows:
   version: 2
   build-deploy:
     jobs:
-      - setup:
-          pre-steps:
-            - run:
-                name: Install git and OpenSSH
-                command: |
-                  apk update && apk add git openssh-client
+      - setup
+#           pre-steps:
+#             - run:
+#                 name: Install git and OpenSSH
+#                 command: |
+#                   apk update && apk add git openssh-client
