@@ -1,16 +1,27 @@
 version: 2.1
   
 jobs:
-  setup:
+  cimg:
     docker:
-      - image: circleci/node
+      - image: cimg/ruby:2.6.6-node
     steps:
       - run:
-          command: sleep 5
+          command: gem install bundler -v 2.2.17
+          
+      - run: ls -al /home/circleci
+      
+  circleci:
+    docker:
+      - image: circleci/ruby:2.6.6-node
+    steps:
+      - run:
+          command: gem install bundler -v 2.2.17
+          
+      - run: ls -al /home/circleci
 
           
 workflows:
   build-deploy:
     jobs:
-      - setup:
-          name: pikachu-test-static-content-linux-blablooooo
+      - cimg
+      - circleci
