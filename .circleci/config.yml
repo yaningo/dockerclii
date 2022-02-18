@@ -2,12 +2,17 @@ version: 2.1
 
 jobs:
   test:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/android:2021.10.2
     steps:
       - run: docker --version
-      
+      - setup_remote_docker:
+          version: 19.03.12
+          docker_layer_caching: true
           
+      - run: ssh remote-docker \ lsb_release -a
+
+      
 workflows:
   build-deploy:
     jobs:
