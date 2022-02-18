@@ -1,22 +1,14 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.4.4
-  
 jobs:
-  setup:
-    docker:
-      - image: hashicorp/terraform:0.14.11
+  test:
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
-      - run:
-          name: Is curl here?
-          command: |
-              apk update && apk upgrade && apk add curl
-              curl checkip.amazonaws.com 
-      
+      - run: docker --version
       
           
 workflows:
   build-deploy:
     jobs:
-      - setup
+      - test
