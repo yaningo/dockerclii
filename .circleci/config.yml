@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: checkmarx/cx-flow:latest
     steps:
-      - run: ssh -V
       - checkout
 
 workflows:
