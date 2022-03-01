@@ -3,9 +3,10 @@ version: 2.1
 jobs:
   master-build:
     docker:
-      - image: checkmarx/cx-flow:latest
+      - image: node:14.18.2-alpine sh
     steps:
-      - checkout
+      - run: apk --no-cache add bash
+      - run: bash && type -a npm
 
 workflows:
   ci:
