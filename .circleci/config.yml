@@ -3,15 +3,14 @@ version: 2.1
 jobs:
   master-build:
     docker:
-#       - image: node:14.18.2-alpine
       - image: node:14.18.2-alpine
     steps:
       - run: apk --no-cache add bash
       - run: |
           bash -c 'hash'
-          bash -c 'hash npm'
-          bash -c 'hash'
-          bash -c 'type -a npm'
+          bash -c 'hash npm && hash'
+#          bash -c 'hash'
+#          bash -c 'type -a npm'
 
 workflows:
   ci:
