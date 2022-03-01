@@ -6,7 +6,7 @@ jobs:
       - image: node:14.18.2-alpine
     steps:
       - run: apk --no-cache add bash
-      - run: hash npm
+      - run: hash | grep npm
 
 workflows:
   ci:
