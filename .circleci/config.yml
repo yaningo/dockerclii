@@ -7,6 +7,7 @@ jobs:
     steps:
       - run: apk --no-cache add bash
       - run: bash -c 'hash npm'
+      - run: bash -c 'hash'
 
 workflows:
   ci:
