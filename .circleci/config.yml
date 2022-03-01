@@ -6,9 +6,8 @@ jobs:
 #       - image: node:14.18.2-alpine
       - image: cimg/node:17.6.0
     steps:
-      - run: hash npm
-      - run: source /home/circleci/.bashrc
-      - run: hash
+      - run: hash -t npm
+      - run: hash -t
       - run: type -a npm
 #       - run: apk --no-cache add bash
 #       - run: bash -c 'hash npm'
