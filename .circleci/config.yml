@@ -6,7 +6,7 @@ jobs:
 #       - image: node:14.18.2-alpine
       - image: node:14.18.2-alpine
     steps:
-      -run: apk --no-cache add bash
+      - run: apk --no-cache add bash
       - run: |
           bash -c 'hash'
           bash -c 'hash npm'
