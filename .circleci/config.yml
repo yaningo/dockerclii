@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: |
           hash
-          hash npm
+          hash -t npm
           hash
           type -a npm
 
