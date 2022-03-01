@@ -8,7 +8,7 @@ jobs:
       - run: apk --no-cache add bash
       - run: |
           bash -c 'hash && hash npm && hash'
-#          bash -c 'hash'
+          bash -c 'hash'
 #          bash -c 'type -a npm'
 
 workflows:
