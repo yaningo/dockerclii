@@ -6,10 +6,11 @@ jobs:
 #       - image: node:14.18.2-alpine
       - image: cimg/node:17.6.0
     steps:
-      - run: hash
-      - run: hash npm
-      - run: hash
-      - run: type -a npm
+      - run: |
+          hash
+          hash npm
+          hash
+          type -a npm
 
 workflows:
   ci:
