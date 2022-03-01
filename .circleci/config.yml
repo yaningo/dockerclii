@@ -6,7 +6,7 @@ jobs:
 #       - image: node:14.18.2-alpine
       - image: cimg/base:2022.02
     steps:
-      - run: hash npm
+#       - run: hash npm
       - run: hash
 #       - run: apk --no-cache add bash
 #       - run: bash -c 'hash npm'
