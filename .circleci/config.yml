@@ -5,7 +5,8 @@ jobs:
     docker:
       - image: node:14.18.2-alpine
     steps:
-      - run: type -a npm
+      - run: apk --no-cache add bash
+      - run: hash npm
 
 workflows:
   ci:
