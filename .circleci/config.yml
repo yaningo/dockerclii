@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   master-build:
     docker:
-      - image: node:14.18.2-alpine
+      - image: cimg/base:2022.02
     steps:
       - setup_remote_docker:
           version: 19.03.13
