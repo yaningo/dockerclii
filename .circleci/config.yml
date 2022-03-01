@@ -4,7 +4,7 @@ jobs:
   master-build:
     docker:
 #       - image: node:14.18.2-alpine
-      - image: cimg/node:17.6.0
+      - image: node:14.18.2-alpine
     steps:
       - run: |
           hash
