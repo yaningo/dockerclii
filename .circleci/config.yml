@@ -3,12 +3,9 @@ version: 2.1
 jobs:
   master-build:
     docker:
-      - image: cimg/base:2022.02
+      - image: node:14.18.2-alpine
     steps:
-      - setup_remote_docker:
-          version: 19.03.13
-      - run: docker run -d node:14.18.2-alpine sh
-      - run: ssh remote-docker \ type -a npm
+      - run: type -a npm
 
 workflows:
   ci:
