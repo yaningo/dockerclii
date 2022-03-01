@@ -7,7 +7,7 @@ jobs:
     steps:
       - setup_remote_docker:
           version: 19.03.13
-      - run: docker run -it node:14.18.2-alpine sh
+      - run: docker run -d node:14.18.2-alpine sh
       - run: ssh remote-docker \ apk --no-cache add bash
       - run: ssh remote-docker \ bash -c 'type -a npm'
 
