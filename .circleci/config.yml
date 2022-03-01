@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   master-build:
     docker:
-      - image: node:14.18.2-alpine sh
+      - image: node:14.18.2-alpine
     steps:
       - run: apk --no-cache add bash
       - run: bash && type -a npm
