@@ -3,11 +3,14 @@ version: 2.1
 jobs:
   master-build:
     docker:
-      - image: node:14.18.2-alpine
+#       - image: node:14.18.2-alpine
+      - image: cimg/base:2022.02
     steps:
-      - run: apk --no-cache add bash
-      - run: bash -c 'hash npm'
-      - run: bash -c 'hash'
+      - run: hash npm
+      - run: hash
+#       - run: apk --no-cache add bash
+#       - run: bash -c 'hash npm'
+#       - run: bash -c 'hash'
 
 workflows:
   ci:
