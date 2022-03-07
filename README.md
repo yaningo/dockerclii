@@ -13,5 +13,3 @@ build
 bleep
 
 Does it auto-cancel?
-
-Does it???
