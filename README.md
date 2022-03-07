@@ -13,3 +13,5 @@ build
 bleep
 
 Does it auto-cancel?
+
+I think it does (even though the branch is flagged as default)
