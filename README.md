@@ -11,3 +11,5 @@ Check in CCI server
 build
 
 bleep
+
+Does it auto-cancel?
