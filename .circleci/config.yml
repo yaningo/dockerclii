@@ -35,7 +35,7 @@ jobs: # a collection of steps
             docker run -it node:14.18.2-alpine sh   -c "type -a npm"
       - run:
           command: |
-            docker run -it node:14.18.2-alpine sh   -c "apk --no-cache add bash; bash -c 'bash --version; type -a npm'"
+            docker run -it node:14.18.2-alpine sh   -c "apk --no-cache add bash; bash -c 'bash --version; type -P npm'"
 
 workflows:
   do_it:
