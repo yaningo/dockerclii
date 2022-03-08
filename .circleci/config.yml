@@ -8,7 +8,7 @@ jobs:
       - run: apk --no-cache add bash
       - run: |
           bash -c 'hash && hash npm && hash'
-          sleep 40
+          sleep 41
           bash -c 'hash'
 #          bash -c 'type -a npm'
 
