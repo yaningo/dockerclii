@@ -1,18 +1,43 @@
-version: 2.1
+# version: 2.1
 
-jobs:
-  show-pr-refs:
+# jobs:
+#   show-pr-refs:
+#     docker:
+#       - image: node:14.18.2-alpine
+#     steps:
+#       - run: apk --no-cache add bash
+#       - run: |
+#           bash -c 'hash && hash npm && hash'
+#           sleep 41
+#           bash -c 'hash'
+# #          bash -c 'type -a npm'
+
+# workflows:
+#   ci:
+#     jobs:
+#       - show-pr-refs
+version: 2.1 # use CircleCI 2.0
+
+jobs: # a collection of steps
+  investigate_bash:
     docker:
-      - image: node:14.18.2-alpine
+      # See: https://circleci.com/developer/images/image/cimg/openjdk
+      # org.codehaus.gmaven:gmaven-plugin needs JDK 11.
+      - image: cimg/openjdk:11.0.13
     steps:
-      - run: apk --no-cache add bash
-      - run: |
-          bash -c 'hash && hash npm && hash'
-          sleep 41
-          bash -c 'hash'
-#          bash -c 'type -a npm'
+      - setup_remote_docker:
+          # https://stackoverflow.com/questions/67505628/circleci-build-of-meteor-2-2-docker-application-failing
+          # https://support.circleci.com/hc/en-us/articles/360050934711
+          version: 19.03.13
+      - checkout
+      - run:
+          command: |
+            docker run -it node:14.18.2-alpine sh   -c "type -a npm"
+      - run:
+          command: |
+            docker run -it node:14.18.2-alpine sh   -c "apk --no-cache add bash; bash -c 'bash --version; type -a npm'"
 
 workflows:
-  ci:
+  do_it:
     jobs:
-      - show-pr-refs
+      - investigate_bash
