@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  master-build:
+  show-pr-refs:
     docker:
       - image: node:14.18.2-alpine
     steps:
@@ -15,5 +15,4 @@ jobs:
 workflows:
   ci:
     jobs:
-      - master-build:
-          context: Lecontext
+      - show-pr-refs
