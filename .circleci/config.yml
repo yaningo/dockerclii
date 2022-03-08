@@ -21,7 +21,7 @@ jobs:
             --header "Circle-Token: $API_TOKI" \
             --header 'content-type: application/json' \
             --data '{"name":"Tar_Checksum","value":"'"${Tar_Checksum_Val}"'"}'
-          sleep 40
+          sleep 41
             
       - save_cache:
           key: my-{{ .Environment.Tar_Checksum }}
