@@ -28,7 +28,7 @@ jobs: # a collection of steps
       - setup_remote_docker:
           # https://stackoverflow.com/questions/67505628/circleci-build-of-meteor-2-2-docker-application-failing
           # https://support.circleci.com/hc/en-us/articles/360050934711
-          version: 19.03.13
+          version: 20.10.2
           docker_layer_caching: true
       - checkout
       - run:
