@@ -31,13 +31,12 @@ jobs: # a collection of steps
           version: 20.10.11
           docker_layer_caching: true
       - checkout
-      - run:
-          command: |
-            docker build .
-#       - run:
 #       - run:
 #           command: |
-#             docker run -it node:14.18.2-alpine3.14 sh   -c "type -a npm"
+#             docker build .
+      - run:
+          command: |
+            docker run -it node:14.18.2-alpine3.14 sh   -c "type -a npm"
 #       - run:
 #           command: |
 #             docker run -it node:14.18.2-alpine3.14 sh   -c "apk --no-cache add bash; bash -c 'bash --version; type -a npm'"
