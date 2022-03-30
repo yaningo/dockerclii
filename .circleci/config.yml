@@ -19,7 +19,7 @@ jobs:
 workflows:
   ci:
     when:
-      - equal: [ api, << pipeline.trigger_source >> ]
+      equal: [ api, << pipeline.trigger_source >> ]
     jobs:
     - next-gen
     - legacy
