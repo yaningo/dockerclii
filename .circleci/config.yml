@@ -1,37 +1,17 @@
 version: 2.1
-
 jobs:
-  show-pr-refs:
-    docker:
-      - image: cimg/python:3.9
-    resource_class: small
-    steps:
-      - checkout
+  build-arm-large:
+    machine:
+      image: ubuntu-2004:current
       
-      - restore_cache:
-          keys:
-            - my-{{ .Environment.Tar_Checksum }}
-            
-      - run: |
-          tar -czvf special-file-dir.tar.gz ./packages
-          Tar_Checksum_Val=$(shasum special-file-dir.tar.gz|awk '{ print $1}')
-          echo $Tar_Checksum_Val
-          curl --request POST \
-            --url https://circleci.com/api/v2/project/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/envvar \
-            --header "Circle-Token: $API_TOKI" \
-            --header 'content-type: application/json' \
-            --data '{"name":"Tar_Checksum","value":"'"${Tar_Checksum_Val}"'"}'
-          sleep 10
-            
-      - save_cache:
-          key: my-{{ .Environment.Tar_Checksum }}
-          paths:
-            - ./packages
-            
-      - run: |
-          echo "Helloooooo"
-           
-workflows:
-  La-Build:
-    jobs:
-    - show-pr-refs
+    steps:
+      - run: uname -a
+      - run: docker-compose --version
+      - run: 
+          command: |
+            DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+            mkdir -p $DOCKER_CONFIG/cli-plugins
+            curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+            chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+
+      - run: docker-compose --version
