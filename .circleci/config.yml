@@ -15,3 +15,9 @@ jobs:
             chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 
       - run: docker-compose --version
+
+
+workflows:
+  build:
+    jobs:
+      - build-arm-large
