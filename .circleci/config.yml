@@ -13,7 +13,8 @@ jobs:
             mkdir -p $DOCKER_CONFIG/cli-plugins
             curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
             chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
-            $DOCKER_CONFIG/cli-plugins/docker compose --version
+            curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sh
+            $DOCKER_CONFIG/cli-plugins/docker-compose --version
 
 
 workflows:
