@@ -16,7 +16,7 @@ jobs:
             sudo curl -fL https://github.com/docker/compose-switch/releases/download/v1.0.4/docker-compose-linux-arm64 -o /usr/local/bin/compose-switch
             sudo chmod +x /usr/local/bin/compose-switch
             sudo mv /usr/local/bin/docker-compose /usr/local/bin/docker-compose-v1
-            update-alternatives --install /usr/local/bin/docker-compose docker-compose <PATH_TO_DOCKER_COMPOSE_V1> 1
+            update-alternatives --install /usr/local/bin/docker-compose docker-compose /usr/local/bin/docker-compose-v1 1
             update-alternatives --install /usr/local/bin/docker-compose docker-compose /usr/local/bin/compose-switch 99
             update-alternatives --display docker-compose
             docker-compose --version
