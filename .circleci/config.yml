@@ -13,4 +13,5 @@ workflows:
     jobs:
       - condy_pull:
           post-steps:
-            - jira/notify
+            - jira/notify:
+                issue_regexp: '[A-Z]{2,30}-[0-9]+'
