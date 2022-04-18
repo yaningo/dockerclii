@@ -10,4 +10,6 @@ jobs:
 workflows:
   staging-master:
     jobs:
-      - condy_pull
+      - condy_pull:
+          post-steps:
+            - jira/notify
