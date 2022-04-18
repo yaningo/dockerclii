@@ -9,7 +9,7 @@ jobs:
       - run: npx cypress info
            
 workflows:
-  staging-master:
+  build:
     jobs:
       - condy_pull:
           post-steps:
