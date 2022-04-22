@@ -5,6 +5,7 @@ orbs:
 parameters:
   custom-context:
     type: string
+    default: Lecontext
 jobs:
   condy_pull:
     docker:
