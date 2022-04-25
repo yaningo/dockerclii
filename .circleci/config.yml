@@ -10,11 +10,15 @@ jobs:
       - run: |
           echo Hellooooowwww
           npx cypress info
-      - jira/notify:
-          issue_regexp: '[A-Z]{2,30}-[0-9]+'
-          job_type: deployment
+#       - jira/notify:
+#           issue_regexp: '[A-Z]{2,30}-[0-9]+'
+#           job_type: deployment
            
 workflows:
   build:
     jobs:
-      - condy_pull
+      - condy_pull:
+          post-steps:
+            - jira/notify:
+                issue_regexp: '[A-Z]{2,30}-[0-9]+'
+                job_type: deployment
