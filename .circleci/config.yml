@@ -10,7 +10,8 @@ jobs:
     steps:
       - run: |
           echo $PATH
-          ls -al ~/.nvm/versions
+          bash --version
+          ls -al ~/.nvm/versions/node/v12.13.1/bin
       - run:
           name: setup bazel
           command: npm --version
