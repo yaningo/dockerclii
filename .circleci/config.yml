@@ -9,9 +9,8 @@ jobs:
 
     steps:
       - run: |
-          echo $PATH
-          bash --version
-          ls -al ~/.nvm/versions/node/v12.13.1/bin
+          sudo sed -i 's/\/usr\/bin\/env[[:space:]]node/home\/circleci\/\.nvm\/versions\/node\/v12\.13\.1\/bin\/node/' ~/.nvm/versions/node/v12.13.1/bin/npm
+          echo "export PATH="$PATH:.nvm/versions/node/v12.13.1/bin" >> $BASH_ENV
       - run:
           name: setup bazel
           command: npm --version
