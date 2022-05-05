@@ -5,11 +5,12 @@ jobs:
   test:
     docker:
       - image: cimg/node:12.13
-    resource_class: medium
+    resource_class: small
 
     steps:
       - run: |
-          sudo sed -i 's/\/usr\/bin\/env[[:space:]]node/\/usr\/bin\/env[[:space:]]\/home\/circleci\/\.nvm\/versions\/node\/v12\.13\.1\/bin\/node/' ~/.nvm/versions/node/v12.13.1/bin/npm
+          source ~/.bashrc
+          #sudo sed -i 's/\/usr\/bin\/env[[:space:]]node/\/usr\/bin\/env[[:space:]]\/home\/circleci\/\.nvm\/versions\/node\/v12\.13\.1\/bin\/node/' ~/.nvm/versions/node/v12.13.1/bin/npm
           echo 'export PATH="$PATH:.nvm/versions/node/v12.13.1/bin"' >> $BASH_ENV
       - run:
           name: setup bazel
