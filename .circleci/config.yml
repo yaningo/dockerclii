@@ -1,25 +1,19 @@
 version: 2.1
 
 jobs:
-  next-gen:
+
+  test:
     docker:
-      - image: cimg/base:stable
-    resource_class: small
+      - image: cimg/node:12.13
+    resource_class: medium
+
     steps:
-      - run: docker-compose -v
-      
-  legacy:
-    docker:
-      - image: circleci/buildpack-deps
-    resource_class: small
-    steps:
-      - run: docker-compose -v
-     
-           
+      - run: source ~/.bashrc
+      - run:
+          name: setup bazel
+          command: npm --version
+            
 workflows:
-  ci:
-    when:
-      equal: [ api, << pipeline.trigger_source >> ]
+  push:
     jobs:
-    - next-gen
-    - legacy
+      - test
