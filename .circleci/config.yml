@@ -8,7 +8,7 @@ jobs:
     resource_class: medium
 
     steps:
-      - run: echo 'export PATH="$PATH:~/.nvm/versions/node/v12.13.1/bin"' >> $BASH_ENV
+      - run: echo $PATH
       - run:
           name: setup bazel
           command: npm --version
