@@ -8,7 +8,9 @@ jobs:
     resource_class: medium
 
     steps:
-      - run: echo $PATH
+      - run: |
+          echo $PATH
+          ls -al ~/.nvm/versions
       - run:
           name: setup bazel
           command: npm --version
