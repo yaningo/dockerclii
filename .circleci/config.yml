@@ -12,7 +12,6 @@ jobs:
     steps:
       - browser-tools/install-browser-tools:
           firefox-version: 97.0.2
-          command: npm --version
             
 workflows:
   push:
