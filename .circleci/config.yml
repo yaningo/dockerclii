@@ -5,13 +5,13 @@ orbs:
 jobs:
 
   test:
-    docker:
-      - image: cimg/ruby:2.7.5-browsers
+    machine:
+      image: ubuntu-2004:202010-01
     resource_class: small
 
     steps:
-      - run: |
-          sudo apt-get update && sudo apt-get install libxml2-utils
+      - checkout
+      - run: sudo ls -al ~/.ssh
             
 workflows:
   push:
