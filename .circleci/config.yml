@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run: |
           chmod 755 script.sh
-          ./script.sh
+          ./script.sh ($BB_admin_username)
             
 workflows:
   push:
