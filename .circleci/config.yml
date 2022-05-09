@@ -5,12 +5,12 @@ orbs:
 jobs:
 
   test:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/ruby:2.7.5-browsers
     resource_class: small
 
     steps:
-      - checkout
+#       - checkout
       - run: sudo ls -al ~/.ssh
             
 workflows:
