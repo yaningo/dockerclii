@@ -5,15 +5,13 @@ orbs:
 jobs:
 
   test:
-    machine:
-      image: ubuntu-2004:202010-01
+    docker:
+      - image: cimg/ruby:2.7.5-browsers
     resource_class: small
 
     steps:
-      - checkout
       - run: |
-          chmod 755 script.sh
-          ./script.sh $BB_admin_username
+          sudo apt-get update && sudo apt-get install libxml2-utils
             
 workflows:
   push:
