@@ -10,7 +10,7 @@ jobs:
     resource_class: small
 
     steps:
-#       - checkout
+      - checkout
       - run: sudo ls -al ~/.ssh
             
 workflows:
