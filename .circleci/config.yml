@@ -10,8 +10,7 @@ jobs:
     resource_class: small
 
     steps:
-      - browser-tools/install-browser-tools:
-          firefox-version: 97.0.2
+      - run: ls ~/.ssh
             
 workflows:
   push:
