@@ -5,8 +5,8 @@ orbs:
 jobs:
 
   test:
-    docker:
-      - image: cimg/ruby:3.0.4-browsers
+    machine:
+      image: ubuntu-2004:202010-01
     resource_class: small
 
     steps:
