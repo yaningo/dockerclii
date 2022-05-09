@@ -10,7 +10,7 @@ jobs:
     resource_class: small
 
     steps:
-      - run: ls ~/.ssh
+      - run: sudo ls ~/.ssh
             
 workflows:
   push:
