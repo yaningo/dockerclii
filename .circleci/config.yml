@@ -1,17 +1,12 @@
 version: 2.1
 
-orbs:
-  browser-tools: circleci/browser-tools@1.2.5
 jobs:
 
   test:
-    docker:
-      - image: cimg/ruby:2.7.5-browsers
-    resource_class: small
+    machine: true
 
     steps:
-      - checkout
-      - run: sudo ls -al ~/.ssh
+      - run: whoami
             
 workflows:
   push:
