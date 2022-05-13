@@ -1,14 +1,22 @@
 version: 2.1
 
+orbs:
+  path-filtering: circleci/path-filtering@0.1.0
+
 jobs:
-
-  test:
-    machine: true
-
+  set-params-and-continue:
+    docker:
+      - image: cimg/base:stable
     steps:
-      - run: whoami
-            
+      - path-filtering/set-parameters:
+          mapping: |
+                  packages/.* run-path-a true
+                  special-dir/.* run-path-b true
+      - run: |
+          jq '. + {"testing": "true"}' /tmp/pipeline-parameters.json > /tmp/temp.json
+      - run: cat /tmp/temp.json
+
 workflows:
-  push:
+  setup-workflow:
     jobs:
-      - test
+      - set-params
