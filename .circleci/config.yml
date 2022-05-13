@@ -15,7 +15,7 @@ jobs:
                   special-dir/.* run-path-b true
           base-revision: << pipeline.git.base_revision >>
       - run: |
-          jq '. + {"testing": "$CIRCLE_BUILD_NUM"}' /tmp/pipeline-parameters.json > /tmp/temp.json
+          jq '. + {"testing": "'"$CIRCLE_BUILD_NUM"'"}' /tmp/pipeline-parameters.json > /tmp/temp.json
       - run: cat /tmp/temp.json
 
 workflows:
