@@ -4,7 +4,7 @@ orbs:
   path-filtering: circleci/path-filtering@0.1.0
 
 jobs:
-  set-params-and-continue:
+  set-params:
     docker:
       - image: cimg/base:stable
     steps:
