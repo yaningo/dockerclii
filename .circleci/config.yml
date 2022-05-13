@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  path-filtering: circleci/path-filtering@0.1.0
+  path-filtering: circleci/path-filtering@0.1.2
 
 jobs:
   set-params:
