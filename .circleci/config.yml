@@ -1,30 +1,16 @@
 version: 2.1
 jobs:
-  build-arm-large:
+  nvm-ess:
     machine:
-      image: ubuntu-2004:current
-      resource_class: arm.large
+      image: ubuntu-2004:202111-02
     steps:
-      - run: uname -a
-      - run: docker-compose --version
-      - run: 
-          command: |
-            DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-            mkdir -p $DOCKER_CONFIG/cli-plugins
-            curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
-            chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
-            sudo curl -fL https://github.com/docker/compose-switch/releases/download/v1.0.4/docker-compose-linux-arm64 -o /usr/local/bin/compose-switch
-            sudo chmod +x /usr/local/bin/compose-switch
-            sudo mv /usr/local/bin/docker-compose /usr/local/bin/docker-compose-v1
-            update-alternatives --install /usr/local/bin/docker-compose docker-compose /usr/local/bin/docker-compose-v1 1
-            update-alternatives --install /usr/local/bin/docker-compose docker-compose /usr/local/bin/compose-switch 99
-            update-alternatives --display docker-compose
-            docker-compose --version
-            cd $DOCKER_CONFIG/cli-plugins
-            ./docker-compose --version
-
+      - run: |
+          which nvm
+          nvm --version
+          which npm
+          npm --version
 
 workflows:
   build:
     jobs:
-      - build-arm-large
+      - bnvm-ess
