@@ -23,5 +23,3 @@ workflows:
             - jira/notify:
                 issue_regexp: '[A-Z]{2,30}-[0-9]+'
                 job_type: deployment
-                environment_type: development
-                service_id: "1"
