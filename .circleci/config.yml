@@ -9,7 +9,7 @@ jobs:
     steps:
       - run: |
           echo Hellooooowwww
-          npx cypress info
+          #npx cypress info
 #       - jira/notify:
 #           issue_regexp: '[A-Z]{2,30}-[0-9]+'
 #           job_type: deployment
@@ -18,9 +18,9 @@ workflows:
   build:
     jobs:
       - condy_pull:
-          name: Condy-Pull
+          name: Condy Pull
           post-steps:
             - jira/notify:
                 issue_regexp: '[A-Z]{2,30}-[0-9]+'
                 job_type: deployment
-                environment_type: production
+                environment_type: development
