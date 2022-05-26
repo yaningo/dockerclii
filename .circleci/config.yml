@@ -18,7 +18,7 @@ workflows:
   build:
     jobs:
       - condy_pull:
-          name: Condy Pull
+          name: Condy-Pull
           post-steps:
             - jira/notify:
                 issue_regexp: '[A-Z]{2,30}-[0-9]+'
