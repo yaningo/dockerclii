@@ -20,7 +20,7 @@ jobs:
       - image: cimg/android:2022.04
     steps:
       - salutation:
-          greeting: "<< parameters.greeting >>"
+          greeting: << parameters.greeting >>
 
 workflows:
   unit-test-workflow:
@@ -29,21 +29,5 @@ workflows:
           matrix:
             alias: daily
             parameters:
-              greeting: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
+              greeting: ["system-images\;android-30\;google_apis\;x86", "system-images\;android-29\;google_apis\;x86", "system-images\;android-28\;google_apis\;x86", "system-images\;android-27\;google_apis\;x86"]
           name: daily-android-test-<<matrix.greeting>>
-  
-  nightly-test-workflow:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - develop
-    jobs:
-      - build: 
-          matrix:
-            alias: nightly
-            parameters:
-              greeting: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
-          name: nightly-android-test-<<matrix.greeting>>
