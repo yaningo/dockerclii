@@ -1,5 +1,15 @@
 version: 2.1
 
+
+commands:
+  salutation:
+    parameters:
+      greeting:
+        type: string
+        default: helli;hello
+    steps:
+      - run: echo << parameters.greeting >>
+
 jobs:
   build:
     parameters:
@@ -9,7 +19,8 @@ jobs:
     docker:
       - image: cimg/android:2022.04
     steps:
-      - run: echo "<< parameters.greeting >>"
+      - salutation:
+          greeting: << parameters.greeting >>
 
 workflows:
   unit-test-workflow:
