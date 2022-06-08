@@ -43,7 +43,7 @@ jobs:
 workflows:
   unit-test-workflow:
     jobs:
-      - build: 
+      - nightly-android-test: 
           matrix:
             alias: nightly
             parameters:
