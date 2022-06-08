@@ -19,7 +19,7 @@ workflows:
             alias: daily
             parameters:
               greeting: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
-          name: daily-android-test-<<matrix.system-image>>
+          name: daily-android-test-<<matrix.greeting>>
   
   nightly-test-workflow:
     triggers:
@@ -35,4 +35,4 @@ workflows:
             alias: nightly
             parameters:
               greeting: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
-          name: nightly-android-test-<<matrix.system-image>>
+          name: nightly-android-test-<<matrix.greeting>>
