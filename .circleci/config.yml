@@ -64,7 +64,7 @@ workflows:
                 - popopo
     jobs:
       - build: 
-          matrix:
+        matrix:
             alias: nightly
             parameters:
               system-image:
@@ -72,4 +72,4 @@ workflows:
                 - system-images;android-29;google_apis;x86
                 - system-images;android-28;google_apis;x86
                 - system-images;android-27;google_apis;x86
-          name: nightly-android-test-<<matrix.system-image>>
+        name: nightly-android-test-<<matrix.system-image>>
