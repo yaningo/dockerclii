@@ -59,7 +59,7 @@ workflows:
               only:
                 - develop
     jobs:
-      - nightly-android-test: 
+      - build: 
           matrix:
             alias: nightly
             parameters:
