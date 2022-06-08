@@ -49,3 +49,19 @@ workflows:
             parameters:
               system-image: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
           name: daily-android-test-<<matrix.system-image>>
+
+  nightly-test-workflow:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - nightly-android-test: 
+          matrix:
+            alias: nightly
+            parameters:
+              system-image: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
+          name: nightly-android-test-<<matrix.system-image>>
