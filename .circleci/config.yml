@@ -29,5 +29,5 @@ workflows:
           matrix:
             alias: daily
             parameters:
-              greeting: ["system-images\;android-30\;google_apis\;x86", "system-images\;android-29\;google_apis\;x86", "system-images\;android-28\;google_apis\;x86", "system-images\;android-27\;google_apis\;x86"]
+              greeting: ["'system-images;android-30;google_apis;x86'", "'system-images;android-29;google_apis;x86'", "'system-images;android-28;google_apis;x86'", "'system-images;android-27;google_apis;x86'"]
           name: daily-android-test-<<matrix.greeting>>
