@@ -45,10 +45,14 @@ workflows:
     jobs:
       - build:
           matrix:
-            alias: daily
+            alias: nightly
             parameters:
-              system-image: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
-          name: daily-android-test-<<matrix.system-image>>
+              system-image:
+                - system-images;android-30;google_apis;x86
+                - system-images;android-29;google_apis;x86
+                - system-images;android-28;google_apis;x86
+                - system-images;android-27;google_apis;x86
+          name: nightly-android-test-<<matrix.system-image>>
 
   nightly-test-workflow:
     triggers:
