@@ -20,7 +20,7 @@ jobs:
       - image: cimg/android:2022.04
     steps:
       - salutation:
-          greeting: << parameters.greeting >>
+          greeting: "<< parameters.greeting >>"
 
 workflows:
   unit-test-workflow:
