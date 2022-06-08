@@ -9,7 +9,7 @@ jobs:
     docker:
       - image: cimg/android:2022.04
     steps:
-      - run: echo << parameters.greeting >>
+      - run: echo "<< parameters.greeting >>"
 
 workflows:
   unit-test-workflow:
