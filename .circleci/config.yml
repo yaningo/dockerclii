@@ -43,7 +43,7 @@ jobs:
 workflows:
   unit-test-workflow:
     jobs:
-      - build:
+      - build: 
           matrix:
             alias: nightly
             parameters:
