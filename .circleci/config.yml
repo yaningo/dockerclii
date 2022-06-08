@@ -1,26 +1,44 @@
 version: 2.1
 
-
-commands:
-  salutation:
-    parameters:
-      greeting:
-        type: string
-        default: helli;hello
-    steps:
-      - run: echo << parameters.greeting >>
-
+orbs:
+  android: circleci/android@1.0.3
+  
 jobs:
   build:
     parameters:
-      greeting:
+      system-image:
         type: string
-        default: helli;hello
-    docker:
-      - image: cimg/android:2022.04
+        default: system-images;android-30;google_apis;x86
+    executor:
+      name: android/android-machine
     steps:
-      - salutation:
-          greeting: << parameters.greeting >>
+      - android/start-emulator-and-run-tests:
+          system-image: << parameters.system-image >>
+
+
+# version: 2.1
+
+
+# commands:
+#   salutation:
+#     parameters:
+#       greeting:
+#         type: string
+#         default: helli;hello
+#     steps:
+#       - run: echo << parameters.greeting >>
+
+# jobs:
+#   build:
+#     parameters:
+#       greeting:
+#         type: string
+#         default: helli;hello
+#     docker:
+#       - image: cimg/android:2022.04
+#     steps:
+#       - salutation:
+#           greeting: << parameters.greeting >>
 
 workflows:
   unit-test-workflow:
@@ -29,5 +47,5 @@ workflows:
           matrix:
             alias: daily
             parameters:
-              greeting: ["'"system-images;android-30;google_apis;x86"'", "'"system-images;android-29;google_apis;x86"'", "'"system-images;android-28;google_apis;x86"'", "'"system-images;android-27;google_apis;x86"'"]
+              greeting: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86"'", "system-images;android-27;google_apis;x86"]
           name: daily-android-test-<<matrix.greeting>>
