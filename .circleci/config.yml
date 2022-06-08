@@ -1,103 +1,38 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.4.2
-  
-commands:
-  greeting:
-    parameters:
-      to:
-        default: "world"
-        type: string
-    steps:
-      - run:
-          name: Greetings
-          command: echo "Hello << parameters.to >>"
-
 jobs:
-  sayhello: # defines a parameterized job
-    description: A job that does very little other than demonstrate what a parameterized job looks like
+  build:
     parameters:
-      saywhat:
-        description: "To whom shall we say hello?"
-        default: "World"
+      greeting:
         type: string
-    circleci_ip_ranges: true
+        default: helli;hello
     docker:
-      - image: circleci/node
+      - image: cimg/android:2022.04
     steps:
-      - run: echo "Hello << parameters.saywhat >>"
-#       - run:
-#           command: |
-#             echo ' export plan_diff=$(whoami) ' >> $BASH_ENV
-#             echo "$plan_diff"
-#             echo ' export MESSAGE="Changes to be applied from terraform: \`\`\`$plan_diff\`\`\`" ' >> $BASH_ENV
-#       - run: echo "$MESSAGE"
-#       - slack/notify:
-#           custom: |
-#             {
-#               "blocks": [
-#                           {
-#                             "type": "section",
-#                             "text": {
-#                                       "type": "mrkdwn",
-#                                       "text": $MESSAGE
-#                                     }
-#                           }
-#                         ]
-#             }
-#           event: always
-          
-      - greeting:
-          to: $CIRCLE_USERNAME
-          
-      - run: |
-          echo "Public IP is now $(curl checkip.amazonaws.com)"
-          sleep 30
-      
-      
-#   messer:
-#     parameters:
-#       maven-command:
-#         description: Package or Deeploy?
-#         type: env_var_name
-#         default: PACDEP
+      - echo << parameters.greeting >>
 
-#     docker:
-#       - image: circleci/node
-#     steps:    
-#       - when:
-#           condition:
-#             equal: [ master, << pipeline.git.branch >> ]
-#           steps:
-#             - run: echo 'export PACDEP="deploy"' >> $BASH_ENV
-            
-#       - unless:
-#           condition:
-#             equal: [ master, << pipeline.git.branch >> ]
-#           steps:
-#             - run: echo 'export PACDEP="package"' >> $BASH_ENV
-              
-#       - greeting:
-#           to: ${<< parameters.maven-command >>}
-          
 workflows:
-  welcome:
+  unit-test-workflow:
     jobs:
-#       - messer
-      - sayhello:
-          saywhat: $MAVEN_COMMAND
-          context: slouck
-          pre-steps:
-            - when:
-                condition:
-                  equal: [ master, << pipeline.git.branch >> ]
-                steps:
-                  - run: echo 'export MAVEN_COMMAND=deploy' >> $BASH_ENV
-
-            
-            - unless:
-                condition:
-                  equal: [ master, << pipeline.git.branch >> ]
-                steps:
-                  - run: echo 'export MAVEN_COMMAND=package' >> $BASH_ENV
+      - build:
+          matrix:
+            alias: daily
+            parameters:
+              system-image: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
+          name: daily-android-test-<<matrix.system-image>>
+  
+  nightly-test-workflow:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - build: 
+          matrix:
+            alias: nightly
+            parameters:
+              system-image: ["system-images;android-30;google_apis;x86", "system-images;android-29;google_apis;x86", "system-images;android-28;google_apis;x86", "system-images;android-27;google_apis;x86"]
+          name: nightly-android-test-<<matrix.system-image>>
