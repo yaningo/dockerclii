@@ -4,7 +4,7 @@ orbs:
   path-filtering: circleci/path-filtering@0.1.2
 
 jobs:
-  set-params:
+  test:
     docker:
       - image: cimg/base:stable
     steps:
@@ -19,9 +19,9 @@ jobs:
       - run: cat /tmp/temp.json
 
 workflows:
-  setup-workflow:
+  testing:
     jobs:
-      - set-params:
+      - test:
           filters:
             branches:
               ignore: /^renovate\/.*$/
