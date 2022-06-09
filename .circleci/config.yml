@@ -21,4 +21,7 @@ jobs:
 workflows:
   setup-workflow:
     jobs:
-      - set-params
+      - set-params:
+          filters:
+            branches:
+              ignore: /^renovate\/.*$/
