@@ -1,16 +1,17 @@
 version: 2.1
 jobs:
-  nvm-ess:
-    machine:
-      image: ubuntu-2004:202111-02
+  regular-job:
+    docker:
+      - image: cimg/android:2022.04
     steps:
       - run: |
-          which nvm
-          nvm --version
-          which npm
-          npm --version
+          echo Hello
 
 workflows:
-  build:
+  my-workflow:
     jobs:
-      - nvm-ess
+      - regular-job
+      - approval-job:
+          type: approval
+          context:
+            - slouck
