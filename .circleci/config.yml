@@ -22,7 +22,7 @@ jobs:
           command: |
             chmod +x ./.circleci/generate-circleci-matrix
             ./.circleci/generate-circleci-matrix \
-              -c "${CI_CUSTOMERS_TO_DEPLOY}" \
+              -c "${CI_CUSTOMERS_TO_DEPLOY_NO_COMMA}" \
               -e "${CI_ENVS_TO_DEPLOY}" \
               -x "${CI_DEPLOY_EXCLUSIONS:-}" \
             | tee /dev/tty
