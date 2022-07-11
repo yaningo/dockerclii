@@ -20,6 +20,7 @@ jobs:
       - run:
           name: Generate config
           command: |
+            chmod +x ./.circleci/generate-circleci-matrix
             ./.circleci/generate-circleci-matrix \
               -c "${CI_CUSTOMERS_TO_DEPLOY}" \
               -e "${CI_ENVS_TO_DEPLOY}" \
