@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# All arguments should be comma-separated lists with no spaces
+
+# matrix_exclude_pairs VALUE is OPTIONAL (but -x is still required - getopts isn't great at optional args)
+
+# The value of -x should be pairs of customer,env exceptions separated by colons
+
+# e.g. acme,qa:takeda,prod
+
+
+
+while getopts "c:e:x" opt; do
+  case $opt in
+    c) matrix_customer_args=$OPTARG ;;
+    e) matrix_env_args=$OPTARG ;;
+    x)
+      # Check next positional parameter
+      nextopt=${!OPTIND}
+      # existing or starting with dash?
+      if [[ -n $nextopt && $nextopt != -* ]] ; then
+        OPTIND=$((OPTIND + 1))
+        matrix_exclude_pairs=$nextopt
+      else
+        matrix_exclude_pairs=""
+      fi
+      ;;
+  esac
+
+done
+
+
+# if args missing, return nothing
+
+if [[ -z "${matrix_customer_args}" || -z ${matrix_env_args} ]]; then
+  exit 0
+fi
+
+
+
+# Create quoted strings for matrix args
+
+customers="[\"${matrix_customer_args//,/\", \"}\"]"
+
+envs="[\"${matrix_env_args//,/\", \"}\"]"
+
+
+
+# Create array for exclusion pairs
+
+OIFS=$IFS
+
+IFS=':' read -ra exclude_pairs <<< $matrix_exclude_pairs
+
+
+
+exclude_block=""
+if (( ${#exclude_pairs[@]} != 0 )); then
+  IFS=','
+  exclude_block=$'\n  exclude:\n'
+  for p in "${exclude_pairs[@]}"
+  do
+    read -a ex <<< ${p}
+    exclude_block+="    - customer: ${ex[0]}"
+    exclude_block+=$'\n'
+    exclude_block+="      env: ${ex[1]}"
+    exclude_block+=$'\n'
+  done
+fi
+
+IFS=$OIFS
+
+
+cat <<EOF
+matrix:
+  parameters:
+    customer: ${customers}
+    env: ${envs}${exclude_block}
+EOF
