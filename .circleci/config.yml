@@ -1,24 +1,25 @@
-version: 2.1
+setup: true
 
 orbs:
-  path-filtering: circleci/path-filtering@0.1.2
+  continuation: circleci/continuation@0.2.0
 
 jobs:
-  set-params:
-    docker:
-      - image: cimg/base:stable
+  setup:
+    executor: continuation/default
     steps:
       - checkout
-      - path-filtering/set-parameters:
-          mapping: |
-                  packages/.* run-path-a true
-                  special-dir/.* run-path-b true
-          base-revision: << pipeline.git.base_revision >>
-      - run: |
-          jq '. + {"testing": "'"$CIRCLE_BUILD_NUM"'"}' /tmp/pipeline-parameters.json > /tmp/temp.json
-      - run: cat /tmp/temp.json
-
-workflows:
-  setup-workflow:
-    jobs:
-      - set-params
+      - run:
+          name: Install yq
+          command: |
+            sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64 &&
+            sudo add-apt-repository ppa:rmescandon/yq &&
+            sudo apt update &&
+            sudo apt install yq
+      - run:
+          name: Generate config
+          command: |
+            ./.circleci/generate-circleci-matrix \
+              -c "${CI_CUSTOMERS_TO_DEPLOY}" \
+              -e "${CI_ENVS_TO_DEPLOY}" \
+              -x "${CI_DEPLOY_EXCLUSIONS:-}" \
+            | tee /dev/tty
