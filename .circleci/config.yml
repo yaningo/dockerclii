@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Generate config
           command: |
-            export CI_CUSTOMERS_TO_DEPLOY_MANUAL="acme  forma  pharma-corp  recursion  takeda  xeris"
+            export CI_CUSTOMERS_TO_DEPLOY_MANUAL="acme forma pharma-corp recursion takeda xeris"
             chmod +x ./.circleci/generate-circleci-matrix
             ./.circleci/generate-circleci-matrix \
               -c "${CI_CUSTOMERS_TO_DEPLOY_MANUAL}" \
