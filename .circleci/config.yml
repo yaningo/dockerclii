@@ -25,8 +25,7 @@ jobs:
             ./.circleci/generate-circleci-matrix \
               -c "${CI_CUSTOMERS_TO_DEPLOY_MANUAL}" \
               -e "${CI_ENVS_TO_DEPLOY}" \
-              -x "${CI_DEPLOY_EXCLUSIONS:-}" \
-              | tee /dev/tty
+              -x "${CI_DEPLOY_EXCLUSIONS:-}"
 
 
 workflows:
