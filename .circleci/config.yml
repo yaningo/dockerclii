@@ -15,6 +15,7 @@ jobs:
           command: |
            $env:APP_VERSION
            $env:APP_VERSION = "1.2.3"
+           Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 #           shell: bash
 #           command: |
