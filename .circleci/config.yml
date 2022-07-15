@@ -7,7 +7,7 @@ jobs:
   build:
     executor:
       name: win/default
-      version: edge
+#       version: edge
 #     environment:
 #       APP_VERSION: "4.5.0"
     steps:
