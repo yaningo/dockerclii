@@ -38,7 +38,7 @@ jobs:
                 "Circle-Token" = "$env:API_TOKI"
             };
             $body = @{
-                value = "1.2.3"
+                value = 1.2.3
             }
 
             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body $body
