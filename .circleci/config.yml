@@ -19,7 +19,7 @@ jobs:
       - run:
           shell: bash
           command: |
-            echo 'export "APP_VERSION = 1.2.3"' >> $BASH_ENV
+            echo 'export "$env:APP_VERSION = 1.2.3"' >> $BASH_ENV
       - run:
           command: |
             $env:APP_VERSION
