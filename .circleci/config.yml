@@ -9,7 +9,7 @@ jobs:
       name: win/default
     steps:
       - run:
-          name: Set APP_VERSION default value
+          name: Set APP_VERSION default valueeeeee
           shell: bash
           command: |
             curl --request PUT --url https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION \
