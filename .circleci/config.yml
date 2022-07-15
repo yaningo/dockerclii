@@ -15,7 +15,7 @@ jobs:
       - run:
           shell: bash
           command: |
-            curl PUT "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION \
+            curl PUT "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION" \
             -H "Circle-Token: $API_TOKI"
             -data '{"value":"1.2.3"}'
       - run:
