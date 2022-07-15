@@ -19,14 +19,27 @@ jobs:
 
       - run:
           command: |
-            $env:APP_VERSION            
+            $env:APP_VERSION
+
       - run:
-#           shell: bash
           command: |
-            curl --request PUT --url "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION" \
-            --header 'content-type: application/json' \
-            --header "Circle-Token: $API_TOKI" \
-            --data '{"value":"1.2.3"}'
+            $Uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
+            $headers = @{
+                'Circle-Token' = '$env:API_TOKI'
+                'content-type: application/json'
+            }
+            $Body = @{
+                value = "1.2.3"
+            }
+
+            Invoke-RestMethod -Method 'Put' -Uri $url -Headers $headers -Body $body
+
+#           shell: bash
+#           command: |
+#             curl --request PUT --url "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION" \
+#             --header 'content-type: application/json' \
+#             --header "Circle-Token: $API_TOKI" \
+#             --data '{"value":"1.2.3"}'
       - run:
           command: |
             $env:APP_VERSION
