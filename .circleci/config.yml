@@ -12,12 +12,14 @@ jobs:
       APP_VERSION: "4.5.0"
     steps:
       - run:
-          name: Set APP_VERSION default valueeeeee
-          shell: cmd.exe
+          name: Set APP_VERSION
+#           shell: cmd.exe
           command: |
-            setx APP_VERSION 1.2.3 /M
+            $env:APP_VERSION
+            $env:LA_VERSION = "1.2.3"
+            setx APP_VERSION "$LA_VERSION" /M
             refreshenv
-            echo %APP_VERSION%
+            $env:APP_VERSION
 
 #           shell: bash
 #           command: |
@@ -40,7 +42,8 @@ jobs:
 
       - run:
           command: |
-            Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+             $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+             $env:APP_VERSION
 
 #       - run:
 #           command: |
