@@ -16,7 +16,7 @@ jobs:
           shell: cmd.exe
           command: |
             echo %APP_VERSION%
-            setx APP_VERSION '1.2.3' /M
+            setx APP_VERSION 123 /M
             refreshenv
             echo %APP_VERSION%
 
