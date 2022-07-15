@@ -30,8 +30,6 @@ jobs:
             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
 
       - run:
-          environment:
-            APP_VERSION: $APP_VERSION
           command: |
             $env:APP_VERSION
 
@@ -67,8 +65,6 @@ jobs:
 #             --data '{"value":"1.2.3"}'
 
       - run:
-          environment:
-            APP_VERSION: $APP_VERSION
           command: |
             $env:APP_VERSION
             
