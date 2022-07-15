@@ -42,7 +42,7 @@ jobs:
                 value = "1.2.3"
             }
 
-            Invoke-RestMethod -Method 'Put' -Uri $uri -Headers $headers -Body $body
+            Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body $body
 
 #           shell: bash
 #           command: |
