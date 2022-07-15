@@ -14,7 +14,7 @@ jobs:
           name: Set APP_VERSION default valueeeeee
           command: |
            $env:APP_VERSION
-           $env:APP_VERSION="1.2.3"
+           setx APP_VERSION "1.2.3"
            refreshenv
 
 #           shell: bash
