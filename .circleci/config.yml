@@ -14,7 +14,7 @@ jobs:
           name: Set APP_VERSION default valueeeeee
           shell: cmd.exe
           command: |
-           $env:APP_VERSION
+           echo %APP_VERSION%
            setx APP_VERSION "1.2.3" /M
            refreshenv
 
