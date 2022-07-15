@@ -36,13 +36,12 @@ jobs:
             $uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
             $headers = @{
                 "Circle-Token" = "$env:API_TOKI"
-                "content-type" = "application/json"
             };
             $body = @{
-                "value" = "1.2.3"
+                value = "1.2.3"
             }
 
-            Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body $body
+            Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
 
 #           shell: bash
 #           command: |
