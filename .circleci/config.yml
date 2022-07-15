@@ -12,12 +12,13 @@ jobs:
     steps:
       - run:
           name: Set APP_VERSION default valueeeeee
-          shell: cmd.exe
+#           shell: cmd.exe
           command: |
-           echo %APP_VERSION%
-           setx APP_VERSION 1.2.3 /M
+           $env:APP_VERSION
+           $env:APP_VERSION = "1.2.3"
            refreshenv
-           echo %APP_VERSION%
+           $env:APP_VERSION
+           Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 #           shell: bash
 #           command: |
