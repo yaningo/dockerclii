@@ -18,7 +18,7 @@ jobs:
            $env:APP_VERSION = "1.2.3"
            refreshenv
            $env:APP_VERSION
-           Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+           Get-ItemPropertyValue -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' -Name APP_VERSION
 
 #           shell: bash
 #           command: |
