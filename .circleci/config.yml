@@ -13,6 +13,12 @@ jobs:
       - run:
           command: |
             $env:APP_VERSION
+            $env:APP_VERSION = "1.2.3"
+            $env:APP_VERSION
+
+      - run:
+          command: |
+            $env:APP_VERSION
 
 workflows:
   whatos:
