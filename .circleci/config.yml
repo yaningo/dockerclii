@@ -41,7 +41,7 @@ jobs:
           command: |
             echo $APP_VERSION
 
-      - run:
+#       - run:
 #           command: |
 #             $TOKEN = $env:API_TOKI
 #             $CurlArgument = '--request', 'PUT',
