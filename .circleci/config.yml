@@ -29,9 +29,9 @@ jobs:
 
             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
 
-      - run: sleep 10
-
       - run:
+          environment:
+            APP_VERSION: $APP_VERSION
           command: |
             $env:APP_VERSION
 
@@ -66,9 +66,9 @@ jobs:
 #             --header "Circle-Token: $API_TOKI" \
 #             --data '{"value":"1.2.3"}'
 
-      - run: sleep 10
-
       - run:
+          environment:
+            APP_VERSION: $APP_VERSION
           command: |
             $env:APP_VERSION
 
