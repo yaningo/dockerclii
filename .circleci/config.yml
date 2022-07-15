@@ -8,8 +8,8 @@ jobs:
     executor:
       name: win/default
 #       version: edge
-#     environment:
-#       APP_VERSION: "4.5.0"
+    environment:
+      APP_VERSION: "4.5.0"
     steps:
       - run:
           name: Set APP_VERSION default valueeeeee
