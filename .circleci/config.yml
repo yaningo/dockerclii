@@ -17,6 +17,7 @@ jobs:
            echo %APP_VERSION%
            setx APP_VERSION "1.2.3" /M
            refreshenv
+           echo %APP_VERSION%
 
 #           shell: bash
 #           command: |
@@ -39,7 +40,7 @@ jobs:
 
       - run:
           command: |
-            Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+            Get-ItemPropertyValue -Path 'HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' -Name APP_VERSION
 
 #       - run:
 #           command: |
