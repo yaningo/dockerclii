@@ -65,6 +65,9 @@ jobs:
 #             --header 'content-type: application/json' \
 #             --header "Circle-Token: $API_TOKI" \
 #             --data '{"value":"1.2.3"}'
+
+      - run: sleep 5
+
       - run:
           command: |
             $env:APP_VERSION
