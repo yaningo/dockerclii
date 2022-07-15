@@ -71,6 +71,16 @@ jobs:
             APP_VERSION: $APP_VERSION
           command: |
             $env:APP_VERSION
+            
+      - run:
+          name: Delete APP_VERSION env var
+          command: |  
+            $uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
+            $headers = @{
+                "Circle-Token" = "$env:API_TOKI"
+            }
+
+            Invoke-RestMethod -Method Delete -Uri $uri -Headers $headers
 
 workflows:
   whatos:
