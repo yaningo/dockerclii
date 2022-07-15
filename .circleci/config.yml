@@ -17,6 +17,7 @@ jobs:
           command: |
             setx APP_VERSION 1.2.3 /M
             refreshenv
+            echo %APP_VERSION%
 
 #           shell: bash
 #           command: |
