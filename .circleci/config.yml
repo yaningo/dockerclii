@@ -12,11 +12,10 @@ jobs:
     steps:
       - run:
           name: Set APP_VERSION default valueeeeee
-          shell: bash
           command: |
+           $env:APP_VERSION
            APP_VERSION="1.2.3"
-           echo 'export "APP_VERSION=$APP_VERSION"' >> $BASH_ENV
-           echo $APP_VERSION
+
 #           shell: bash
 #           command: |
 #             curl --request PUT --url https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION \
@@ -37,9 +36,8 @@ jobs:
 #             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
 
       - run:
-          shell: bash
           command: |
-            echo $APP_VERSION
+            Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Management\Environment' APP_VERSION
 
 #       - run:
 #           command: |
