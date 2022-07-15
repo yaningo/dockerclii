@@ -36,8 +36,8 @@ jobs:
             $TOKEN = $env:API_TOKI
             $uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
             $headers = @{
-                'Circle-Token = $TOKEN'
-                'content-type = application/json'
+                "Circle-Token" = "$TOKEN"
+                "content-type" = "application/json"
             }
             $body = @{
                 value = "1.2.3"
