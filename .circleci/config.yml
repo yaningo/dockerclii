@@ -15,10 +15,10 @@ jobs:
           name: Set APP_VERSION default valueeeeee
           shell: cmd.exe
           command: |
-            echo %PATH%
-            setx APP_VERSION "1.2.3" /M
+            echo %APP_VERSION%
+            setx APP_VERSION 1.2.3 /M
             refreshenv
-            echo %PATH%
+            echo %APP_VERSION%
 
 #           shell: bash
 #           command: |
