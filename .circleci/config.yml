@@ -17,7 +17,7 @@ jobs:
           command: |
             $env:APP_VERSION
             $env:LA_VERSION = "1.2.3"
-            setx APP_VERSION "$LA_VERSION" /M
+            setx APP_VERSION $env:LA_VERSION /M
             refreshenv
             $env:APP_VERSION
 
