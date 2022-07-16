@@ -17,7 +17,7 @@ jobs:
           command: |
             $env:APP_VERSION
             $LA_VERSION = "1.2.3"
-            $env:APP_VERSION = $LA_VERSION
+            setx APP_VERSION $LA_VERSION /M
             refreshenv
             $env:APP_VERSION
 
@@ -44,9 +44,9 @@ jobs:
 
 #             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
 
-      - run:
-          name: Get update env var value
-          command: $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+#       - run:
+#           name: Get update env var value
+#           command: $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 #       - run:
 #           command: |
