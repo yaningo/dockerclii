@@ -20,8 +20,10 @@ jobs:
             setx APP_VERSION $LA_VERSION /M
             refreshenv
             $env:APP_VERSION
-            $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
+      - run:
+          command: |
+            $env:APP_VERSION
 
 #           shell: bash
 #           command: |
@@ -42,8 +44,9 @@ jobs:
 
 #             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
 
-#       - run:
-#           command: $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+      - run:
+          name: Get update env var value
+          command: $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 #       - run:
 #           command: |
