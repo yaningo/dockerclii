@@ -18,7 +18,7 @@ jobs:
           while true; do
             echo "Helloooooo"
             sleep 1
-          do
+          done
           
 workflows:
   La-Build:
