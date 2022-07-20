@@ -22,7 +22,7 @@ jobs:
             $LA_VERSION = "1.2.3"
             setx APP_VERSION $LA_VERSION
             $env:APP_VERSION
-            # refreshenv
+            refreshenv
             # $env:APP_VERSION
             echo ${<<parameters.version>>}
 
