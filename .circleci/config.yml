@@ -19,81 +19,20 @@ jobs:
             setx APP_VERSION $LA_VERSION
             #$env:APP_VERSION
             # refreshenv
-            env:APP_VERSION
+            # $env:APP_VERSION
             echo $APP_VERSION
 
       - run:
           command: |
-            $env:APP_VERSION
+            # $env:APP_VERSION
             echo $APP_VERSION
-
-#           shell: bash
-#           command: |
-#             curl --request PUT --url https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION \
-#             --header 'content-type: application/json' \
-#             --header "Circle-Token: $API_TOKI" \
-#             --data '{"value":"4.5.0"}'
             
-#           command: |  
-#             $uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
-#             $headers = @{
-#                 "Circle-Token" = "$env:API_TOKI"
-#                 "content-type" = "application/json"
-#             };
-#             $body = @{
-#                 value = "4.5.0"
-#             }
+      - when:
+          condition:
+            equal: [ "1.2.3", $APP_VERSION ]
+          steps:
+            - run: echo "1.2.3, viva l'Algérie"
 
-#             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
-
-#       - run:
-#           name: Get update env var value
-#           command: $env:APP_VERSION = Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
-
-#       - run:
-#           command: |
-#             $TOKEN = $env:API_TOKI
-#             $CurlArgument = '--request', 'PUT',
-#                '--url', 'https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION',
-#                '--header', 'content-type=application/json',
-#                '--header', 'Circle-Token=$TOKEN',
-#                '--data', 'value="1.2.3"'
-                
-#             curl.exe @CurlArgument
-
-#           command: |
-#             $APP_VER = "1.2.3"
-#             $uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
-#             $headers = @{
-#                 "Circle-Token" = "$env:API_TOKI"
-#                 "content-type" = "application/json"
-#             };
-#             $body = @{
-#                 value = "$APP_VER"
-#             }
-
-#             Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body ($body| ConvertTo-Json) -ContentType 'application/json'
-
-#           shell: bash
-#           command: |
-#             curl --request PUT --url "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION" \
-#             --header 'content-type: application/json' \
-#             --header "Circle-Token: $API_TOKI" \
-#             --data '{"value":"1.2.3"}'
-
-      - run:
-          command: |
-            $env:APP_VERSION
-            echo $APP_VERSION            
-#       - run:
-#           name: Delete APP_VERSION env var
-#           command: |  
-#             $uri = "https://circleci.com/api/v2/context/b5816bcd-239a-49e2-a45c-fd9026fea393/environment-variable/APP_VERSION"
-#             $headers = @{
-#                 "Circle-Token" = "$env:API_TOKI"
-#             }
-
-#             Invoke-RestMethod -Method Delete -Uri $uri -Headers $headers
 
 workflows:
   whatos:
