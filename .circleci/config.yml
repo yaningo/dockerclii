@@ -29,7 +29,6 @@ jobs:
       - run:
           command: |
             # $env:APP_VERSION
-            APP_VERSION = "$env:APP_VERSION"
             echo ${<<parameters.version>>}
             
       - when:
