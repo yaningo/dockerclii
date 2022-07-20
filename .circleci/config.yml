@@ -13,7 +13,7 @@ jobs:
           command: |
             sleep 10
             curl -X POST "https://circleci.com/api/v2/project/gh/$CIRCLE_USERNAME/$CIRCLE_PROJECT_REPONAME/job/$CIRCLE_BUILD_NUM/cancel" \
-              -H "Circle-Token: $API_TOKI
+              -H "Circle-Token: $API_TOKI"
             
       - run: |
           while true; do
