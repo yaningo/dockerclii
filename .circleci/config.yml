@@ -32,6 +32,11 @@ jobs:
             # $env:APP_VERSION
             echo ${<<parameters.version>>}
             
+      - run:
+          shell: bash
+          command: |
+            echo ${<<parameters.version>>}
+            
       - when:
           condition:
             equal: [ "1.2.3", "${<<parameters.version>>}" ]
