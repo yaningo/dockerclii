@@ -13,19 +13,18 @@ jobs:
     steps:
       - run:
           name: Set APP_VERSION
-          shell: bash
           command: |
             # $env:APP_VERSION
             $LA_VERSION = "1.2.3"
             setx APP_VERSION $LA_VERSION
             #$env:APP_VERSION
             # refreshenv
-            # $env:APP_VERSION
+            env:APP_VERSION
             echo $APP_VERSION
 
       - run:
           command: |
-            # $env:APP_VERSION
+            $env:APP_VERSION
             echo $APP_VERSION
 
 #           shell: bash
@@ -84,7 +83,7 @@ jobs:
 
       - run:
           command: |
-            # $env:APP_VERSION
+            $env:APP_VERSION
             echo $APP_VERSION            
 #       - run:
 #           name: Delete APP_VERSION env var
