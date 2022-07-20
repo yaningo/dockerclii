@@ -33,7 +33,7 @@ jobs:
             
       - when:
           condition:
-            equal: [ "1.2.3", ${<<parameters.version>>} ]
+            equal: [ "1.2.3", <<parameters.version>> ]
           steps:
             - run: echo "1.2.3, viva l'Algérie"
 
