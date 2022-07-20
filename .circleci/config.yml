@@ -23,7 +23,7 @@ jobs:
             setx APP_VERSION $LA_VERSION
             $env:APP_VERSION
             refreshenv
-            # $env:APP_VERSION
+            $env:APP_VERSION
             echo ${<<parameters.version>>}
 
       - run:
