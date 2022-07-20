@@ -12,7 +12,8 @@ jobs:
           background: true
           command: |
             sleep 10
-            circleci-agent step halt
+            curl -X POST "https://circleci.com/api/v2/project/gh/$CIRCLE_USERNAME/$CIRCLE_PROJECT_REPONAME/job/$CIRCLE_BUILD_NUM/cancel" \
+              -H "Circle-Token: $API_TOKI
             
       - run: |
           while true; do
