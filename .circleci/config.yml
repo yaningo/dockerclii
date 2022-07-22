@@ -8,6 +8,7 @@ jobs:
 
     steps:           
       - run:
+          shell: /bin/bash
           name: Failing step
           command: exit 1
 
