@@ -8,9 +8,11 @@ jobs:
 
     steps:           
       - run:
-          shell: /bin/bash +e
+#           shell: /bin/bash
           name: Failing step
-          command: exit 1
+          command: |
+            set +o errexit
+            exit 1
 
       - run:
           when: always
