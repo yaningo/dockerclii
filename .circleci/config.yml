@@ -1,27 +1,22 @@
 version: 2.1
 
 jobs:
-  max-time:
+  succeilure:
     docker:
       - image: cimg/python:3.9
     resource_class: small
 
     steps:           
       - run:
-          name: MaxMan
-          background: true
-          command: |
-            sleep 10
-            curl -X POST "https://circleci.com/api/v2/project/gh/$CIRCLE_USERNAME/$CIRCLE_PROJECT_REPONAME/job/$CIRCLE_BUILD_NUM/cancel" \
-              -H "Circle-Token: $API_TOKI"
-            
-      - run: |
-          while true; do
-            echo "Helloooooo"
-            sleep 1
-          done
+          name: Failing step
+          command: exit 1
+
+      - run:
+        when: always
+        command: echo "Helloooooo"
+
           
 workflows:
   La-Build:
     jobs:
-    - max-time
+    - succeilure
