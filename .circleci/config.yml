@@ -12,8 +12,8 @@ jobs:
           command: exit 1
 
       - run:
-        when: always
-        command: echo "Helloooooo"
+          when: always
+          command: echo "Helloooooo"
 
           
 workflows:
