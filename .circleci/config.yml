@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@2.2.0
+  linux-not: circleci/windows@2.2.0
 
 jobs:
   build:
     executor:
-      name: win/default
+      name: linux-not/default
 #       version: edge
     environment:
       APP_VERSION: "4.5.0"
