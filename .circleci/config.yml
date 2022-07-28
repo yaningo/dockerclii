@@ -24,3 +24,4 @@ workflows:
                 environment_type: production
                 job_type: deployment
                 service_id: "SUP"
+                scan_commit_body: true
