@@ -5,40 +5,15 @@ jobs:
     docker:
       - image: circleci/node
     steps:
-      - run:
-          command: |
-                   echo job1
-                   echo $HOME
-                   
-  deuxieme:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo job2
- 
-  troisieme:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo jobnum3
-                                     
+      - run: |
+          echo $BB_admin_username
+          echo 'export "BB_admin_username=perrytheplatypus"' >> $BASH_ENV
+
+      - run: echo $BB_admin_username
+
+
 workflows:
-  version: 2
-  papa:
+  papu:
     jobs:
       - premier
    
-#       - start-trigger-metrics-collection:
-#           type: approval
-
-#       - deuxieme:
-#           requires:
-#             - start-trigger-metrics-collection
-      
-#   lala:
-#     jobs:
-#       - troisieme
