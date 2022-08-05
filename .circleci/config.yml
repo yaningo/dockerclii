@@ -9,7 +9,9 @@ jobs:
       - run: shopt globstar
 
       - run:
-          command: shopt -s globstar
+          command: |
+            shopt -s globstar
+            shopt globstar
           when: always
 
       - run:
