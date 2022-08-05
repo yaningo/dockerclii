@@ -7,7 +7,15 @@ jobs:
     resource_class: small
     steps:
       - run: shopt globstar
-           
+
+      - run:
+          command: shopt -s globstar
+          when: always
+
+      - run:
+          command: shopt globstar
+          when: always
+
 workflows:
   La-Build:
     jobs:
