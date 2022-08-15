@@ -12,6 +12,8 @@ workflows:
     jobs:
       - regular-job
       - approval-job:
+          requires:
+            - regular-job
           type: approval
           context:
             - slouck
