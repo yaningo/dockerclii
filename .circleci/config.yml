@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - run:
-          shell: powershell.exe
+#           shell: powershell.exe
           command: |
             New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
             Get-Item C:\tmpa\* -Filter "*.txt"| Remove-Item -Force
