@@ -7,42 +7,12 @@ jobs:
   build:
     executor:
       name: win/default
-#       version: edge
-    environment:
-      APP_VERSION: "4.5.0"
-    parameters:
-      version:
-        type: env_var_name
-        default: APP_VERSION
+
     steps:
       - run:
-          name: Set APP_VERSION
           command: |
-            $env:APP_VERSION
-            echo ${<<parameters.version>>}
-            $LA_VERSION = "1.2.3"
-            setx APP_VERSION $LA_VERSION
-            $env:APP_VERSION
-            refreshenv
-            $env:APP_VERSION
-            echo ${<<parameters.version>>}
-
-      - run:
-          command: |
-            # $env:APP_VERSION
-            echo ${<<parameters.version>>}
-            
-      - run:
-          shell: bash
-          command: |
-            echo ${<<parameters.version>>}
-            
-      - when:
-          condition:
-            equal: [ "1.2.3", "${<<parameters.version>>}" ]
-          steps:
-            - run: echo "1.2.3, viva l'Algérie"
-
+            New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
+            Get-Item C:\tmp\* | Remove-Item -Path C:\tmp\hidden-RO-file.txt -Force
 
 workflows:
   whatos:
