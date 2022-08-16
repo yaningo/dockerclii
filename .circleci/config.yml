@@ -13,7 +13,7 @@ jobs:
           shell: powershell.exe
           command: |
             New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
-            Get-Item C:\tmpa\* | Remove-Item -Force
+            Get-Item C:\tmp\* | Remove-Item -Path C:\tmpa\*.txt -Force
 
 workflows:
   whatos:
