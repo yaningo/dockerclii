@@ -12,7 +12,7 @@ jobs:
       - run:
 #           shell: powershell.exe
           command: |
-            $ErrorActionPreference = 'Stop'
+            # $ErrorActionPreference = 'Stop'
             New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
             Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
             Get-Item C:\tmp\*
