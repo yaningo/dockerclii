@@ -10,6 +10,14 @@ jobs:
 
     steps:
       - run:
+          command: |
+            while true; do
+              sleep 5
+              Get-WmiObject WIN32_PROCESS | Sort-Object -Property ws -Descending | Select-Object -first 10 ProcessID,Name,WS
+              echo "======"
+            done
+          background: true
+      - run:
 #           shell: powershell.exe
           command: |
             # $ErrorActionPreference = 'Stop'
@@ -17,6 +25,7 @@ jobs:
             New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
             Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
             Get-Item C:\tmp\*
+            sleep 10
             refresh env
 
 workflows:
