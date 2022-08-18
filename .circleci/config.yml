@@ -10,13 +10,13 @@ jobs:
 
     steps:
       - run:
+          shell: bash
           command: |
-            while(true)
-            {
+            while true; do
               sleep 5
-              Get-WmiObject WIN32_PROCESS | Sort-Object -Property ws -Descending | Select-Object -first 10 ProcessID,Name,WS
+              systeminfo | find "Available Physical Memory"
               echo "======"
-            }
+            done
           background: true
       - run:
 #           shell: powershell.exe
