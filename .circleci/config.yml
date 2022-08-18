@@ -11,11 +11,12 @@ jobs:
     steps:
       - run:
           command: |
-            while true; do
+            while(true)
+            {
               sleep 5
               Get-WmiObject WIN32_PROCESS | Sort-Object -Property ws -Descending | Select-Object -first 10 ProcessID,Name,WS
               echo "======"
-            done
+            }
           background: true
       - run:
 #           shell: powershell.exe
