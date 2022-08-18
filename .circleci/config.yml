@@ -14,7 +14,8 @@ jobs:
           command: |
             while true; do
               sleep 5
-              systeminfo | find "Available Physical Memory"
+              # systeminfo | find "Available Physical Memory"
+              wmic OS get FreePhysicalMemory
               echo "======"
             done
           background: true
