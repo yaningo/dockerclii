@@ -26,10 +26,10 @@ jobs:
 #           shell: powershell.exe
           command: |
             # $ErrorActionPreference = 'Stop'
-            $ErrorActionPreference
-            New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
-            Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
-            Get-Item C:\tmp\*
+            # $ErrorActionPreference
+            # New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
+            # Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
+            # Get-Item C:\tmp\*
             sleep 10
             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
             $env:APP_VERSION
@@ -43,7 +43,7 @@ jobs:
       - run:
 #           shell: powershell.exe
           command: |
-            Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
+            # Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
             Update-SessionEnvironment
             $env:APP_VERSION
             echo "================="
