@@ -7,6 +7,8 @@ jobs:
   build:
     executor:
       name: win/default
+    environment:
+      APP_VERSION: "4.5.0"
 
     steps:
       - run:
@@ -29,7 +31,20 @@ jobs:
             Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
             Get-Item C:\tmp\*
             sleep 10
-            refresh env
+            Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
+            $env:APP_VERSION
+            $LA_VERSION = "1.2.3"
+            setx APP_VERSION $LA_VERSION
+            $env:APP_VERSION
+            refreshenv
+            # $env:APP_VERSION
+            echo ${APP_VERSION}
+
+      - run:
+#           shell: powershell.exe
+          command: |
+            $env:APP_VERSION
+            echo ${APP_VERSION}
 
 workflows:
   whatos:
