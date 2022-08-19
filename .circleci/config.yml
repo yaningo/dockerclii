@@ -44,7 +44,7 @@ jobs:
 #           shell: powershell.exe
           command: |
             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
-            # Update-SessionEnvironment
+            Update-SessionEnvironment
             $env:APP_VERSION
             echo "================="
             echo $APP_VERSION
