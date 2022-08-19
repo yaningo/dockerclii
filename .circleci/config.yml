@@ -19,7 +19,7 @@ jobs:
               date
               systeminfo | findstr -r -c:".*Memory.*"
               # wmic OS get FreePhysicalMemory
-              echo "======"
+              echo -e "======\n"
             done
           background: true
       - run:
