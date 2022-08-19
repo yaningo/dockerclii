@@ -17,8 +17,8 @@ jobs:
             while true; do
               sleep 5
               date
-              # systeminfo | find "Available Physical Memory"
-              wmic OS get FreePhysicalMemory
+              systeminfo | find "Memory"
+              # wmic OS get FreePhysicalMemory
               echo "======"
             done
           background: true
@@ -31,7 +31,7 @@ jobs:
             Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
             Get-Item C:\tmp\*
             sleep 10
-            # Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
+            Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
             $env:APP_VERSION
             $LA_VERSION = "1.2.3"
             setx APP_VERSION $LA_VERSION
@@ -42,6 +42,7 @@ jobs:
       - run:
 #           shell: powershell.exe
           command: |
+            Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
             $env:APP_VERSION
 
 workflows:
