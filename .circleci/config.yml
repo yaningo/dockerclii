@@ -46,8 +46,9 @@ jobs:
             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
             Update-SessionEnvironment
             $env:APP_VERSION
+            echo "================="
             echo $APP_VERSION
-            Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+            # Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 workflows:
   whatos:
