@@ -37,14 +37,12 @@ jobs:
             setx APP_VERSION $LA_VERSION
             $env:APP_VERSION
             refreshenv
-            # $env:APP_VERSION
-            echo ${APP_VERSION}
+            $env:APP_VERSION
 
       - run:
 #           shell: powershell.exe
           command: |
             $env:APP_VERSION
-            echo ${APP_VERSION}
 
 workflows:
   whatos:
