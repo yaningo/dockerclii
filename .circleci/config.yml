@@ -17,7 +17,7 @@ jobs:
             while true; do
               sleep 5
               date
-              systeminfo | find "Memory"
+              systeminfo | findstr -c:"*Memory*"
               # wmic OS get FreePhysicalMemory
               echo "======"
             done
@@ -44,6 +44,8 @@ jobs:
           command: |
             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
             $env:APP_VERSION
+            echo $APP_VERSION
+            Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 workflows:
   whatos:
