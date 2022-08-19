@@ -17,7 +17,7 @@ jobs:
             while true; do
               sleep 5
               date
-              systeminfo | findstr -r -c:"*Memory*"
+              systeminfo | findstr //r //c:"*Memory*"
               # wmic OS get FreePhysicalMemory
               echo "======"
             done
