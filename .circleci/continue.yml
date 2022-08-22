@@ -1,0 +1,13 @@
+version: 2.1
+
+jobs:
+  lejob:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run: echo "Hello, I'm continuing"
+
+workflows:
+  setup-workflow:
+    jobs:
+      - lejob
