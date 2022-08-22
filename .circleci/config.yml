@@ -2,18 +2,24 @@ version: 2.1
 jobs:
   regular-job:
     docker:
-      - image: cimg/android:2022.04
-    steps:
-      - run: |
-          echo Hello
+      - image: cimg/base:stable
+    parameters:
+      branch:
+        type: env_var_name
+        default: CIRCLE_BRANCH
+  steps:
+  - checkout
+  - when:
+      condition:
+        or:
+        - equal: [ beeboo, << parameters.branch >> ]
+
+      steps:
+        - run: |
+            echo << parameters.branch >>
+            echo "It works!"
 
 workflows:
   my-workflow:
     jobs:
       - regular-job
-      - approval-job:
-          requires:
-            - regular-job
-          type: approval
-          context:
-            - slouck
