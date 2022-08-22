@@ -8,16 +8,16 @@ jobs:
         type: env_var_name
         default: CIRCLE_BRANCH
   steps:
-  - checkout
-  - when:
-      condition:
-        or:
-        - equal: [ beeboo, << parameters.branch >> ]
+    - checkout
+    - when:
+        condition:
+          or:
+          - equal: [ beeboo, << parameters.branch >> ]
 
-      steps:
-        - run: |
-            echo << parameters.branch >>
-            echo "It works!"
+        steps:
+          - run: |
+              echo << parameters.branch >>
+              echo "It works!"
 
 workflows:
   my-workflow:
