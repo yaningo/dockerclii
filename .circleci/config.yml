@@ -13,7 +13,7 @@ jobs:
       - when:
           condition:
             or:
-            - equal: [ "beeboo", << parameters.branch >> ]
+            - equal: [ "beeboo123", << parameters.branch >> ]
 
           steps:
             - run: |
