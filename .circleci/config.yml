@@ -8,11 +8,13 @@ jobs:
         type: env_var_name
         default: CIRCLE_BRANCH
     steps:
-      - checkout
+      - run: |
+          echo << parameters.branch >>
+          echo ${<< parameters.branch >>}
       - when:
           condition:
             or:
-            - equal: [ beeboo, << parameters.branch >> ]
+              - equal: [ beeboo, ${<< parameters.branch >>} ]
 
           steps:
             - run: |
