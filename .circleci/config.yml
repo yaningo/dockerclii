@@ -5,8 +5,7 @@ jobs:
       - image: cimg/base:stable
     parameters:
       branch:
-        type: env_var_name
-        default: CIRCLE_BRANCH
+        type: string
     steps:
       - run: |
           echo << parameters.branch >>
@@ -14,7 +13,7 @@ jobs:
       - when:
           condition:
             or:
-            - equal: [ beeboo, << parameters.branch >> ]
+            - equal: [ "beeboo", << parameters.branch >> ]
 
           steps:
             - run: |
@@ -24,4 +23,5 @@ jobs:
 workflows:
   my-workflow:
     jobs:
-      - regular-job
+      - regular-job:
+          branch: << pipeline.git.branch >>
