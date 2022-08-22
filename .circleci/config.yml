@@ -25,3 +25,9 @@ workflows:
   setup-workflow:
     jobs:
       - set-params
+      - path-filtering/filter:
+          mapping: |
+                  packages/.* run-path-a true
+                  special-dir/.* run-path-b true
+          base-revision: master
+          config-path: .circleci/continue.yml
