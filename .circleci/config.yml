@@ -10,15 +10,7 @@ jobs:
       - run: |
           echo << parameters.branch >>
           echo ${<< parameters.branch >>}
-      - when:
-          condition:
-            or:
-            - equal: [ "beeboo123", << parameters.branch >> ]
-
-          steps:
-            - run: |
-                echo << parameters.branch >>
-                echo "It works!"
+          sudo ifconfig -a
 
 workflows:
   my-workflow:
