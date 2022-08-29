@@ -6,8 +6,8 @@ jobs:
     docker:
       - image: cimg/base:2022.08
       - image: localstack/localstack
-        environment:
-          LOCALSTACK_HOSTNAME: http://localstack.fax-transmitter.com:4566
+#         environment:
+#           LOCALSTACK_HOSTNAME: http://localstack.fax-transmitter.com:4566
           
     steps:
       - run:
