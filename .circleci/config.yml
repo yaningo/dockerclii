@@ -3,9 +3,13 @@ orbs:
   localstack: localstack/platform@1.0
 jobs:
   run-integration-tests:
-    executor: localstack/default
+    docker:
+      - image: image: cimg/base:2022.08
+      - image: localstack/localstack
+       environment:
+         LOCALSTACK_HOSTNAME: http://localstack.fax-transmitter.com:4566
+          
     steps:
-      - localstack/startup
       - run:
           command: echo "Execute your tests here :)"
 workflows:
