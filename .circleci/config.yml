@@ -1,31 +1,33 @@
 version: 2.1
 
-orbs:
-  ruby: circleci/ruby@1.4.0
-executors:
-  main:
-    docker:
-      - image: cimg/base:2022.01
-commands:
-  
-  check-something:
-    steps:
-      - run: |
-          ssh -N -f -L ${QA_RDS_HOSTNAME} ${QA_BASTION_USERNAME}@${QA_BASTION_HOSTNAME}
-#          ssh -N -f -L 2040:${QA_RDS_HOSTNAME}:5432 ${QA_BASTION_USERNAME}@${QA_BASTION_HOSTNAME}
-          
-
 jobs:
-  build:
-    executor: main
+  bullish:
+    docker:
+      - image: cimg/python:3.10
+    resource_class: small
+
     steps:
       - checkout
-      - run: tar -cvzf archive.tar.gz ./dummy_dir
-      - store_artifacts:
-          path: ./archive.tar.gz
-          destination: archived_folder
+      - run:
+          name: Get a stock price
+          shell: /usr/bin/env python3
+          command: >+
+            import os
+            os.system('pip3 install yfinance')
+            import yfinance as yf
+            
+            #define the ticker symbol
+            tickerSymbol = 'TSLA'
+
+            #get data on this ticker
+            tickerData = yf.Ticker(tickerSymbol)
+
+            #get the historical prices for this ticker
+            tickerDf = tickerData.history(period='1d')
+
+            print(tickerDf)
       
 workflows:
   workflow1:
     jobs:
-      - build
+      - bullish
