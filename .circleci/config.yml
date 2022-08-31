@@ -13,7 +13,7 @@ jobs:
           shell: /usr/bin/env python3
           command: >+
             import os
-            os.system('sudo pip3 install yfinance')
+            os.system('date')
             import yfinance as yf
 
             #define the ticker symbol
