@@ -14,7 +14,7 @@ jobs:
           command: >+
             import os
 
-            cmd = 'date'
+            cmd = 'pwd'
             os.system(cmd)
             #import yfinance as yf
 
