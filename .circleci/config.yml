@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - checkout
-      - run: echo: "Oh lala"
+      - run: echo "Oh lala"
       - run:
           name: Get a stock price
           command: python3 script.py
