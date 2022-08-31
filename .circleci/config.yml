@@ -12,7 +12,6 @@ jobs:
           name: Get a stock price
           shell: /usr/bin/env python3
           command: >+
-            import os
             import subprocess
 
             cmd = 'pwd'
