@@ -14,8 +14,8 @@ jobs:
           command: >+
             import os
 
-            cmd = 'pwd'
-            os.system(cmd)
+            #cmd = 'pwd'
+            os.system("ls -al")
             #import yfinance as yf
 
             #define the ticker symbol
