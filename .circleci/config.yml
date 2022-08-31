@@ -15,4 +15,7 @@ jobs:
 workflows:
   workflow1:
     jobs:
-      - bullish
+      - bullish:
+          filters:
+            tags:
+              only: /.*/
