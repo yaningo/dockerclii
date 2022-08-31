@@ -13,9 +13,10 @@ jobs:
           shell: /usr/bin/env python3
           command: >+
             import os
+            import subprocess
 
             cmd = 'pwd'
-            os.system(cmd)
+            subprocess.call(cmd, shell=True)
             #import yfinance as yf
 
             #define the ticker symbol
