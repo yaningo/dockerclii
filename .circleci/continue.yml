@@ -1,5 +1,13 @@
 version: 2.1
 
+parameters:
+  run-path-a:
+    type: boolean
+    default: false
+  run-path-b:
+    type: boolean
+    default: false
+
 jobs:
   lejob:
     docker:
