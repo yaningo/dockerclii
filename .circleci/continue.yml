@@ -5,7 +5,9 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run: echo "Hello, I'm continuing"
+      - run: |
+          sleep 12
+          echo "Hello, I'm continuing"
 
 workflows:
   setup-workflow:
