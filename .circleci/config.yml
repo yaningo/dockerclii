@@ -8,7 +8,7 @@ jobs:
       - image: cypress/browsers:node12.18.3-chrome87-ff82
     steps:
       - run: |
-          echo Hellooooowwww
+          echo Hellooooowwwwwwww
 #       - jira/notify:
 #           issue_regexp: '[A-Z]{2,30}-[0-9]+'
 #           job_type: deployment
