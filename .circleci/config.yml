@@ -23,5 +23,4 @@ workflows:
                 issue_regexp: '[A-Z]{2,30}-[0-9]+'
                 environment_type: development
                 job_type: deployment
-                service_id: "SUP"
                 scan_commit_body: true
