@@ -25,17 +25,6 @@ jobs:
          command: which docker
 
 workflows:
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - tech5irl-patch-1
-    jobs:
-      - build
-  
   other-flow:
     jobs:
       - other_build:
