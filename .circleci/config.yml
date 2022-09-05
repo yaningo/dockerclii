@@ -3,9 +3,9 @@ jobs:
   regular-job:
     docker:
       - image: cimg/base:stable
-    parameters:
-      branch:
-        type: string
+#     parameters:
+#       branch:
+#         type: string
     steps:
       - run: |
           echo << parameters.branch >>
