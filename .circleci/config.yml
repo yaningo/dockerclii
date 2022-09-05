@@ -9,7 +9,7 @@ parameters:
     default: robin
   param3:
     type: string
-    default: I-am-${<< pipeline.parameters.param1 >>}
+    default: I-am-<< pipeline.parameters.param1 >>
     
 jobs:
   regular-job:
