@@ -9,9 +9,7 @@ jobs:
     steps:
       - run: |
           echo Hellooooowwwwwwww
-#       - jira/notify:
-#           issue_regexp: '[A-Z]{2,30}-[0-9]+'
-#           job_type: deployment
+      - jira/notify
            
 workflows:
   build:
