@@ -8,8 +8,6 @@ jobs:
 #         type: string
     steps:
       - run: |
-          echo << parameters.branch >>
-          echo ${<< parameters.branch >>}
           sudo ifconfig -a
 
 workflows:
