@@ -1,4 +1,16 @@
 version: 2.1
+
+parameters:
+  param1:
+    type: string
+    default: batman
+  param2:
+    type: string
+    default: robin
+  param3:
+    type: string
+    default: I-am-<< pipeline.parameters.param1 >>
+    
 jobs:
   regular-job:
     docker:
@@ -8,21 +20,11 @@ jobs:
 #         type: string
     steps:
       - run: |
-          sudo ifconfig -a
+          echo << pipeline.parameters.param1 >>
+          echo << pipeline.parameters.param2 >>
+          echo << pipeline.parameters.param3 >>
 
 workflows:
   my-workflow:
-    when:
-      and:
-        - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-        - equal: [ "beeboo", << pipeline.schedule.name >> ]
-    jobs:
-      - regular-job
-      
-  my-other-workflow:
-    when:
-      and:
-        - equal: [ "scheduled_pipeline", << pipeline.trigger_source >> ]
-        - equal: [ "beeboo", << pipeline.schedule.name >> ]
     jobs:
       - regular-job
