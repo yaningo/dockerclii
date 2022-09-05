@@ -13,16 +13,16 @@ jobs:
 workflows:
   my-workflow:
     when:
-    and:
-      - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-      - equal: [ "beeboo", << pipeline.schedule.name >> ]
+      and:
+        - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
+        - equal: [ "beeboo", << pipeline.schedule.name >> ]
     jobs:
       - regular-job
       
   my-other-workflow:
     when:
-    and:
-      - equal: [ "scheduled_pipeline", << pipeline.trigger_source >> ]
-      - equal: [ "beeboo", << pipeline.schedule.name >> ]
+      and:
+        - equal: [ "scheduled_pipeline", << pipeline.trigger_source >> ]
+        - equal: [ "beeboo", << pipeline.schedule.name >> ]
     jobs:
       - regular-job
