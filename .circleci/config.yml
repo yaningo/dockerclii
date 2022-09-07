@@ -2,21 +2,13 @@ version: 2.1
 
 jobs:
   bullish:
-    docker:
-      - image: cimg/python:3.10
-    resource_class: small
+    machine:
+      image: ubuntu-2004:202111-02
 
     steps:
-      - checkout
-      - run: echo "Oh lala"
-      - run:
-          name: Get a stock price
-          command: python3 script.py
+      - run: ifconfig -a
       
 workflows:
   workflow1:
     jobs:
-      - bullish:
-          filters:
-            tags:
-              only: /.*/
+      - bullish
