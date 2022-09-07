@@ -6,7 +6,7 @@ jobs:
       image: ubuntu-2204:2022.04.1
 
     steps:
-      - run: ip
+      - run: ip route
       
 workflows:
   workflow1:
