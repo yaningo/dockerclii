@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   bullish:
     machine:
-      image: ubuntu-2004:202111-02
+      image: ubuntu-2204:2022.04.1
 
     steps:
       - run: ifconfig -a
