@@ -14,7 +14,8 @@ parameters:
 jobs:
   regular-job:
     docker:
-      - image: cimg/base:stable
+#       - image: cimg/base:stable
+      - image: amazon/dynamodb-local
 #     parameters:
 #       branch:
 #         type: string
