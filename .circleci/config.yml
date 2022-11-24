@@ -33,8 +33,8 @@ workflows:
 #         - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
 #         - equal: [ "my_little_schedule", << pipeline.schedule.name >> ]
     jobs:
-      - regular-job:
-          filters:
-            branches:
-              only:
-                - caramba
+      - regular-job
+#           filters:
+#             branches:
+#               only:
+#                 - caramba
