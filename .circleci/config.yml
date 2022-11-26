@@ -34,7 +34,7 @@ jobs:
 workflows:
   La-Build:
     jobs:
-    - show-pr-refs"
+    - show-pr-refs:
         filters:
             branches:
               ignore:
