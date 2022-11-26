@@ -34,8 +34,11 @@ jobs:
 workflows:
   La-Build:
     jobs:
-    - show-pr-refs:
-        filters:
-            branches:
-              ignore:
-                - /^beeboo.*/
+    - show-pr-refs
+    
+    - hold:
+          type: approval
+          requires:
+            - show-pr-refs
+    
+  
