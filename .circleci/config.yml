@@ -15,7 +15,7 @@ jobs:
             echo $PYTHON_VERSION_GLOB
       - restore_cache:
           keys:
-            - v3-{{ .Environment.PYTHON_VERSION }}
+            - v3-{{ .Environment.PYTHON_VERSION_GLOB }}
 
 workflows:
   La-Build:
