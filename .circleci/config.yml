@@ -8,7 +8,9 @@ jobs:
     steps:
       - run: 
           command: |
-            echo 'export "PYTHON_VERSION=$(python --version)"' >> $BASH_ENV
+            PYTHON_VERSION=$(python --version)
+            echo $PYTHON_VERSION
+            echo 'export PYTHON_VERSION="$PYTHON_VERSION"' >> $BASH_ENV
             source $BASH_ENV
             echo $PYTHON_VERSION
       - restore_cache:
