@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: 
           command: |
-            PYTHON_VERSION=$(python --version | cut -d " " 2)
+            PYTHON_VERSION=$(python --version | cut -d " " -f 2)
             echo $PYTHON_VERSION
             echo 'export PYTHON_VERSION_GLOB="$PYTHON_VERSION"' >> $BASH_ENV
             source $BASH_ENV
