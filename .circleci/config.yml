@@ -11,7 +11,7 @@ jobs:
             PYTHON_VERSION=$(python --version | cut -d " " -f 2)
             echo $PYTHON_VERSION
             echo 'export PYTHON_VERSION_GLOB=3' >> $BASH_ENV
-            #source $BASH_ENV
+            source $BASH_ENV
             echo $PYTHON_VERSION_GLOB
       - restore_cache:
           keys:
