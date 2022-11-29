@@ -1,24 +1,21 @@
 version: 2.1
 
 jobs:
-  show-glob:
+  show-cache:
     docker:
-      - image: notion/circleci:0.135
+      - image: cimg/python:3.8
     resource_class: small
     steps:
-      - run: shopt globstar
-
-      - run:
+            - run: 
           command: |
-            shopt -s globstar
-            shopt globstar
-          when: always
-
-      - run:
-          command: shopt globstar
-          when: always
+            export PYTHON_VERSION=$(python --version) >> $BASH_ENV
+            source $BASH_ENV
+            echo $PYTHON_VERSION
+      - restore_cache:
+          keys:
+            - v3-{{ .Environment.PYTHON_VERSION }}-{{ checksum "requirements.txt"}}
 
 workflows:
   La-Build:
     jobs:
-    - show-glob
+    - show-cache
