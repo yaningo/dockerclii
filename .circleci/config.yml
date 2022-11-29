@@ -6,7 +6,7 @@ jobs:
       - image: cimg/python:3.8
     resource_class: small
     steps:
-            - run: 
+      - run: 
           command: |
             export PYTHON_VERSION=$(python --version) >> $BASH_ENV
             source $BASH_ENV
