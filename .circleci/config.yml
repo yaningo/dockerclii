@@ -6,16 +6,16 @@ jobs:
       - image: cimg/python:3.8
     resource_class: small
     steps:
-      - run: 
+      - run:
+          name: Save var
           command: |
-            PYTHON_VERSION=$(python --version | cut -d " " -f 2)
-            echo $PYTHON_VERSION
-            echo 'export PYTHON_VERSION_GLOB=3' >> $BASH_ENV
-            source $BASH_ENV
-            echo $PYTHON_VERSION_GLOB
-      - restore_cache:
-          keys:
-            - v3-{{ .Environment.PYTHON_VERSION_GLOB }}
+            TEST="val"
+            echo 'export TEST="${TEST}"' >> "$BASH_ENV"
+      - run:
+          name: Read var
+          command: |
+            source ${BASH_ENV}
+            echo ${TEST}
 
 workflows:
   La-Build:
