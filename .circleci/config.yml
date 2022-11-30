@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Read var
           command: |
-            source ${BASH_ENV}
+            #source ${BASH_ENV}
             echo ${TEST}
 
 workflows:
