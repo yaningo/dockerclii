@@ -11,12 +11,14 @@ jobs:
           command: |
             TEST="val"
             echo "export TEST1=$TEST" >> "$BASH_ENV"
+            echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
             echo $TEST
       - run:
           name: Read var
           command: |
             #source ${BASH_ENV}
             echo $TEST1
+            echo $GIT_SHA1
 
 workflows:
   La-Build:
