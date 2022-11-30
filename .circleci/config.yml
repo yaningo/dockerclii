@@ -10,7 +10,7 @@ jobs:
           name: Save var
           command: |
             TEST=val
-            echo 'export TEST="$TEST"' >> "$BASH_ENV"
+            echo 'export TEST="val"' >> "$BASH_ENV"
       - run:
           name: Read var
           command: |
