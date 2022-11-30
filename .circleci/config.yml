@@ -10,8 +10,9 @@ jobs:
           name: Save var
           command: |
             TEST="val"
-            echo "export TEST=${TEST}" >> "${BASH_ENV}"
+            echo 'export TEST="${TEST}"' >> "$BASH_ENV"
             echo 'export GIT_SHA1="$CIRCLE_SHA1"' >> "$BASH_ENV"
+            source $BASH_ENV
             echo $TEST
       - run:
           name: Read var
