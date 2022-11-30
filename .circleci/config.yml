@@ -10,12 +10,12 @@ jobs:
           name: Save var
           command: |
             TEST="val"
-            echo 'export TEST="${TEST}"' >> "$BASH_ENV"
+            echo 'export TEST="$TEST"' >> "$BASH_ENV"
       - run:
           name: Read var
           command: |
             #source ${BASH_ENV}
-            echo ${TEST}
+            echo $TEST
 
 workflows:
   La-Build:
