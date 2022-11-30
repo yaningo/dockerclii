@@ -9,13 +9,14 @@ jobs:
       - run:
           name: Save var
           command: |
-            TEST=val
-            echo 'export TEST="val"' >> "$BASH_ENV"
+            TEST="val"
+            echo 'export TEST1="$TEST"' >> "$BASH_ENV"
+            echo $TEST
       - run:
           name: Read var
           command: |
             #source ${BASH_ENV}
-            echo $TEST
+            echo $TEST1
 
 workflows:
   La-Build:
