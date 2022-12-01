@@ -20,10 +20,12 @@ jobs:
             echo "Initial default gateway is $DEFAULT_GW"
             
             if [ -n "$ET_phone_home" ]; then
-              route add "$ET_phone_home" MASK 255.255.255.255 "$DEFAULT_GW"
+              #route add "$ET_phone_home" MASK 255.255.255.255 "$DEFAULT_GW"
+              netsh interface ip add route "$ET_phone_home"/32 6 "$DEFAULT_GW" metric=101 store=active
             fi
             
-            route add 169.254.0.0 MASK 255.255.0.0 "$DEFAULT_GW"
+            #route add 169.254.0.0 MASK 255.255.0.0 "$DEFAULT_GW"
+            netsh interface ip add route 169.254.0.0/16 6 "$DEFAULT_GW" metric=101 store=active
             
             netstat -r
       - run:
