@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@2.2.0
+  win: circleci/windows@5.5.0
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       - run:
           shell: bash.exe
           command: |
-            netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($3, a, \":\"); print a[1] }'
+            netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($3, a, ":"); print a[1] }'
       - run:
           shell: bash
           command: |
