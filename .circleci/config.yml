@@ -1,17 +1,14 @@
 version: 2.1
 
 jobs:
-  show-cache:
+  show-val:
     docker:
       - image: cimg/python:3.8
     resource_class: small
     steps:
       - run: 
           command: |
-            PYTHON_VERSION=$(python --version | cut -d " " -f 2)
-            echo $PYTHON_VERSION
-            echo 'export PYTHON_VERSION_GLOB=3' >> $BASH_ENV
-            #source $BASH_ENV
+            echo 'export PYTHON_VERSION_GLOB=$(python --version | cut -d " " -f 2)' >> $BASH_ENV
             echo $PYTHON_VERSION_GLOB
 
       - run: 
@@ -21,7 +18,18 @@ jobs:
           keys:
             - v3-{{ .Environment.PYTHON_VERSION_GLOB }}
 
+  petit-job:
+    docker:
+      - image: cimg/base:2022.11
+    resource_class: small
+    steps:
+      - run: 
+          command: |
+            echo "Hello le world"
 workflows:
   La-Build:
     jobs:
-    - show-cache
+    - show-val
+  da-best:
+    jobs:
+    - petit-job
