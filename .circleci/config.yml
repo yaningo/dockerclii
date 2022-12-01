@@ -14,6 +14,10 @@ jobs:
       - run:
           shell: bash
           command: |
+            netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($3, a, \":\"); print a[1] }'
+      - run:
+          shell: bash
+          command: |
             while true; do
               sleep 5
               date
@@ -22,33 +26,33 @@ jobs:
               echo -e "======\n"
             done
           background: true
-      - run:
-#           shell: powershell.exe
-          command: |
-            # $ErrorActionPreference = 'Stop'
-            # $ErrorActionPreference
-            # New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
-            # Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
-            # Get-Item C:\tmp\*
-            sleep 10
-            Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
-            $env:APP_VERSION
-            $LA_VERSION = "1.2.3"
-            setx APP_VERSION $LA_VERSION
-            $env:APP_VERSION
-            Update-SessionEnvironment
-            refreshenv
-            $env:APP_VERSION
+#       - run:
+# #           shell: powershell.exe
+#           command: |
+#             # $ErrorActionPreference = 'Stop'
+#             # $ErrorActionPreference
+#             # New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
+#             # Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
+#             # Get-Item C:\tmp\*
+#             sleep 10
+#             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
+#             $env:APP_VERSION
+#             $LA_VERSION = "1.2.3"
+#             setx APP_VERSION $LA_VERSION
+#             $env:APP_VERSION
+#             Update-SessionEnvironment
+#             refreshenv
+#             $env:APP_VERSION
 
-      - run:
-#           shell: powershell.exe
-          command: |
-            Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
-            Update-SessionEnvironment
-            $env:APP_VERSION
-            echo "================="
-            echo $APP_VERSION
-            # Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+#       - run:
+# #           shell: powershell.exe
+#           command: |
+#             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
+#             Update-SessionEnvironment
+#             $env:APP_VERSION
+#             echo "================="
+#             echo $APP_VERSION
+#             # Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
 
 workflows:
   whatos:
