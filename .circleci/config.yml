@@ -9,14 +9,15 @@ jobs:
       - run: 
           command: |
             echo 'export PYTHON_VERSION_GLOB=$(python --version | cut -d " " -f 2)' >> $BASH_ENV
+            source $BASH_ENV
             echo $PYTHON_VERSION_GLOB
 
       - run: 
           command: |
             echo $PYTHON_VERSION_GLOB
-      - restore_cache:
-          keys:
-            - v3-{{ .Environment.PYTHON_VERSION_GLOB }}
+#       - restore_cache:
+#           keys:
+#             - v3-{{ .Environment.PYTHON_VERSION_GLOB }}
 
   petit-job:
     docker:
