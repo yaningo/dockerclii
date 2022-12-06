@@ -1,6 +1,6 @@
 ---
 
-#version: 2.1
+version: 2.1
 parameters:
   param1:
     type: string
@@ -33,7 +33,12 @@ workflows:
 #         - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
 #         - equal: [ "my_little_schedule", << pipeline.schedule.name >> ]
     jobs:
-      - regular-job
+      - regular-job:
+          post-steps:
+            - jira/notify:
+                environment_type: production
+                job_type: deployment
+          
 #           filters:
 #             branches:
 #               only:
