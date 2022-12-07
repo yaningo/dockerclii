@@ -1,19 +1,1 @@
----
 
-version: 2.1
-    
-jobs:
-  regular-job:
-    docker:
-      - image: cimg/base:stable
-#     parameters:
-#       branch:
-#         type: string
-    steps:
-      - run: |
-          echo "Hello"
-
-workflows:
-  my-workflow:
-    jobs:
-      - regular-job
