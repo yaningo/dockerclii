@@ -1,20 +1,6 @@
 ---
 
 version: 2.1
-
-orbs:
-  jira: circleci/jira@1.3.1
- 
-parameters:
-  param1:
-    type: string
-    default: batman
-  param2:
-    type: string
-    default: robin
-  param3:
-    type: string
-    default: I-am-<< pipeline.parameters.param1 >>
     
 jobs:
   regular-job:
@@ -31,18 +17,5 @@ jobs:
 
 workflows:
   my-workflow:
-#     when:
-#       and:
-#         - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-#         - equal: [ "my_little_schedule", << pipeline.schedule.name >> ]
     jobs:
-      - regular-job:
-          post-steps:
-            - jira/notify:
-                environment_type: production
-                job_type: deployment
-          
-#           filters:
-#             branches:
-#               only:
-#                 - caramba
+      - regular-job
