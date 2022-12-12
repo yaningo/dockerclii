@@ -1,7 +1,8 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@5.0.0
+#   win: circleci/windows@5.0.0
+  win: circleci/windows@1.0.0
 
 jobs:
   build:
@@ -14,18 +15,22 @@ jobs:
       - run:
           shell: bash
           command: |
-            netstat -r
-            ET_phone_home=$(netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($3, a, ":"); print a[1] }')
-            DEFAULT_GW=$(ipconfig|grep "Default" | awk -F ': ' '{print$2}'| grep -v -e '^[[:blank:]]*$')
-            echo "Initial default gateway is $DEFAULT_GW"
+            nslookup sourceforge.net
+            ping sourceforge.net
+#           shell: bash
+#           command: |
+#             netstat -r
+#             ET_phone_home=$(netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($3, a, ":"); print a[1] }')
+#             DEFAULT_GW=$(ipconfig|grep "Default" | awk -F ': ' '{print$2}'| grep -v -e '^[[:blank:]]*$')
+#             echo "Initial default gateway is $DEFAULT_GW"
             
-            if [ -n "$ET_phone_home" ]; then
-              #route add "$ET_phone_home" MASK 255.255.255.255 "$DEFAULT_GW"
-              netsh interface ip add route "$ET_phone_home"/32 6 "$DEFAULT_GW" metric=101 store=active
-            fi
+#             if [ -n "$ET_phone_home" ]; then
+#               #route add "$ET_phone_home" MASK 255.255.255.255 "$DEFAULT_GW"
+#               netsh interface ip add route "$ET_phone_home"/32 6 "$DEFAULT_GW" metric=101 store=active
+#             fi
             
-            #route add 169.254.0.0 MASK 255.255.0.0 "$DEFAULT_GW"
-            netsh interface ip add route 169.254.0.0/16 6 "$DEFAULT_GW" metric=101 store=active
+#             #route add 169.254.0.0 MASK 255.255.0.0 "$DEFAULT_GW"
+#             netsh interface ip add route 169.254.0.0/16 6 "$DEFAULT_GW" metric=101 store=active
             
             netstat -r
       - run:
