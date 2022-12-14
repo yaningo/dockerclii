@@ -1,0 +1,14 @@
+<testsuites tests="2" failures="0" errors="0" time="21.311994">
+<testsuite tests="1" failures="0" time="10.061000" name="github.com/circle-makotom/hello-uname" timestamp="2022-11-18T05:22:01Z">
+<properties>
+<property name="go.version" value="go1.19.1 windows/amd64"/>
+</properties>
+<testcase classname="github.com/circle-makotom/hello-uname" name="TestSleep10" time="10.000000"/>
+</testsuite>
+<testsuite tests="1" failures="0" time="0.111000" name="github.com/circle-makotom/hello-uname/null" timestamp="2022-11-18T05:22:01Z">
+<properties>
+<property name="go.version" value="go1.19.1 windows/amd64"/>
+</properties>
+<testcase classname="github.com/circle-makotom/hello-uname/null" name="TestNull" time="0.000000"/>
+</testsuite>
+</testsuites>
