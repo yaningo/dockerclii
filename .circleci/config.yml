@@ -1,78 +1,19 @@
 version: 2.1
 
-# orbs:
-# #   win: circleci/windows@5.0.0
-#   win: circleci/windows@1.0.0
-
 jobs:
   build:
     machine:
-#       image: windows-server-2022-gui:current
-      image: windows-server-2019-vs2019:current
+      image: windows-server-2022-gui:current
     resource_class: windows.medium
-#     executor:
-#       name: win/default
-#     environment:
-#       APP_VERSION: "4.5.0"
+    parallelism: 2
 
     steps:
+      - checkout
       - run:
-#           shell: bash
           command: |
-            echo "Hello"
-#           shell: bash
-#           command: |
-#             netstat -r
-#             ET_phone_home=$(netstat -an | grep ':22 .*ESTABLISHED' | head -n1 | awk '{ split($3, a, ":"); print a[1] }')
-#             DEFAULT_GW=$(ipconfig|grep "Default" | awk -F ': ' '{print$2}'| grep -v -e '^[[:blank:]]*$')
-#             echo "Initial default gateway is $DEFAULT_GW"
-            
-#             if [ -n "$ET_phone_home" ]; then
-#               #route add "$ET_phone_home" MASK 255.255.255.255 "$DEFAULT_GW"
-#               netsh interface ip add route "$ET_phone_home"/32 6 "$DEFAULT_GW" metric=101 store=active
-#             fi
-            
-#             #route add 169.254.0.0 MASK 255.255.0.0 "$DEFAULT_GW"
-#             netsh interface ip add route 169.254.0.0/16 6 "$DEFAULT_GW" metric=101 store=active
-            
-#       - run:
-#           shell: bash
-#           command: |
-#             while true; do
-#               sleep 5
-#               date
-#               systeminfo | findstr -r -c:".*Memory.*"
-#               # wmic OS get FreePhysicalMemory
-#               echo -e "======\n"
-#             done
-#           background: true
-#       - run:
-# #           shell: powershell.exe
-#           command: |
-#             # $ErrorActionPreference = 'Stop'
-#             # $ErrorActionPreference
-#             # New-Item -Path "c:\tmp" -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
-#             # Get-Item C:\tmpa\* -Filter "*.txt" | Remove-Item -Force
-#             # Get-Item C:\tmp\*
-#             sleep 10
-#             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
-#             $env:APP_VERSION
-#             $LA_VERSION = "1.2.3"
-#             setx APP_VERSION $LA_VERSION
-#             $env:APP_VERSION
-#             Update-SessionEnvironment
-#             refreshenv
-#             $env:APP_VERSION
-
-#       - run:
-# #           shell: powershell.exe
-#           command: |
-#             Import-Module "$env:ProgramData\Chocolatey\helpers\chocolateyProfile.psm1"
-#             Update-SessionEnvironment
-#             $env:APP_VERSION
-#             echo "================="
-#             echo $APP_VERSION
-#             # Get-ItemPropertyValue 'registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment' APP_VERSION
+            go list ./... | CIRCLE_INTERNAL_TASK_DATA="C:${CIRCLE_INTERNAL_TASK_DATA}" circleci tests split --split-by=timings
+      - store_test_results:
+          path: results
 
 workflows:
   whatos:
