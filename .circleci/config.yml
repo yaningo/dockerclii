@@ -17,8 +17,8 @@ jobs:
             echo "github.com/circle-makotom/hello-uname/handlers" >> class.txt
             echo "github.com/circle-makotom/hello-uname/uname" >> class.txt
             
-            #CIRCLE_INTERNAL_TASK_DATA="C:${CIRCLE_INTERNAL_TASK_DATA}" circleci tests split --split-by=timings --timings-type=classname class.txt
-            circleci tests split --split-by=timings --timings-type=classname class.txt
+            CIRCLE_INTERNAL_TASK_DATA="C:${CIRCLE_INTERNAL_TASK_DATA}" circleci tests split --split-by=timings --timings-type=classname class.txt
+            #circleci tests split --split-by=timings --timings-type=classname class.txt
       - store_test_results:
           path: ./results/
 
