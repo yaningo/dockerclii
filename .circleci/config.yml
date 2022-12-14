@@ -8,7 +8,7 @@ jobs:
   build:
     machine:
 #       image: windows-server-2022-gui:current
-      image: windows-server-2019
+      image: windows-server-2019:current
     resource_class: windows.medium
 #     executor:
 #       name: win/default
