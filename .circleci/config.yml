@@ -1,22 +1,24 @@
 version: 2.1
 
-orbs:
-#   win: circleci/windows@5.0.0
-  win: circleci/windows@1.0.0
+# orbs:
+# #   win: circleci/windows@5.0.0
+#   win: circleci/windows@1.0.0
 
 jobs:
   build:
-    executor:
-      name: win/default
-    environment:
-      APP_VERSION: "4.5.0"
+    machine:
+      image: windows-server-2022-gui:current
+    resource_class: windows.medium
+#     executor:
+#       name: win/default
+#     environment:
+#       APP_VERSION: "4.5.0"
 
     steps:
       - run:
-          shell: bash
+#           shell: bash
           command: |
-            nslookup sourceforge.net
-            ping sourceforge.net
+            echo "Hello"
 #           shell: bash
 #           command: |
 #             netstat -r
@@ -32,17 +34,17 @@ jobs:
 #             #route add 169.254.0.0 MASK 255.255.0.0 "$DEFAULT_GW"
 #             netsh interface ip add route 169.254.0.0/16 6 "$DEFAULT_GW" metric=101 store=active
             
-      - run:
-          shell: bash
-          command: |
-            while true; do
-              sleep 5
-              date
-              systeminfo | findstr -r -c:".*Memory.*"
-              # wmic OS get FreePhysicalMemory
-              echo -e "======\n"
-            done
-          background: true
+#       - run:
+#           shell: bash
+#           command: |
+#             while true; do
+#               sleep 5
+#               date
+#               systeminfo | findstr -r -c:".*Memory.*"
+#               # wmic OS get FreePhysicalMemory
+#               echo -e "======\n"
+#             done
+#           background: true
 #       - run:
 # #           shell: powershell.exe
 #           command: |
