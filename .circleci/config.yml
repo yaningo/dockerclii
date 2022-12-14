@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run:
           command: |
+            echo "Hello"
             go list ./... | CIRCLE_INTERNAL_TASK_DATA="C:${CIRCLE_INTERNAL_TASK_DATA}" circleci tests split --split-by=timings
       - store_test_results:
           path: results
