@@ -12,7 +12,12 @@ jobs:
       - run:
           command: |
             echo "Hello"
-            go list ./... | CIRCLE_INTERNAL_TASK_DATA="C:${CIRCLE_INTERNAL_TASK_DATA}" circleci tests split --split-by=timings
+            echo "github.com/circle-makotom/hello-uname" > class.txt
+            echo "github.com/circle-makotom/hello-uname/null" >> class.txt
+            echo "github.com/circle-makotom/hello-uname/handlers" >> class.txt
+            echo "github.com/circle-makotom/hello-uname/uname" >> class.txt
+            
+            CIRCLE_INTERNAL_TASK_DATA="C:${CIRCLE_INTERNAL_TASK_DATA}" circleci tests split --split-by=timings --timing-type=classnames class.txt
       - store_test_results:
           path: ./results/
 
