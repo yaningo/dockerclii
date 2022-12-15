@@ -11,3 +11,9 @@ jobs:
     executor: base
     steps:
       - run: echo "Hello"
+      
+      
+workflows:
+  test:
+    jobs:
+      - continue
