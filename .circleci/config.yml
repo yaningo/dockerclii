@@ -1,0 +1,13 @@
+version: 2.1
+
+executors:
+  base:
+    resource_class: small
+    docker:
+      - image: cimg/base:2022.12
+      
+jobs
+  continue:
+    executor: base
+    steps:
+      - run: echo "Hello"
