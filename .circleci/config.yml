@@ -6,7 +6,7 @@ executors:
     docker:
       - image: cimg/base:2022.12
       
-jobs
+jobs:
   continue:
     executor: base
     steps:
