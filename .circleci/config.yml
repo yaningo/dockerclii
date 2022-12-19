@@ -5,30 +5,30 @@ setup: true
 orbs:
   path-filtering: circleci/path-filtering@0.1.2
 
-jobs:
-  set-params:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - run: echo "Hello"
-      - path-filtering/set-parameters:
+# jobs:
+#   set-params:
+#     docker:
+#       - image: cimg/base:stable
+#     steps:
+#       - checkout
+#       - run: echo "Hello"
+#       - path-filtering/set-parameters:
+#           mapping: |
+#                   packages/.* run-path-a true
+#                   special-dir/.* run-path-b true
+#           base-revision: << pipeline.git.base_revision >>
+#           config-path: .circleci/continue.yml
+#       - run: |
+#           jq '. + {"testing": "'"$CIRCLE_BUILD_NUM"'"}' /tmp/pipeline-parameters.json > /tmp/temp.json
+#       - run: cat /tmp/temp.json
+
+workflows:
+  setup-workflow:
+    jobs:
+#       - set-params
+      - path-filtering/filter:
           mapping: |
                   packages/.* run-path-a true
                   special-dir/.* run-path-b true
           base-revision: << pipeline.git.base_revision >>
           config-path: .circleci/continue.yml
-      - run: |
-          jq '. + {"testing": "'"$CIRCLE_BUILD_NUM"'"}' /tmp/pipeline-parameters.json > /tmp/temp.json
-      - run: cat /tmp/temp.json
-
-workflows:
-  setup-workflow:
-    jobs:
-      - set-params
-#       - path-filtering/filter:
-#           mapping: |
-#                   packages/.* run-path-a true
-#                   special-dir/.* run-path-b true
-#           base-revision: master
-#           config-path: .circleci/continue.yml
