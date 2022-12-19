@@ -17,7 +17,7 @@ jobs:
            command: |
                echo '{ "further": "false" }' >> /home/circleci/parameters.json
        - continuation/continue:
-          configuration_path: ./.circleci/continue_config.yml
+          configuration_path: ./.circleci/continue.yml
           parameters: /home/circleci/parameters.json
 #   set-params:
 #     docker:
