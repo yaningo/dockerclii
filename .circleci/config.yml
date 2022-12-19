@@ -13,9 +13,9 @@ jobs:
       
      steps:
        - checkout
-#        - run:
-#            command: |
-#                echo '{ "further": true }' >> /home/circleci/parameters.json
+       - run:
+           command: |
+               echo '{ "further": true }' > /home/circleci/parameters.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
           parameters: /home/circleci/parameters.json
