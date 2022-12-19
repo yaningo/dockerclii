@@ -1,12 +1,15 @@
 version: 2.1
 
 parameters:
-  run-path-a:
+  further:
     type: boolean
-    default: false
-  run-path-b:
-    type: boolean
-    default: false
+    default: true
+#   run-path-a:
+#     type: boolean
+#     default: false
+#   run-path-b:
+#     type: boolean
+#     default: false
 
 jobs:
   lejob:
@@ -19,5 +22,6 @@ jobs:
 
 workflows:
   setup-workflow:
+    when: << pipeline.parameters.further >>
     jobs:
       - lejob
