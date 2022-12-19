@@ -24,7 +24,7 @@ orbs:
 workflows:
   setup-workflow:
     jobs:
-#       - set-params
+      - set-params
       - path-filtering/filter:
           mapping: |
                   packages/.* run-path-a true
