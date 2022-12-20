@@ -4,12 +4,9 @@ parameters:
   further:
     type: boolean
     default: true
-#   run-path-a:
-#     type: boolean
-#     default: false
-#   run-path-b:
-#     type: boolean
-#     default: false
+  cucumber-options:
+    type: string
+    default: "--tags @check"
 
 jobs:
   lejob:
@@ -17,11 +14,12 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run: |
-          sleep 15
+          echo << pipeline.parameters.further >>
+          echo << pipeline.parameters.cucumber-options >>
           echo "Hello, I'm continuing"
 
 workflows:
   setup-workflow:
-    when: << pipeline.parameters.further >>
+#     when: << pipeline.parameters.further >>
     jobs:
       - lejob
