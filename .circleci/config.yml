@@ -22,7 +22,7 @@ jobs:
        - run:
            command: |
                echo '{ "further": true }' > /home/circleci/parameters.json
-               jq '. += { "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' /home/circleci/parameters.json > /home/circleci/other.json
+               jq '. += { "cucumber-options": "$CUCUMBER_OPTIONS" }' /home/circleci/parameters.json > /home/circleci/other.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
           parameters: /home/circleci/other.json
