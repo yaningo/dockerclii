@@ -21,8 +21,8 @@ jobs:
        - checkout
        - run:
            command: |
-               echo '{ "further": true }' > /home/circleci/parameters.json
-               echo '{ "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' >> /home/circleci/parameters.json
+               echo '{ "further": true, "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' > /home/circleci/parameters.json
+               # echo '{ "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' >> /home/circleci/parameters.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
           parameters: /home/circleci/parameters.json
