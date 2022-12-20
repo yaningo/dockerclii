@@ -21,11 +21,11 @@ jobs:
        - checkout
        - run:
            command: |
-               echo '{ "further": true, "cucumber-options": "'"$CUCUMBER_OPTIONS"'" }' > /home/circleci/parameters.json
-               # echo '{ "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' >> /home/circleci/parameters.json
+               echo '{ "further": true }' > /home/circleci/parameters.json
+               jq '. += { "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' /home/circleci/parameters.json > /home/circleci/other.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
-          parameters: /home/circleci/parameters.json
+          parameters: /home/circleci/other.json
 #   set-params:
 #     docker:
 #       - image: cimg/base:stable
