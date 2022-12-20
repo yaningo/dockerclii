@@ -5,17 +5,24 @@ setup: true
 orbs:
   continuation: circleci/continuation@0.3.1
 #   path-filtering: circleci/path-filtering@0.1.2
+parameters:
+  cucumber-options:
+      type: string
+      default: "--tags @check"
 
 jobs:
   set-job:
      docker:
       - image: cimg/base:stable
+     environment:
+      CUCUMBER_OPTIONS: << pipeline.parameters.cucumber-options >>
       
      steps:
        - checkout
        - run:
            command: |
                echo '{ "further": true }' > /home/circleci/parameters.json
+               echo '{ "CUCUMBER_OPTIONS": "$CUCUMBER_OPTIONS" }' >> /home/circleci/parameters.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
           parameters: /home/circleci/parameters.json
