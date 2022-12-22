@@ -31,13 +31,14 @@ jobs:
 
 workflows:
   my-workflow:
-    when: [ api, << pipeline.trigger_source >> ]
+    when:
+      equal: [ api, << pipeline.trigger_source >> ]
     jobs:
-      - regular-job:
-          post-steps:
-            - jira/notify:
-                environment_type: production
-                job_type: deployment
+      - regular-job
+#           post-steps:
+#             - jira/notify:
+#                 environment_type: production
+#                 job_type: deployment
           
 #           filters:
 #             branches:
