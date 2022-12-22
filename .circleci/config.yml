@@ -31,8 +31,7 @@ jobs:
 
 workflows:
   my-workflow:
-    when:
-      - equal: [ api, << pipeline.trigger_source >> ]
+    when: [ api, << pipeline.trigger_source >> ]
     jobs:
       - regular-job:
           post-steps:
