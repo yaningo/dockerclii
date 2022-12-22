@@ -31,10 +31,8 @@ jobs:
 
 workflows:
   my-workflow:
-#     when:
-#       and:
-#         - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-#         - equal: [ "my_little_schedule", << pipeline.schedule.name >> ]
+    when:
+        - equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - regular-job:
           post-steps:
