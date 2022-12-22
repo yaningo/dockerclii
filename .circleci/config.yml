@@ -19,8 +19,8 @@ jobs:
       
      steps:
        - checkout
-       - run:
-           command: |
+         run:
+         - command: |
                echo '{ "further": true }' > /home/circleci/parameters.json
                jq '. += { "cucumber-options": "'"$CUCUMBER_OPTIONS"'" }' /home/circleci/parameters.json > /home/circleci/other.json
        - continuation/continue:
