@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-  jira: circleci/jira@1.3.1
+  jq: circleci/jq@2.2
  
 parameters:
   param1:
@@ -15,11 +15,16 @@ parameters:
   param3:
     type: string
     default: I-am-<< pipeline.parameters.param1 >>
+  param4:
+    type: boolean
+    default: true
     
 jobs:
   regular-job:
     docker:
       - image: cimg/base:stable
+    environment:
+      BILLBOOL: << pipeline.parameters.param4 >>
 #     parameters:
 #       branch:
 #         type: string
@@ -28,11 +33,13 @@ jobs:
           echo << pipeline.parameters.param1 >>
           echo << pipeline.parameters.param2 >>
           echo << pipeline.parameters.param3 >>
+          echo $BILLBOOL
+      - jq/install
 
 workflows:
   my-workflow:
-    when:
-      equal: [ api, << pipeline.trigger_source >> ]
+#     when:
+#       equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - regular-job
 #           post-steps:
