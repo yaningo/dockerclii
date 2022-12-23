@@ -25,6 +25,7 @@ jobs:
       - image: cimg/base:stable
     environment:
       BILLBOOL: << pipeline.parameters.param4 >>
+    shell: /bin/bash -eo pipefail
 #     parameters:
 #       branch:
 #         type: string
