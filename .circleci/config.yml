@@ -48,7 +48,7 @@ jobs:
               echo << pipeline.parameters.param3 >>
               echo $BILLBOOL
       - jq/install
-          override: true
+#           override: true
 
       - run:
 #           shell: /bin/bash -eo pipefail
