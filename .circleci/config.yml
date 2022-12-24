@@ -22,7 +22,7 @@ parameters:
 jobs:
   regular-job:
     docker:
-      - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
+      - image: docker:18.05.0-ce-git-awscli
     environment:
       BILLBOOL: << pipeline.parameters.param4 >>
 #     shell: /bin/bash -eo pipefail
