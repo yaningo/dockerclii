@@ -22,7 +22,7 @@ parameters:
 jobs:
   regular-job:
     docker:
-      - image: docker:18.05.0-ce-git
+      - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
     environment:
       BILLBOOL: << pipeline.parameters.param4 >>
 #     shell: /bin/bash -eo pipefail
@@ -30,11 +30,13 @@ jobs:
 #       branch:
 #         type: string
     steps:
-      - run: |
-          echo << pipeline.parameters.param1 >>
-          echo << pipeline.parameters.param2 >>
-          echo << pipeline.parameters.param3 >>
-          echo $BILLBOOL
+      - run:
+          shell: /bin/sh
+          command: |
+              echo << pipeline.parameters.param1 >>
+              echo << pipeline.parameters.param2 >>
+              echo << pipeline.parameters.param3 >>
+              echo $BILLBOOL
       - jq/install
 
 workflows:
