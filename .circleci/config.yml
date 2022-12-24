@@ -23,7 +23,7 @@ jobs:
   regular-job:
     docker:
       - image: docker:18.05.0-ce-git
-        command: "apk add git-lfs bash curl && /bin/bash"
+        command: "bash"
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
         environment:
           BILLBOOL: << pipeline.parameters.param4 >>
