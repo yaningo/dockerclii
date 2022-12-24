@@ -42,7 +42,9 @@ jobs:
 #       - jq/install
 #           override: true
 
-      - run: jq --version
+      - run:
+        shell: /bin/bas -eo pipefail
+        command: jq --version
 
 workflows:
   my-workflow:
