@@ -43,7 +43,7 @@ jobs:
 #           override: true
 
       - run:
-          shell: /bin/bas -eo pipefail
+          shell: /bin/bash -eo pipefail
           command: jq --version
 
 workflows:
