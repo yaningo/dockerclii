@@ -22,8 +22,8 @@ parameters:
 jobs:
   regular-job:
     docker:
-      - image: cimg/base:current
-#       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
+#       - image: cimg/base:current
+      - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
     environment:
       BILLBOOL: << pipeline.parameters.param4 >>
 #     shell: /bin/bash -eo pipefail
@@ -37,7 +37,8 @@ jobs:
               echo << pipeline.parameters.param2 >>
               echo << pipeline.parameters.param3 >>
               echo $BILLBOOL
-      - jq/install
+      - jq/install:
+          override: true
 
       - run: jq --version
 
