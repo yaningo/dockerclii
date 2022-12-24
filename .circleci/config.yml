@@ -24,7 +24,7 @@ executors:
   my-exec:
     docker:
       - image: docker:18.05.0-ce-git
-        shell: /bin/bash -eo pipefail
+    shell: /bin/bash -eo pipefail
     
 jobs:
   regular-job:
