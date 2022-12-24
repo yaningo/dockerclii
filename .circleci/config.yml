@@ -27,7 +27,7 @@ jobs:
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
 #         environment:
 #           BILLBOOL: << pipeline.parameters.param4 >>
-    shell: /bin/bash -eo pipefail
+    shell: /usr/local/bin/bash -eo pipefail
 #     parameters:
 #       branch:
 #         type: string
