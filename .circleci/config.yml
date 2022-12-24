@@ -23,7 +23,7 @@ jobs:
   regular-job:
     docker:
       - image: docker:18.05.0-ce-git
-        entrypoint: "apk add  --update-cache jq && /bin/bash"
+        entrypoint: "/bin/bash"
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
         environment:
           BILLBOOL: << pipeline.parameters.param4 >>
@@ -38,7 +38,7 @@ jobs:
               echo << pipeline.parameters.param2 >>
               echo << pipeline.parameters.param3 >>
               echo $BILLBOOL
-#       - jq/install:
+      - jq/install
 #           override: true
 
       - run: jq --version
