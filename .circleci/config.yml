@@ -19,18 +19,10 @@ parameters:
     type: boolean
     default: true
     
-    
-executors:
-  my-exec:
-    docker:
-      - image: docker:18.05.0-ce-git
-    shell: /bin/bash -eo pipefail
-    
 jobs:
   regular-job:
-    executor: my-exec
-#     docker:
-#       - image: docker:18.05.0-ce-git
+    docker:
+      - image: docker:18.05.0-ce-git
 #         command: "apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl, bash"
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
 #         environment:
@@ -42,7 +34,7 @@ jobs:
     steps:
       - run:
           command: |
-              # apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl jq
+              apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl jq
               echo << pipeline.parameters.param1 >>
               echo << pipeline.parameters.param2 >>
               echo << pipeline.parameters.param3 >>
@@ -51,7 +43,7 @@ jobs:
 #           override: true
 
       - run:
-#           shell: /bin/bash -eo pipefail
+          shell: /bin/bash -eo pipefail
           command: jq --version
 
 workflows:
