@@ -23,7 +23,7 @@ jobs:
   regular-job:
     docker:
       - image: docker:18.05.0-ce-git
-        entrypoint: "apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl && /bin/bash"
+        command: "apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl && /bin/bash"
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
         environment:
           BILLBOOL: << pipeline.parameters.param4 >>
