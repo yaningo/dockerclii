@@ -31,13 +31,14 @@ jobs:
 #         type: string
     steps:
       - run:
-          shell: /bin/sh
           command: |
               echo << pipeline.parameters.param1 >>
               echo << pipeline.parameters.param2 >>
               echo << pipeline.parameters.param3 >>
               echo $BILLBOOL
-      - jq/install
+#       - jq/install
+
+      - run: jq --version
 
 workflows:
   my-workflow:
