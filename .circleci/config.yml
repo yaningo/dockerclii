@@ -20,7 +20,7 @@ parameters:
     default: true
     
     
-executor:
+executors:
   my-exec:
     docker:
       - image: docker:18.05.0-ce-git
