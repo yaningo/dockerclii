@@ -22,7 +22,7 @@ parameters:
 jobs:
   regular-job:
     docker:
-      - image: cimg/base:current
+      - image: docker:18.05.0-ce-git
         command: "apk add  --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community jq"
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
         environment:
