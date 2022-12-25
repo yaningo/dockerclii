@@ -29,7 +29,7 @@ jobs:
 #         environment:
 #           BILLBOOL: << pipeline.parameters.param4 >>
 #     shell: /usr/local/bin/bash -eo pipefail
-    shell: bash -eo pipefail
+#     shell: bash -eo pipefail
 
 #     parameters:
 #       branch:
