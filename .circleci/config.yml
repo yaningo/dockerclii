@@ -37,7 +37,7 @@ jobs:
     steps:
       - run:
           command: |
-              apk update && apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl jq
+              apk update && apk add --update-cache git-lfs bash curl jq
               #apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs curl
               echo << pipeline.parameters.param1 >>
               echo << pipeline.parameters.param2 >>
