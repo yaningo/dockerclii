@@ -7,6 +7,9 @@ parameters:
   cucumber-options:
     type: string
     default: "--tags @check"
+  billbool:
+    type: boolean
+    default: true
 
 jobs:
   lejob:
@@ -16,6 +19,7 @@ jobs:
       - run: |
           echo << pipeline.parameters.further >>
           echo << pipeline.parameters.cucumber-options >>
+          echo << pipeline.parameters.billbool >>
           echo "Hello, I'm continuing"
 
 workflows:
