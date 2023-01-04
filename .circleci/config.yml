@@ -27,11 +27,12 @@ jobs:
            command: |
                echo << pipeline.parameters.le-bool >>
                echo $BILLBOOL
-               echo '{ "further": true, "cucumber-options": "--tags @check" }' > /home/circleci/parameters.json
+               echo "extra_parameters='{ "further": true, "cucumber-options": "--tags @check" }'" > $BASH_ENV
+               #echo '{ "further": true, "cucumber-options": "--tags @check" }' > /home/circleci/parameters.json
                #jq '. += { "cucumber-options": "'"$CUCUMBER_OPTIONS"'", "billbool": "$BILLBOOL" }' /home/circleci/parameters.json > /home/circleci/other.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
-          parameters: /home/circleci/parameters.json
+          parameters: $extra_parameters
 #   set-params:
 #     docker:
 #       - image: cimg/base:stable
