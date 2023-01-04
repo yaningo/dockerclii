@@ -27,7 +27,7 @@ jobs:
            command: |
                echo << pipeline.parameters.le-bool >>
                echo $BILLBOOL
-               echo '{ "further": true, "cucumber-options": "'"$CUCUMBER_OPTIONS"'", "billbool": << pipeline.parameters.le-bool >> }' > /home/circleci/parameters.json
+               echo '{ \"further\": true, "cucumber-options": \"--tags @check\" }' > /home/circleci/parameters.json
                #jq '. += { "cucumber-options": "'"$CUCUMBER_OPTIONS"'", "billbool": "$BILLBOOL" }' /home/circleci/parameters.json > /home/circleci/other.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
