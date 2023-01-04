@@ -1,5 +1,9 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@3.1.4
+  python: circleci/python@1.4.0
+  
 executors:
   base:
     resource_class: small
@@ -8,9 +12,9 @@ executors:
       
 jobs:
   continue:
-    executor: base
+    executor: python/default
     steps:
-      - run: echo "Hello"
+      - aws-cli/install
       
       
 workflows:
