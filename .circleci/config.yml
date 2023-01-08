@@ -1,25 +1,28 @@
 version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.0
   
 jobs:
   cimg:
     docker:
-      - image: cimg/ruby:2.6.6-node
+      - image: cimg/node:16.19.0-browsers
     steps:
-      - run:
-          command: gem install bundler -v 2.2.17
-      - run: ls -al /home/circleci
+      - browser-tools/install-chrome
+
+      - run: which google-chrome
       
-  circleci:
-    docker:
-      - image: circleci/ruby:2.6.6-node
-    steps:
-      - run:
-          command: gem install bundler -v 2.2.17
-      - run: ls -al /home/circleci
+#   circleci:
+#     docker:
+#       - image: circleci/ruby:2.6.6-node
+#     steps:
+#       - run:
+#           command: gem install bundler -v 2.2.17
+#       - run: ls -al /home/circleci
 
           
 workflows:
   build-deploy:
     jobs:
       - cimg
-      - circleci
+#       - circleci
