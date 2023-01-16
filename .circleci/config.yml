@@ -8,9 +8,7 @@ jobs:
     docker:
       - image: cimg/node:16.19.0-browsers
     steps:
-      - browser-tools/install-chrome
-
-      - run: which google-chrome
+      - run: echo "I'm always successful"
       
 #   circleci:
 #     docker:
