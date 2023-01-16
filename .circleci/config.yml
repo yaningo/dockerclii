@@ -19,10 +19,17 @@ jobs:
 #       - run:
 #           command: gem install bundler -v 2.2.17
 #       - run: ls -al /home/circleci
-
+  cimg-fail:
+    docker:
+      - image: cimg/node:16.19.0-browsers
+    steps:
+      - run: |
+          echo "You're a failure!"
+          exit 1
           
 workflows:
   build-deploy:
     jobs:
       - cimg
 #       - circleci
+      - cimg-fail
