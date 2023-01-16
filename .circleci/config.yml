@@ -24,6 +24,7 @@ jobs:
       - run: |
           echo "You're a failure!"
           # echo "Not anymore"
+          exit 1
           
 workflows:
   build-deploy:
