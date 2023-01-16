@@ -23,7 +23,7 @@ jobs:
     steps:
       - run: |
           echo "You're a failure!"
-          echo "Not anymore"
+          # echo "Not anymore"
           
 workflows:
   build-deploy:
