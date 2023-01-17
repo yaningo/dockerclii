@@ -5,12 +5,18 @@ jobs:
     docker:
       - image: circleci/node
     steps:
+
+
+      - setup_remote_docker:
+          version: 20.10.14
+          
+      - run: docker run cimg/node:18.10.0
+      
       - run: |
-          echo $BB_admin_username
-          echo 'export "BB_admin_username=perrytheplatypus"' >> $BASH_ENV
-
-      - run: echo $BB_admin_username
-
+          dockerize -wait tcp://remote-docker:5432 -timeout 1m
+          
+      - run: |
+          curl remote-docker:5432
 
 workflows:
   papu:
