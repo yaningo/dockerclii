@@ -22,6 +22,7 @@ jobs:
       - image: alpine:latest
     steps:
       - run: echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
+      - run: echo "$QUI"
       - sayhello:
           to: $QUI
            
