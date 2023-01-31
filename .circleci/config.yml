@@ -18,8 +18,9 @@ commands:
       
 jobs:
   le-job:
+    shell: /bin/sh -leo pipefail
     docker:
-      - image: cimg/base:2023.01
+      - image: alpine:latest
     steps:
       - run: |
           echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
