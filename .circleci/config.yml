@@ -20,6 +20,7 @@ jobs:
   le-job:
     docker:
       - image: alpine:latest
+    shell: /bin/sh -leo pipefail
     steps:
       - run: |
           echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
