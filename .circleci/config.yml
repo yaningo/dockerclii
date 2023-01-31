@@ -1,23 +1,31 @@
 version: 2.1
-orbs: 
-  jira: circleci/jira@1.3.1
-  
+
 parameters:
-  custom-context:
+  recipient:
     type: string
-    default: Lecontext
-jobs:
-  condy_pull:
-    docker:
-      - image: cypress/browsers:node12.18.3-chrome87-ff82
+    default: "Toto"
+
+command:
+  sayhello:
+    parameters:
+      to:
+        type: string
+        default: "World"
+        description: "Hello to whom?"
+      
     steps:
-      - run: npx cypress info
+      - run: echo "Hello <<parameters.to>>"
+      
+jobs:
+  le-job:
+    docker:
+      - image: alpine:latest
+    steps:
+      - echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
+      - sayhello:
+          to: $QUI
            
 workflows:
   build:
     jobs:
-      - condy_pull:
-          context: << pipeline.parameters.custom-context >>
-#           post-steps:
-#             - jira/notify:
-#                 issue_regexp: '[A-Z]{2,30}-[0-9]+'
+      - le-job
