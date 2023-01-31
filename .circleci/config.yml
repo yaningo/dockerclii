@@ -18,7 +18,7 @@ commands:
       
 jobs:
   le-job:
-    hell: /usr/local/bin/bash
+    shell: /usr/local/bin/bash
     docker:
       - image: bash:latest
     steps:
