@@ -21,7 +21,7 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
-      - echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
+      - run: echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
       - sayhello:
           to: $QUI
            
