@@ -18,9 +18,9 @@ commands:
       
 jobs:
   le-job:
-    shell: /bin/sh -leo pipefail
+    hell: /usr/local/bin/bash
     docker:
-      - image: alpine:latest
+      - image: bash:latest
     steps:
       - run: |
           echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
