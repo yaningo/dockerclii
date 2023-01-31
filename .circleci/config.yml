@@ -5,7 +5,7 @@ parameters:
     type: string
     default: "Toto"
 
-command:
+commands:
   sayhello:
     parameters:
       to:
