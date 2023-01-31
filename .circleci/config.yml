@@ -24,7 +24,6 @@ jobs:
     steps:
       - run: |
           echo "export QUI=<< pipeline.parameters.recipient >>" >> $BASH_ENV
-          source $BASH_ENV
       - run: echo "$QUI"
       - sayhello:
           to: $QUI
