@@ -8,6 +8,8 @@ executors:
       
 jobs:
   remote:
+    docker:
+        - image: cimg/base:2022.12
     steps:
       - setup_remote_docker
       - run: docker run -d ubuntu:18.04
