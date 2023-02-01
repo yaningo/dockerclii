@@ -9,11 +9,12 @@ executors:
 jobs:
   remote:
     docker:
-        - image: cimg/base:2022.12
+#         - image: cimg/base:2022.12
+        - image: google/cloud-sdk:410.0.0-alpine
     steps:
       - run: |
           touch package.json
-          echo -e "version 1.23 \n blofkwedflwiuehf \n version v.5.5" > package.json
+          #echo -e "version 1.23 \n blofkwedflwiuehf \n version v.5.5" > package.json
           cat package.json | grep version | head -1
       
 workflows:
