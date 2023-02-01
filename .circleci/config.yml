@@ -13,6 +13,7 @@ jobs:
     steps:
       - run: |
           touch package.json
+          echo -e "version 1.23 \n blofkwedflwiuehf \n version v.5.5" > package.json
           cat package.json | grep version | head -1
       
 workflows:
