@@ -41,11 +41,9 @@ jobs:
               #apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs curl
               echo '<< pipeline.parameters.param1 >>'
               echo << pipeline.parameters.param1 >>
-              # echo << pipeline.parameters.param2 >>
-              # echo << pipeline.parameters.param3 >>
-              # echo $BILLBOOL
-      - jq/install
-#           override: true
+
+#       - jq/install
+# #           override: true
 
       - run:
 #           shell: /bin/bash -eo pipefail
