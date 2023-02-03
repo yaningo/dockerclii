@@ -26,8 +26,8 @@ jobs:
 #       - image: bash:latest
 #         command: "apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs bash curl, bash"
 #       - image: wheelhousestudio/docker:18.05.0-ce-git-awscli
-        environment:
-          BILLBOOL: << pipeline.parameters.param4 >>
+#         environment:
+#           BILLBOOL: << pipeline.parameters.param4 >>
 #     shell: /usr/local/bin/bash -eo pipefail
 #     shell: bash -eo pipefail
 
@@ -41,9 +41,9 @@ jobs:
               #apk add --update-cache --repository http://nl.alpinelinux.org/alpine/edge/community git-lfs curl
               echo '<< pipeline.parameters.param1 >>'
               echo << pipeline.parameters.param1 >>
-              #echo << pipeline.parameters.param2 >>
-              #echo << pipeline.parameters.param3 >>
-              #echo $BILLBOOL
+              # echo << pipeline.parameters.param2 >>
+              # echo << pipeline.parameters.param3 >>
+              # echo $BILLBOOL
       - jq/install
 #           override: true
 
