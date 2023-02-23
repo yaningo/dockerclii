@@ -1,34 +1,21 @@
 version: 2.1
 
 orbs:
-  browser-tools: circleci/browser-tools@1.4.0
-  
+  my-orb:
+    commands:
+      my_command:
+        steps:
+          - run:
+              name: "Printing a pipeline value"
+              command: <<include(scripts/print.sh)>>
 jobs:
-  cimg:
-    docker:
-      - image: cimg/node:16.19.0-browsers
+  my_job:
+    executor: cimg/base:2023.02
     steps:
-      - run: echo "I'm always successful"
-      
-#   circleci:
-#     docker:
-#       - image: circleci/ruby:2.6.6-node
-#     steps:
-#       - run:
-#           command: gem install bundler -v 2.2.17
-#       - run: ls -al /home/circleci
-  cimg-fail:
-    docker:
-      - image: cimg/node:16.19.0-browsers
-    steps:
-      - run: |
-          echo "You're a failure!"
-          # echo "Not anymore"
-          exit 1
-          
+      - checkout
+      - my/orb/my_command
+
 workflows:
-  build-deploy:
+  main:
     jobs:
-      - cimg
-#       - circleci
-      - cimg-fail
+      - my-orb/my_job
