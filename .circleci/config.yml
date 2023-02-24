@@ -13,7 +13,9 @@ jobs:
     docker:
       - image: cimg/base:2023.02
     steps:
-      - run: echo "<< pipeline.id >>"
+      - run: |
+          echo "<< pipeline.id >>"
+          echo "<< pipeline.project.git_url >>"
 #       - checkout
 #       - my-orb/my_command
 
