@@ -7,7 +7,7 @@ orbs:
         steps:
           - run:
               name: "Printing a pipeline value"
-              command: <<include(scripts/print.sh)>>
+              command: echo "$!{<< pipeline.id >>}"
 jobs:
   my_job:
     executor: cimg/base:2023.02
