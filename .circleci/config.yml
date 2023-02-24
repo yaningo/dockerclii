@@ -1,19 +1,20 @@
 version: 2.1
 
-orbs:
-  my-orb:
-    commands:
-      my_command:
-        steps:
-          - run:
-              name: "Printing a pipeline value"
-              command: echo "<< pipeline.id >>"
+# orbs:
+#   my-orb:
+#     commands:
+#       my_command:
+#         steps:
+#           - run:
+#               name: "Printing a pipeline value"
+#               command: echo "<< pipeline.id >>"
 jobs:
   my_job:
     executor: cimg/base:2023.02
     steps:
-      - checkout
-      - my-orb/my_command
+      - run: echo "<< pipeline.id >>"
+#       - checkout
+#       - my-orb/my_command
 
 workflows:
   main:
