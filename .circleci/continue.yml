@@ -1,27 +1,68 @@
 version: 2.1
-
 orbs:
+  secrets: orbiously/secrets-manager@dev:456aef5277e79fd5b28e8eb0b8a1d8d020bce3e6
   orb-tools: circleci/orb-tools@11
 
-jobs:
-  my_job:
-    docker:
-      - image: cimg/base:2023.02
+commands:
+  mk-artifacts:
+    description: Makes a bunch of files that should be unique for each build.
+    parameters:
+      where:
+        description: Directory into which the files will be created.
+        type: string
     steps:
-      - run: |
-          echo "<< pipeline.id >>"
-          echo "<< pipeline.project.git_url >>"
-          echo 'pipeline.git.revision=<<pipeline.git.revision>>' > rev.txt
-          # the <<pipeline.git.revision>> value that https://circleci.com/docs/variables/#pipeline-values says we can.
-          cat rev.txt
-#       - checkout
-#       - my-orb/my_command
+      - run:
+          name: Make artifacts that are unique to this build
+          command: |
+            mkdir -p '<<parameters.where>>'
+            echo 'Hello world'                                >  '<<parameters.where>>/hello-world.txt'
+            # Note: for some unexplained reason, everything goes horribly wrong if we try to use
+            # the <<pipeline.git.revision>> value that https://circleci.com/docs/variables/#pipeline-values says we can.
+            # Even if it's commented out.
+            echo "pipeline.git.revision=${CIRCLE_SHA1}"       >  '<<parameters.where>>/details.txt'
+            echo "CIRCLE_WORKFLOW_ID=${CIRCLE_WORKFLOW_ID}"   >> '<<parameters.where>>/details.txt'
+            echo "${CIRCLE_SHA1}"                             >  '<<parameters.where>>/git.sha.txt'
+  compare-artifacts:
+    description: Compared a bunch of files to see if they are the same as those we'd make using the mk-artifacts command.
+    parameters:
+      where:
+        description: Directory where we expect to find artifacts to be compared.
+        type: string
+    steps:
+      - mk-artifacts:
+          where: "/tmp/expected_artifacts"
+      - run:
+          name: Compare fetched artifacts to expected contents
+          command: |
+            for F in /tmp/expected_artifacts/*.txt; do echo; echo "### File ${F}"; cat "${F}"; done
+            diff '<<parameters.where>>/hello-world.txt'  '/tmp/expected_artifacts/hello-world.txt'
+            diff '<<parameters.where>>/git.sha.txt'      '/tmp/expected_artifacts/git.sha.txt'
+            diff '<<parameters.where>>/details.txt'      '/tmp/expected_artifacts/details.txt'
+
+# Define job(s) to test the commands of the orb.
+# Where validation is more than just "did it declare success" then we add extra validation steps.
+jobs:
+  make-some-artifacts:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - mk-artifacts:
+          where: "dummy-build-artifact"
+      - store_artifacts:
+          destination: '.'
+          path: dummy-build-artifact/
+
+# We have a multiple test jobs that run in parallel.
+# This is the workflow data that's common to all of those
+# ...except for the publish jobs - they have their own common data.
 
 workflows:
-  main:
+  test-deploy:
     jobs:
-      - my_job
+      - make-some-artifacts
+      - orb-tools/pack
       - orb-tools/publish:
-          name: bla
-          orb-name: bla/circleci
+          name: release-to-i2group-random
+          orb-name: orbiously/secrets-manager-orb
           vcs-type: << pipeline.project.type >>
