@@ -5,10 +5,10 @@ setup: true
 orbs:
   continuation: circleci/continuation@0.3.1
 #   path-filtering: circleci/path-filtering@0.1.2
-parameters:
-  cucumber-options:
-    type: string
-    default: "--tags @check"
+# parameters:
+#   cucumber-options:
+#     type: string
+#     default: "--tags @check"
   le-bool:
     type: boolean
     default: true
@@ -17,8 +17,8 @@ jobs:
   set-job:
      docker:
       - image: cimg/base:stable
-     environment:
-      CUCUMBER_OPTIONS: << pipeline.parameters.cucumber-options >>
+#      environment:
+#       CUCUMBER_OPTIONS: << pipeline.parameters.cucumber-options >>
 #       BILLBOOL: << pipeline.parameters.le-bool >>
       
      steps:
@@ -26,12 +26,12 @@ jobs:
        - run:
            command: |
                echo << pipeline.parameters.le-bool >>
-               echo $BILLBOOL
+               #echo $BILLBOOL
                #echo '{ "further": true, "cucumber-options": "--tags @check" }' > /home/circleci/parameters.json
                #jq '. += { "cucumber-options": "'"$CUCUMBER_OPTIONS"'", "billbool": "$BILLBOOL" }' /home/circleci/parameters.json > /home/circleci/other.json
        - continuation/continue:
           configuration_path: ./.circleci/continue.yml
-          parameters: '{ \"further\": true, \"cucumber-options\": \"--tags @check\" }'
+#           parameters: '{ \"further\": true, \"cucumber-options\": \"--tags @check\" }'
 #   set-params:
 #     docker:
 #       - image: cimg/base:stable
