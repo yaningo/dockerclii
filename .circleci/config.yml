@@ -16,6 +16,7 @@ jobs:
       - run: |
           echo "<< pipeline.id >>"
           echo "<< pipeline.project.git_url >>"
+          echo 'pipeline.git.revision=<<pipeline.git.revision>>'
 #       - checkout
 #       - my-orb/my_command
 
