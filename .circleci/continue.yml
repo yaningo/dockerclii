@@ -12,6 +12,7 @@ jobs:
           echo "<< pipeline.id >>"
           echo "<< pipeline.project.git_url >>"
           echo 'pipeline.git.revision=<<pipeline.git.revision>>' > rev.txt
+          # the <<pipeline.git.revision>> value that https://circleci.com/docs/variables/#pipeline-values says we can.
           cat rev.txt
 #       - checkout
 #       - my-orb/my_command
