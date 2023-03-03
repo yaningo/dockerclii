@@ -1,29 +1,19 @@
 version: 2.1
 
-parameters:
-  further:
-    type: boolean
-    default: true
-  cucumber-options:
-    type: string
-    default: "--tags @check"
-  billbool:
-    type: boolean
-    default: true
-
 jobs:
-  lejob:
+  my_job:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/base:2023.02
     steps:
       - run: |
-          echo << pipeline.parameters.further >>
-          echo << pipeline.parameters.cucumber-options >>
-          echo << pipeline.parameters.billbool >>
-          echo "Hello, I'm continuing"
+          echo "<< pipeline.id >>"
+          echo "<< pipeline.project.git_url >>"
+          echo 'pipeline.git.revision=<<pipeline.git.revision>>' > rev.txt
+          cat rev.txt
+#       - checkout
+#       - my-orb/my_command
 
 workflows:
-  setup-workflow:
-#     when: << pipeline.parameters.further >>
+  main:
     jobs:
-      - lejob
+      - my_job
