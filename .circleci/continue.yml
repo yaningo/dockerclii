@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  orb-tools: circleci/orb-tools@11
+
 jobs:
   my_job:
     docker:
@@ -17,3 +20,6 @@ workflows:
   main:
     jobs:
       - my_job
+      - orb-tools/publish:
+          name: bla
+          orb-name: bla/circleci
