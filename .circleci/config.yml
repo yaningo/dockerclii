@@ -1,36 +1,17 @@
 version: 2.1
 
-commands:
-  testscheck:
-    steps:
-#       - attach_workspace:
-#           at: .
-      - run: pwd
-#       - run: touch .env
-      - run: echo $SSH_AUTH_SOCK
-      - run: cat .env
-      - run: |-
-          source .env
-          echo $SSH_AUTH_SOCK
-
-          echo RUN_TESTS $RUN_TESTS
-          if [ "$RUN_TESTS" != "true" ]; then
-            echo Terminating - $RUN_TESTS not specified
-            circleci-agent step halt
-          fi
-          
-executors:
-  main:
-    docker:
-      - image: circleci/python:3.6-stretch-node
-
 jobs:
   build:
-    executor: main
+    docker:
+      - image: cimg/base:edge #public.ecr.aws/eks-distro/kubernetes/pause:3.6
     steps:
+      - setup_remote_docker:
+          version: 20.10.6
+          docker_layer_caching: true
       - checkout
-      - testscheck
-      - run: echo "didnt fail"
+      - run: docker run --name web-server -p 80:80 -d nginx:stable-alpine
+      - run: docker network ls
+      - run: docker network inspect bridge
 
 workflows:
   workflow1:
