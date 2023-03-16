@@ -10,11 +10,9 @@ jobs:
     steps:
               
       - run:
-          name: Check cuyr version
+          name: Check curl version
           command: |
-              echo $COMMITTER_NAME
-              echo $COMMITTER_NAME_VAR
-              echo $LE_COMMIT
+              curl --version
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
 #           cat notif.txt|sed ':a;N;$!ba;s/\n/\\n/g'|sed 's/\"/\\"/g' > message.txt
@@ -63,5 +61,4 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-      - setup:
-          context: slouck
+      - setup
