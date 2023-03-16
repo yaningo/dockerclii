@@ -6,29 +6,11 @@ orbs:
 jobs:
   setup:
     docker:
-      - image: cimg/node:16.11.1
+      - image: node:14.15.0
     steps:
-      - checkout
-      - run: |
-          mkdir supafolda
-          # cp ./script.sh supafolda
-      - run:
-          working_directory: supafolda
-          command: |
-              echo 'export API_URL=$(echo $CIRCLE_BUILD_URL | cut -d/ -f4-7)' >> $BASH_ENV
-              echo 'export COMMITTER_NAME=$(curl "https://circleci.com/api/v1.1/project/${API_URL}?circle-token=${CIRCLE_API_TOKEN}" | tail -n23 | grep committer_name | cut -f2- -d: | grep -o -P "(?<=\").*(?=\")")' >> $BASH_ENV
-              echo 'export COMMITTER_NAME_VAR="${COMMITTER_NAME}"' >> $BASH_ENV
-              echo 'export LE_COMMIT="John"' >> $BASH_ENV
-              # START reproducing 97880 #####
-              #FILE="../leterraplan.json"
-              #cat $FILE
-              #cat $FILE|grep -E "\#" |awk '{printf "%s\\n", $0}'| sed 's/\"/\\"/g' > ~/project/message.txt
-              #cat ~/project/message.txt
-              #echo 'export MESSAGE="Our Changes to be applied from terraform: $(cat ~/project/message.txt)" ' >> $BASH_ENV
-              # END reproducing 97880 #####
               
       - run:
-          name: Check env vars
+          name: Check cuyr version
           command: |
               echo $COMMITTER_NAME
               echo $COMMITTER_NAME_VAR
