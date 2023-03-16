@@ -13,6 +13,17 @@ jobs:
           name: Check curl version
           command: |
               curl --version
+      - run:
+        name: Upgrade curl
+        command: |
+            sudo add-apt-repository ppa:savoury1/curl34 -y
+            sudo apt update && sudo apt install curl -y
+
+      - run:
+          name: Check curl version again
+          command: |
+              curl --version
+
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
 #           cat notif.txt|sed ':a;N;$!ba;s/\n/\\n/g'|sed 's/\"/\\"/g' > message.txt
