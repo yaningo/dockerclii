@@ -13,16 +13,16 @@ jobs:
           name: Check curl version
           command: |
               curl --version
-      - run:
-          name: Upgrade curl
-          command: |
-              sudo add-apt-repository ppa:savoury1/curl34 -y
-              sudo apt update && sudo apt install curl -y
+#       - run:
+#           name: Upgrade curl
+#           command: |
+#               sudo add-apt-repository ppa:savoury1/curl34 -y
+#               sudo apt update && sudo apt install curl -y
 
-      - run:
-          name: Check curl version again
-          command: |
-              curl --version
+#       - run:
+#           name: Check curl version again
+#           command: |
+#               curl --version
 
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
@@ -39,34 +39,34 @@ jobs:
 #           #echo $BLA
 #           echo $MESSAGE
           
-#       - slack/notify:
-#                 custom: |
-#                   {
-#                     "text": "",
-#                     "blocks": [
-#                       {
-#                         "type": "section",
-#                         "text": {
-#                           "type": "mrkdwn",
-#                           "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , $COMMITTER_NAME_VAR , $COMMITTER_NAME , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
-#                         }
-#                       },
-#                       {
-#                         "type": "actions",
-#                         "elements": [
-#                           {
-#                             "type": "button",
-#                             "text": {
-#                               "type": "plain_text",
-#                               "text": "View Job"
-#                             },
-#                             "url": "${CIRCLE_BUILD_URL}"
-#                           }
-#                         ]
-#                       }
-#                     ]
-#                   }
-#                 event: always
+      - slack/notify:
+                custom: |
+                  {
+                    "text": "",
+                    "blocks": [
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , $COMMITTER_NAME_VAR , $COMMITTER_NAME , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
+                        }
+                      },
+                      {
+                        "type": "actions",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "View Job"
+                            },
+                            "url": "${CIRCLE_BUILD_URL}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                event: always
               
           
 workflows:
