@@ -39,34 +39,34 @@ jobs:
 #           #echo $BLA
 #           echo $MESSAGE
           
-      - slack/notify:
-                custom: |
-                  {
-                    "text": "",
-                    "blocks": [
-                      {
-                        "type": "section",
-                        "text": {
-                          "type": "mrkdwn",
-                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , $COMMITTER_NAME_VAR , $COMMITTER_NAME , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
-                        }
-                      },
-                      {
-                        "type": "actions",
-                        "elements": [
-                          {
-                            "type": "button",
-                            "text": {
-                              "type": "plain_text",
-                              "text": "View Job"
-                            },
-                            "url": "${CIRCLE_BUILD_URL}"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                event: always
+#       - slack/notify:
+#                 custom: |
+#                   {
+#                     "text": "",
+#                     "blocks": [
+#                       {
+#                         "type": "section",
+#                         "text": {
+#                           "type": "mrkdwn",
+#                           "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , $COMMITTER_NAME_VAR , $COMMITTER_NAME , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
+#                         }
+#                       },
+#                       {
+#                         "type": "actions",
+#                         "elements": [
+#                           {
+#                             "type": "button",
+#                             "text": {
+#                               "type": "plain_text",
+#                               "text": "View Job"
+#                             },
+#                             "url": "${CIRCLE_BUILD_URL}"
+#                           }
+#                         ]
+#                       }
+#                     ]
+#                   }
+#                 event: always
               
           
 workflows:
