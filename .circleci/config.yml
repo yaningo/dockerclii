@@ -1,23 +1,19 @@
 version: 2.1
-  
-executors:
-  base:
-    resource_class: small
-    docker:
-      - image: cimg/base:2022.12
-      
+
 jobs:
-  remote:
+  build:
     docker:
-#         - image: cimg/base:2022.12
-        - image: google/cloud-sdk:410.0.0-alpine
+      - image: cimg/base:edge #public.ecr.aws/eks-distro/kubernetes/pause:3.6
     steps:
-      - run: |
-          touch package.json
-          #echo -e "version 1.23 \n blofkwedflwiuehf \n version v.5.5" > package.json
-          cat package.json | grep version | head -1
-      
+      - setup_remote_docker:
+          version: 20.10.6
+      - checkout
+      - run: docker run --name psql-server -p 5433:5433 -d postgres:12.2-alpine
+#       - run: dockerize -wait tcp://localhost:5433 -timeout 1m 
+      - run: docker network ls
+      - run: docker network inspect bridge
+
 workflows:
-  test:
+  workflow1:
     jobs:
-      - remote
+      - build
