@@ -11,8 +11,8 @@ jobs:
     steps:
       - setup_remote_docker:
           version: 20.10.6
-      - checkout
-      - run: docker run --name psql-server -d cimg/postgres:15.2.0 -e POSTGRES_PASSWORD=postgres
+#       - checkout
+      - run: docker run --name psql-server -d cimg/postgres:15.2 -e POSTGRES_PASSWORD=postgres
 #       - run: dockerize -wait tcp://172.17.0.3:5432 -timeout 1m
       - run: docker network ls
       - run: docker network inspect bridge
