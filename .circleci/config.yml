@@ -4,9 +4,9 @@ jobs:
   build:
     docker:
       - image: cimg/base:edge #public.ecr.aws/eks-distro/kubernetes/pause:3.6
-      - image: postgres:12.2-alpine
-        environment:
-          POSTGRES_PASSWORD=postgres
+#       - image: postgres:12.2-alpine
+#         environment:
+#           POSTGRES_PASSWORD=postgres
 
     steps:
       - setup_remote_docker:
