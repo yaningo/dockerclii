@@ -3,14 +3,14 @@ version: 2.1
 jobs:
   build:
     docker:
-#       - image: cimg/base:edge #public.ecr.aws/eks-distro/kubernetes/pause:3.6
-      - image: postgres:12.2-alpine
+      - image: cimg/base:edge #public.ecr.aws/eks-distro/kubernetes/pause:3.6
+#       - image: postgres:12.2-alpine
 
     steps:
-#       - setup_remote_docker:
-#           version: 20.10.6
-#       - checkout
-#       - run: docker run --name psql-server -p 5433:5433 -d postgres:12.2-alpine
+      - setup_remote_docker:
+          version: 20.10.6
+      - checkout
+      - run: docker run --name psql-server -d postgres:12.2-alpine
 #       - run: dockerize -wait tcp://172.19.0.2:5433 -timeout 1m
       - run: docker network ls
       - run: docker network inspect bridge
