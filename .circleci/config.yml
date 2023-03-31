@@ -16,6 +16,7 @@ jobs:
 #       - run: dockerize -wait tcp://172.17.0.3:5432 -timeout 1m
       - run: docker network ls
       - run: docker network inspect bridge
+      - run: docker network inspect ZZZL1Z3UP7J
 
 workflows:
   workflow1:
