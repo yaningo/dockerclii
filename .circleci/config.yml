@@ -9,7 +9,7 @@ jobs:
           version: 20.10.6
       - checkout
       - run: docker run --name psql-server -p 5433:5433 -d postgres:12.2-alpine
-      - run: dockerize -wait tcp://localhost:5433 -timeout 1m
+      - run: dockerize -wait tcp://172.17.0.3:5433 -timeout 1m
       - run: docker network ls
       - run: docker network inspect bridge
 
