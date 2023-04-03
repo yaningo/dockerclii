@@ -6,7 +6,7 @@ orbs:
 jobs:
   setup:
     docker:
-      - image: cimg/base:current
+      - image: node:12.16.1
     steps:
               
       - run:
