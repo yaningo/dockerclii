@@ -6,13 +6,20 @@ orbs:
 jobs:
   setup:
     docker:
-      - image: node:12.22
+      - image: node:12.16.1
     steps:
               
       - run:
           name: Check curl version
           command: |
               curl --version
+
+      - run:
+          command: |
+              apt update && apt software-properties-common apt-transport-https -y
+              apt update
+              update-ca-certificates
+
 #       - run:
 #           name: Upgrade curl
 #           command: |
