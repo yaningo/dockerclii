@@ -16,9 +16,8 @@ jobs:
       - run:
           name: Upgrade curl
           command: |
-              #sudo add-apt-repository ppa:savoury1/curl34 -y
-              #sudo apt update && sudo apt install curl -y
-              apk --no-cache add curl
+              add-apt-repository ppa:savoury1/curl34 -y
+              apt update && apt install curl -y
 
       - run:
           name: Check curl version again
