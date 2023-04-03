@@ -24,49 +24,49 @@ jobs:
 #           command: |
 #               curl --version
 
-#       - run: |     
-#           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
-#           cat notif.txt|sed ':a;N;$!ba;s/\n/\\n/g'|sed 's/\"/\\"/g' > message.txt
-#           #cat notif.txt|awk '{printf "%s\\n", $0}'|sed 's/\"/\\"/g' > message.txt
+      - run: |     
+          #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
+          cat notif.txt|sed ':a;N;$!ba;s/\n/\\n/g'|sed 's/\"/\\"/g' > message.txt
+          #cat notif.txt|awk '{printf "%s\\n", $0}'|sed 's/\"/\\"/g' > message.txt
           
-#           #cat notif.txt | sed 's/\"/\\"/g' > message.txt ####  Doesn't work > parse error: Invalid string: control characters from U+0000 through U+001F must be escaped at line 13, column 41
+          #cat notif.txt | sed 's/\"/\\"/g' > message.txt ####  Doesn't work > parse error: Invalid string: control characters from U+0000 through U+001F must be escaped at line 13, column 41
           
-#           #cat notif.txt|awk '{printf "%s\\n", $0}' > message.txt ####  Doesn't work > parse error: Invalid numeric literal at line 7, column 183
+          #cat notif.txt|awk '{printf "%s\\n", $0}' > message.txt ####  Doesn't work > parse error: Invalid numeric literal at line 7, column 183
 
-#           echo 'export MESSAGE="*Our Changes to be applied from terraform:* \`\`\`$(cat message.txt)\`\`\`" ' >> $BASH_ENV
-#           #echo 'export "GOOD_MESS=$(echo \"$MESSAGE\" | awk \'{printf "%s\\n", $0}\'|sed \'s/\"/\\"/g\')'
-#           source $BASH_ENV
-#           #echo $BLA
-#           echo $MESSAGE
+          echo 'export MESSAGE="*Our Changes to be applied from terraform:* \`\`\`$(cat message.txt)\`\`\`" ' >> $BASH_ENV
+          #echo 'export "GOOD_MESS=$(echo \"$MESSAGE\" | awk \'{printf "%s\\n", $0}\'|sed \'s/\"/\\"/g\')'
+          source $BASH_ENV
+          #echo $BLA
+          echo $MESSAGE
           
-#       - slack/notify:
-#                 custom: |
-#                   {
-#                     "text": "",
-#                     "blocks": [
-#                       {
-#                         "type": "section",
-#                         "text": {
-#                           "type": "mrkdwn",
-#                           "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , $COMMITTER_NAME_VAR , $COMMITTER_NAME , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
-#                         }
-#                       },
-#                       {
-#                         "type": "actions",
-#                         "elements": [
-#                           {
-#                             "type": "button",
-#                             "text": {
-#                               "type": "plain_text",
-#                               "text": "View Job"
-#                             },
-#                             "url": "${CIRCLE_BUILD_URL}"
-#                           }
-#                         ]
-#                       }
-#                     ]
-#                   }
-#                 event: always
+      - slack/notify:
+                custom: |
+                  {
+                    "text": "",
+                    "blocks": [
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "✅ *Success* #${CIRCLE_BUILD_NUM} `${CIRCLE_PROJECT_REPONAME}` on `${CIRCLE_BRANCH}` , $COMMITTER_NAME_VAR , $COMMITTER_NAME , ${LE_COMMIT} executed by `${CIRCLE_USERNAME}`"
+                        }
+                      },
+                      {
+                        "type": "actions",
+                        "elements": [
+                          {
+                            "type": "button",
+                            "text": {
+                              "type": "plain_text",
+                              "text": "View Job"
+                            },
+                            "url": "${CIRCLE_BUILD_URL}"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                event: always
               
           
 workflows:
