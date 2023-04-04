@@ -14,10 +14,11 @@ jobs:
           command: |
               curl --version
 
-#       - run:
-#           command: |
-#               apt update && apt install ca-certificates -y
-#               update-ca-certificates
+      - run:
+          command: |
+              sudo apt update && apt install curl -y
+              #apt update && apt install ca-certificates -y
+              #update-ca-certificates
 
 #       - run:
 #           name: Upgrade curl
