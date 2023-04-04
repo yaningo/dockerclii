@@ -16,7 +16,7 @@ jobs:
 
       - run:
           command: |
-              apt-get update && apt-get install ca-certificates -y
+              apt update && apt install ca-certificates -y
               update-ca-certificates
 
 #       - run:
