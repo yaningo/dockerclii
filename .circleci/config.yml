@@ -23,12 +23,12 @@ jobs:
           name: Install/Upgrade curl
           command: |
               #add-apt-repository ppa:savoury1/curl34 -y
-              sudo apt-get update && apt-get install curl -y
+              apt-get update && apt-get install curl -y
 
-#       - run:
-#           name: Check curl version again
-#           command: |
-#               curl --version
+      - run:
+          name: Check curl version again
+          command: |
+              curl --version
 
 #       - run: |     
 #           #echo \'export BLA=\'$(cat notif.txt| awk '{printf "%s\\n", $0}' | sed 's/\"/\\"/g') \'\' >> $BASH_ENV
