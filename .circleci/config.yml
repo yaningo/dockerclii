@@ -9,22 +9,21 @@ jobs:
       - image: python:2.7-slim-jessie
     steps:
               
-      - run:
-          name: Check curl version
-          command: |
-              curl --version
-
-      - run:
-          command: |
-              sudo apt update && apt install curl -y
-              #apt update && apt install ca-certificates -y
-              #update-ca-certificates
+#       - run:
+#           name: Check curl version
+#           command: |
+#               curl --version
 
 #       - run:
-#           name: Upgrade curl
 #           command: |
-#               add-apt-repository ppa:savoury1/curl34 -y
-#               apt update && apt install curl -y
+#               apt update && apt install ca-certificates -y
+#               update-ca-certificates
+
+      - run:
+          name: Install/Upgrade curl
+          command: |
+              #add-apt-repository ppa:savoury1/curl34 -y
+              sudo apt-get update && apt-get install curl -y
 
 #       - run:
 #           name: Check curl version again
