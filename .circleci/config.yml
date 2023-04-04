@@ -16,8 +16,7 @@ jobs:
 
       - run:
           command: |
-              apt update && apt install software-properties-common apt-transport-https -y
-              apt update
+              apt-get update && apt apt-get install ca-certificates -y
               update-ca-certificates
 
 #       - run:
