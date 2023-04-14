@@ -1,0 +1,31 @@
+# this is necessary because the mounted volumes used in docker-compose.yml
+# are empty on circleci and overwrite the correct files as a result
+# TODO_AJR there's probably a way to re-organize our mounted volumes so we dont need this
+
+version: "3.4"
+services:
+  postgres:
+    image: postgres:12.2-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - PGPORT=5433
+    ports:
+      - 5433:5433
+  server:
+    build:
+      context: ./
+      dockerfile: server.Dockerfile
+      target: local
+    command: ["run", "watch"]
+    ports:
+      - 3001:3001 # rest
+      - 4000:4000 # graphql
+      - 5000:5000 # graphql subs? Not sure if this is needed
+      - 9231:9231 # server debugging
+      - 8080:8080 # websockets
+    restart: on-failure
+    container_name: server
+    depends_on:
+      - "postgres"
+volumes:
+  pg_data:
