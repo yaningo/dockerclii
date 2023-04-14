@@ -11,21 +11,21 @@ services:
       - PGPORT=5433
     ports:
       - 5433:5433
-  server:
-    build:
-      context: ./
-      dockerfile: server.Dockerfile
-      target: local
-    command: ["run", "watch"]
-    ports:
-      - 3001:3001 # rest
-      - 4000:4000 # graphql
-      - 5000:5000 # graphql subs? Not sure if this is needed
-      - 9231:9231 # server debugging
-      - 8080:8080 # websockets
-    restart: on-failure
-    container_name: server
-    depends_on:
-      - "postgres"
+#   server:
+#     build:
+#       context: ./
+#       dockerfile: server.Dockerfile
+#       target: local
+#     command: ["run", "watch"]
+#     ports:
+#       - 3001:3001 # rest
+#       - 4000:4000 # graphql
+#       - 5000:5000 # graphql subs? Not sure if this is needed
+#       - 9231:9231 # server debugging
+#       - 8080:8080 # websockets
+#     restart: on-failure
+#     container_name: server
+#     depends_on:
+#       - "postgres"
 volumes:
   pg_data:
