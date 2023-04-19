@@ -12,7 +12,9 @@ jobs:
 
     steps:
       - checkout
-      - run: echo "Hello"
+      - run: |
+          echo "Hello"
+          sleep 50
 #       - setup_remote_docker:
 #           version: 20.10.6
 #           docker_layer_caching: true
