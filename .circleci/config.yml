@@ -14,7 +14,7 @@ jobs:
       - checkout
       - run: |
           echo "Hello"
-          sleep 50
+          sleep 55
 #       - setup_remote_docker:
 #           version: 20.10.6
 #           docker_layer_caching: true
