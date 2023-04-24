@@ -4,6 +4,7 @@ jobs:
   build:
 #     docker:
 #       - image: cimg/base:edge #public.ecr.aws/eks-distro/kubernetes/pause:3.6
+#     resource_class: small
 #       - image: postgres:12.2-alpine
 #         environment:
 #           POSTGRES_PASSWORD=postgres
@@ -24,7 +25,19 @@ jobs:
       - run: docker network ls
       - run: docker network inspect bridge
 
+  test:
+    docker:
+      - image: cimg/base:edge
+    resource_class: small
+
+    steps:
+      - checkout
+      - run: |
+          echo "Hello"
+          sleep 5
+
 workflows:
   workflow1:
     jobs:
       - build
+      - test
