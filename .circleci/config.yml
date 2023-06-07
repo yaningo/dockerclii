@@ -2,14 +2,13 @@ version: 2.1
     
 jobs:
   regular-job:
-    docker:
-      - image: cimg/base:stable
-#     parameters:
-#       branch:
-#         type: string
+    machine:
+      image: android:2022.12.1
+    working_directory: ~/gelato-os-flutter
+    
     steps:
       - run: |
-          echo "Hello"
+          which gradlew
 
 workflows:
   my-workflow:
