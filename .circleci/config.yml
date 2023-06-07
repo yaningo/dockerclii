@@ -11,6 +11,6 @@ jobs:
           which gradlew
 
 workflows:
-  my-workflow:
+  my-work:
     jobs:
       - my-job
