@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   le-job:
     machine:
-      image: android:2022.12.1
+      image: android:2022.12.
     working_directory: ~/gelato-os-flutter
     
     steps:
