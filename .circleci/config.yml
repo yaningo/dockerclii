@@ -1,7 +1,7 @@
 version: 2.1
     
 jobs:
-  regular-job:
+  my-job:
     machine:
       image: android:2022.12.1
     working_directory: ~/gelato-os-flutter
@@ -13,4 +13,4 @@ jobs:
 workflows:
   my-workflow:
     jobs:
-      - regular-job
+      - my-job
