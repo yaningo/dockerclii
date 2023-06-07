@@ -55,12 +55,3 @@ workflows:
 #       equal: [ api, << pipeline.trigger_source >> ]
     jobs:
       - regular-job
-#           post-steps:
-#             - jira/notify:
-#                 environment_type: production
-#                 job_type: deployment
-          
-#           filters:
-#             branches:
-#               only:
-#                 - caramba
