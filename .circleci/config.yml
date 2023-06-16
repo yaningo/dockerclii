@@ -1,43 +1,16 @@
 version: 2.1
 
 jobs:
-# build:
-#    docker:
-#      - image: cimg/base:edge
-#     resource_class: small
-#       - image: postgres:12.2-alpine
-#         environment:
-#           POSTGRES_PASSWORD=postgres
-#     machine:
-#       image: ubuntu-2204:2023.02.1
-
-#     steps:
-#       - checkout
-#       - run: |
-#           echo "Hello"
-#           sleep 55
-# #       - setup_remote_docker:
-# #           version: 20.10.6
-# #           docker_layer_caching: true
-# #       - checkout
-#       - run: docker-compose up -d
-# #       - run: dockerize -wait tcp://172.17.0.3:5432 -timeout 1m
-#       - run: docker network ls
-#       - run: docker network inspect bridge
-
   test:
-    docker:
-      - image: cimg/base:edge
+    machine:
+      - image:: ubuntu-2004:202101-01
     resource_class: small
 
     steps:
-      - checkout
       - run: |
-          echo "$CIRCLE_OIDC_TOKEN_V2"
-          echo "$CIRCLE_OIDC_TOKEN"
+          curl https://cdn-ubi.redhat.com/content/public/ubi/dist/ubi9/9/x86_64/baseos/os/repodata/repomd.xml
 
 workflows:
   workflow1:
     jobs:
-#       - build
       - test
