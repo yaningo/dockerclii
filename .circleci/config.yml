@@ -36,9 +36,9 @@ workflows:
     jobs:
     - show-pr-refs
     
-    - hold:
-          type: approval
-          requires:
-            - show-pr-refs
+    # - hold:
+    #       type: approval
+    #       requires:
+    #         - show-pr-refs
     
   
