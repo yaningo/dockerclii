@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   publish-feature:
     docker:
-      image: cimg/openjdk:17.0.5
+      - image: cimg/openjdk:17.0.5
     steps:
       - checkout
       - run: echo "hello"
