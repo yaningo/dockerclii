@@ -6,9 +6,8 @@ jobs:
       image: cimg/openjdk:17.0.5
     steps:
       - checkout
+      - run: echo "hello"
       - setup_remote_docker
-#       - checkout
-#       - my-orb/my_command
 
 workflows:
   main:
