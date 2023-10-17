@@ -9,7 +9,8 @@ jobs:
       - run: echo "hello hello"
       - setup_remote_docker
 
-# workflows:
-#   main:
-#     jobs:
-#       - publish-feature
+workflows:
+  version: 2
+  main:
+    jobs:
+      - publish-feature
