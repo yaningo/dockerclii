@@ -1,27 +1,16 @@
 version: 2.1
 
-# orbs:
-#   my-orb:
-#     commands:
-#       my_command:
-#         steps:
-#           - run:
-#               name: "Printing a pipeline value"
-#               command: echo "<< pipeline.id >>"
 jobs:
-  my_job:
+  publish-feature:
     docker:
-      - image: cimg/base:2023.02
+      image: cimg/openjdk:17.0.5
     steps:
-      - run: |
-          echo "<< pipeline.id >>"
-          echo "<< pipeline.project.git_url >>"
-          echo 'pipeline.git.revision=<<pipeline.git.revision>>' > rev.txt
-          cat rev.txt
+      - checkout
+      - setup_remote_docker
 #       - checkout
 #       - my-orb/my_command
 
 workflows:
   main:
     jobs:
-      - my_job
+      - publish-feature
