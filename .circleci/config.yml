@@ -8,7 +8,7 @@ orbs:
   continuation: circleci/continuation@1.0.0
   win: circleci/windows@5.0.0
 
-# our defined job, and its steps
+# our defined job and its steps
 jobs:
   set_up:
     # machine: true
