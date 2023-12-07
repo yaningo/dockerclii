@@ -1,21 +1,57 @@
 version: 2.1
 
+# this allows you to use CircleCI's dynamic configuration feature
 setup: true
- 
-orbs:
-  continuation: circleci/continuation@0.1.2
 
+# the continuation orb is required in order to use dynamic configuration
+orbs:
+  continuation: circleci/continuation@1.0.0
+  win: circleci/windows@5.0.0
+
+# our defined job, and its steps
 jobs:
-  init:
-    executor: continuation/default
+  set_up:
+    # machine: true
+    # resource_class: vay/reecu-hil
+    # working_directory: C:\circleci-workspace
+    executor:
+      name: win/default
+      shell: bash.exe
+
     steps:
-      - checkout
-      - run: echo $DOCKER_VERSION
+      - checkout # checkout code
+      # - run: # run a command
+      #     name: Generate config
+      #     command: |
+      #       python3 ./generate-config.py > generated_config.yml
       - continuation/continue:
-          parameters: '{"lacondition": "$condition_needed"}'
-          configuration_path: .circleci/local.yml
-        
+          configuration_path: ./.circleci/local.yml # use newly generated config to continue
+
+# our single workflow, that triggers the setup job defined above
 workflows:
   setup:
     jobs:
-      - init
+      - set_up
+
+
+# version: 2.1
+
+# setup: true
+ 
+# orbs:
+#   continuation: circleci/continuation@0.1.2
+
+# jobs:
+#   init:
+#     executor: continuation/default
+#     steps:
+#       - checkout
+#       - run: echo $DOCKER_VERSION
+#       - continuation/continue:
+#           parameters: '{"lacondition": "$condition_needed"}'
+#           configuration_path: .circleci/local.yml
+        
+# workflows:
+#   setup:
+#     jobs:
+#       - init
