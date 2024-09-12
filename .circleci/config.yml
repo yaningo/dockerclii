@@ -1,43 +1,25 @@
-version: 2
+version: 2.1
 
 jobs:
   premier:
     docker:
       - image: circleci/node
     steps:
-      - run:
-          command: |
-                   echo job1
-                   
-  deuxieme:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo job2
- 
-  troisieme:
-    docker:
-      - image: circleci/node
-    steps:
-      - run:
-          command: |
-                   echo jobnum3
-                                     
+
+
+      - setup_remote_docker:
+          version: 20.10.14
+          
+      - run: docker run -d cimg/postgres:14.5
+      
+      - run: |
+          dockerize -wait tcp://remote-docker:5432 -timeout 1m
+          
+      - run: |
+          curl remote-docker:5432
+
 workflows:
-  version: 2
-  papa:
+  papu:
     jobs:
       - premier
    
-      - start-trigger-metrics-collection:
-          type: approval
-
-      - deuxieme:
-          requires:
-            - start-trigger-metrics-collection
-      
-  lala:
-    jobs:
-      - troisieme
