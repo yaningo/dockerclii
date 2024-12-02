@@ -1,34 +1,16 @@
 version: 2.1
-
-parameters:
-  param1:
-    type: string
-    default: batman
-  param2:
-    type: string
-    default: robin
-  param3:
-    type: string
-    default: I-am-<< pipeline.parameters.param1 >>
     
 jobs:
-  regular-job:
-    docker:
-      - image: cimg/base:stable
-#     parameters:
-#       branch:
-#         type: string
+  le-job:
+    machine:
+      image: android:2022.12.
+    working_directory: ~/gelato-os-flutter
+    
     steps:
       - run: |
-          echo << pipeline.parameters.param1 >>
-          echo << pipeline.parameters.param2 >>
-          echo << pipeline.parameters.param3 >>
+          which gradlew
 
 workflows:
-  my-workflow:
-#     when:
-#       and:
-#         - equal: [ scheduled_pipeline, << pipeline.trigger_source >> ]
-#         - equal: [ "my_little_schedule", << pipeline.schedule.name >> ]
+  my-workfw:
     jobs:
-      - regular-job
+      - le-job
